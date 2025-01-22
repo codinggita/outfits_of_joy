@@ -26,7 +26,7 @@ const upload = multer({ storage });
 // Middleware
 app.use(express.json());
 
-let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users;
+let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts;
 
 // Connect to MongoDB and initialize collections
 async function initializeDatabase() {
@@ -42,6 +42,7 @@ async function initializeDatabase() {
         anarkali = db.collection("anarkali");
         gown = db.collection("gown");
         users = db.collection("users");
+        carts = db.collection("carts");
 
         // Start server after successful DB connection
         app.listen(port, () => {
@@ -458,11 +459,118 @@ app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
             return res.status(404).send("User not found");
         }
 
-        const result = await users.updateOne({_id}, {$set: updates});
+        const result = await users.updateOne({ _id }, { $set: updates });
         console.log(updates)
-        res.status(200).json({message: "User updated successfully",result});
+        res.status(200).json({ message: "User updated successfully", result });
     }
     catch (error) {
         res.status(500).send("Error updating user: " + error.message);
     }
 })
+
+
+//CART
+//POST: add items to cart
+app.post('/outfits-of-joy/carts', async (req, res) => {
+    try {
+        const { userId, productId, size, quantity, fromDate, toDate } = req.body;
+
+        // Find the user's cart
+        let cart = await carts.findOne({ userId });
+
+        if (!cart) {
+            // If the cart doesn't exist, create a new one
+            cart = {
+                userId,
+                items: [
+                    {
+                        productId,
+                        size,
+                        quantity,
+                        fromDate,
+                        toDate,
+                    },
+                ],
+                createdAt: new Date(),
+            };
+
+            // Insert the new cart into the database
+            await carts.insertOne(cart);
+            return res.status(201).json(cart);
+        } else {
+            // If the cart exists, update it with the new item
+            const itemIndex = cart.items.findIndex((item) => item.productId.toString() === productId.toString());
+
+            if (itemIndex === -1) {
+                // If the item does not exist in the cart, push a new item
+                cart.items.push({
+                    productId,
+                    size,
+                    quantity,
+                    fromDate,
+                    toDate,
+                });
+            } else {
+                // If the item exists, update its details
+                const item = cart.items[itemIndex];
+                item.quantity = quantity;
+                item.size = size;
+                item.fromDate = fromDate;
+                item.toDate = toDate;
+            }
+
+            // Update the cart in the database
+            await carts.updateOne({ userId }, { $set: { items: cart.items } });
+
+            return res.status(200).json(cart);
+        }
+    } catch (error) {
+        console.error('Error creating or updating cart:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+//GET: Fetch cart for particular user
+app.get('/outfits-of-joy/carts/:userid', async (req, res) => {
+    try {
+        const userId = req.params.userid;
+        console.log({userId})
+        const cart_item = await carts.findOne({ userId });
+        if (cart_item) {
+            res.status(200).json(cart_item);
+        } else {
+            res.status(404).send("cart_item not found");
+        }
+    }
+    catch (error) {
+        res.status(500).send("Error fetching cart_item: " + error.message);
+    }
+})
+
+
+//DELETE: remover cart item
+app.delete('/outfits-of-joy/carts/:userId/items/:productId', async (req, res) => {
+    try {
+        const { userId, productId } = req.params;
+
+        // Find the user's cart
+        const cart = await carts.findOne({ userId });
+
+        // Filter out the item to delete
+        const updatedItems = cart.items.filter(
+            (item) => item.productId.toString() !== productId.toString()
+        );
+
+        // Update the cart in the database
+        await carts.updateOne(
+            { userId},
+            { $set: { items: updatedItems } }
+        );
+
+        return res.status(200).json({ message: 'Item deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting cart item:', error);
+        res.status(500).send('Server error');
+    }
+});
