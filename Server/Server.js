@@ -26,7 +26,7 @@ const upload = multer({ storage });
 // Middleware
 app.use(express.json());
 
-let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts;
+let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts, favourites;
 
 // Connect to MongoDB and initialize collections
 async function initializeDatabase() {
@@ -43,6 +43,7 @@ async function initializeDatabase() {
         gown = db.collection("gown");
         users = db.collection("users");
         carts = db.collection("carts");
+        favourites = db.collection("favourites");
 
         // Start server after successful DB connection
         app.listen(port, () => {
@@ -535,7 +536,6 @@ app.post('/outfits-of-joy/carts', async (req, res) => {
 app.get('/outfits-of-joy/carts/:userid', async (req, res) => {
     try {
         const userId = req.params.userid;
-        console.log({userId})
         const cart_item = await carts.findOne({ userId });
         if (cart_item) {
             res.status(200).json(cart_item);
@@ -549,8 +549,8 @@ app.get('/outfits-of-joy/carts/:userid', async (req, res) => {
 })
 
 
-//DELETE: remover cart item
-app.delete('/outfits-of-joy/carts/:userId/items/:productId', async (req, res) => {
+//DELETE: Remove a cart item for  user
+app.delete('/outfits-of-joy/carts/:userId/:productId', async (req, res) => {
     try {
         const { userId, productId } = req.params;
 
@@ -572,5 +572,103 @@ app.delete('/outfits-of-joy/carts/:userId/items/:productId', async (req, res) =>
     } catch (error) {
         console.error('Error deleting cart item:', error);
         res.status(500).send('Server error');
+    }
+});
+
+
+
+//FAVOURITES
+//POST: add items to cart
+app.post('/outfits-of-joy/favourites', async (req, res) => {
+    try {
+        const { userId, productId } = req.body;
+
+        // Find the user's favourites
+        let favourite = await favourites.findOne({ userId });
+
+        if (!favourite) {
+            // If the favourites list doesn't exist, create a new one
+            favourite = {
+                userId,
+                items: [productId],
+                createdAt: new Date(),
+            };
+
+            // Insert the new favourites list into the database
+            await favourites.insertOne(favourite);
+            return res.status(201).json(favourite);
+        } else {
+            // If the favourites list exists, update it with the new item
+            if (!favourite.items.includes(productId)) {
+                // If the item does not exist in the favourites list, use $push
+                await favourites.updateOne(
+                    { userId },
+                    { $push: { items: productId } }
+                );
+                favourite = await favourites.findOne({ userId });
+            }
+
+            return res.status(200).json(favourite);
+        }
+    } catch (error) {
+        console.error('Error creating or updating favourites:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+
+//GET: Fetch favourites for particular user
+app.get('/outfits-of-joy/favourites/:userid', async (req, res) => {
+    try {
+        const userId = parseInt(req.params.userid);
+        console.log({userId})
+        const favourite_item = await favourites.findOne({ userId });
+        if (favourite_item) {
+            res.status(200).json(favourite_item);
+        } else {
+            res.status(404).send("favourite_item not found");
+        }
+    }
+    catch (error) {
+        res.status(500).send("Error fetching favourite_item: " + error.message);
+    }
+})
+
+
+// DELETE: Remove a favourite item for  user
+app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => {
+    try {
+        const userId = parseInt(req.params.userid);
+        const productId = req.params.productid;
+
+        // Find the user's favourites
+        let favourite = await favourites.findOne({ userId });
+
+        if (!favourite) {
+            return res.status(404).send("Favourites list not found");
+        }
+
+        // Check if the product exists in the favourites list
+        const itemIndex = favourite.items.indexOf(productId);
+
+        if (itemIndex === -1) {
+            return res.status(404).send("Product not found in favourites");
+        }
+
+        // Remove the product from the favourites list
+        favourite.items.splice(itemIndex, 1);
+
+        // Update the favourites list in the database
+        await favourites.updateOne(
+            { userId },
+            { $set: { items: favourite.items } }
+        );
+
+        return res.status(200).json(favourite);
+    } catch (error) {
+        console.error('Error removing favourite item:', error);
+        res.status(500).send("Error removing favourite item: " + error.message);
     }
 });
