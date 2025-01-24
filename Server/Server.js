@@ -329,7 +329,10 @@ app.post("/outfits-of-joy/collection/gown", upload.array("images", 4), async (re
 // GET: List all sherwani
 app.get('/outfits-of-joy/collection/sherwani', async (req, res) => {
     try {
-        const allsherwani = await sherwani.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allsherwani = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allsherwani);
     } catch (err) {
         res.status(500).send("Error fetching sherwani: " + err.message);
@@ -340,7 +343,10 @@ app.get('/outfits-of-joy/collection/sherwani', async (req, res) => {
 // GET: List all indo_western
 app.get('/outfits-of-joy/collection/indo_western', async (req, res) => {
     try {
-        const allindo_western = await indo_western.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allindo_western = await indo_western.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allindo_western);
     } catch (err) {
         res.status(500).send("Error fetching indo_western: " + err.message);
@@ -351,7 +357,10 @@ app.get('/outfits-of-joy/collection/indo_western', async (req, res) => {
 // GET: List all tuxedo
 app.get('/outfits-of-joy/collection/tuxedo', async (req, res) => {
     try {
-        const alltuxedo = await tuxedo.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const alltuxedo = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(alltuxedo);
     } catch (err) {
         res.status(500).send("Error fetching tuxedo: " + err.message);
@@ -362,7 +371,10 @@ app.get('/outfits-of-joy/collection/tuxedo', async (req, res) => {
 // GET: List all lehenga
 app.get('/outfits-of-joy/collection/lehenga', async (req, res) => {
     try {
-        const alllehenga = await lehenga.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const alllehenga = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(alllehenga);
     } catch (err) {
         res.status(500).send("Error fetching lehenga: " + err.message);
@@ -373,7 +385,10 @@ app.get('/outfits-of-joy/collection/lehenga', async (req, res) => {
 // GET: List all anarkali
 app.get('/outfits-of-joy/collection/anarkali', async (req, res) => {
     try {
-        const allanarkali = await anarkali.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allanarkali = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allanarkali);
     } catch (err) {
         res.status(500).send("Error fetching anarkali: " + err.message);
@@ -384,7 +399,10 @@ app.get('/outfits-of-joy/collection/anarkali', async (req, res) => {
 // GET: List all gown
 app.get('/outfits-of-joy/collection/gown', async (req, res) => {
     try {
-        const allgown = await gown.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allgown = await gown.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allgown);
     } catch (err) {
         res.status(500).send("Error fetching gown: " + err.message);
@@ -758,7 +776,7 @@ app.get("/outfits-of-joy/mens-collections", async (req, res) => {
 app.get("/outfits-of-joy/womens-collections", async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Default to page 1
-        const limit = parseInt(req.query.limit) || 20; // Default to 20 items per page
+        const limit = parseInt(req.query.limit) || 10; // Default to 20 items per page
 
         const lehengaItems = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
         const anarkaliItems = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
@@ -766,9 +784,7 @@ app.get("/outfits-of-joy/womens-collections", async (req, res) => {
 
         const allItems = [...lehengaItems, ...anarkaliItems, ...gownItems];
 
-        const shuffledItems = allItems.sort(() => Math.random() - 0.5);
-
-        res.status(200).json(shuffledItems);
+        res.status(200).json(allItems);
     } catch (error) {
         console.error("Error fetching collections:", error);
         res.status(500).json({ error: "Failed to fetch collections" });
