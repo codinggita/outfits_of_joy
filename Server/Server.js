@@ -26,7 +26,7 @@ const upload = multer({ storage });
 // Middleware
 app.use(express.json());
 
-let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts, favourites;
+let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts, favourites, orders;
 
 // Connect to MongoDB and initialize collections
 async function initializeDatabase() {
@@ -44,6 +44,7 @@ async function initializeDatabase() {
         users = db.collection("users");
         carts = db.collection("carts");
         favourites = db.collection("favourites");
+        orders = db.collection("orders");
 
         // Start server after successful DB connection
         app.listen(port, () => {
@@ -406,6 +407,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 
         // Insert the new user into the users collection
         const result = await users.insertOne({
+            _id: new ObjectId().toString(),
             firstName,
             lastName,
             email,
@@ -415,7 +417,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
             createdAt: new Date(),
         });
 
-        res.status(201).json({ message: 'User created successfully!', user: result.ops[0] });
+        res.status(201).json({ message: 'User created successfully!', user: result });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Server error' });
@@ -427,7 +429,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 //Get: fetch user by userid
 app.get('/outfits-of-joy/users/:userid', async (req, res) => {
     try {
-        const _id = new ObjectId(req.params.userid)
+        const _id = req.params.userid;
         const user = await users.findOne({ _id });
         if (user) {
             res.status(200).json(user);
@@ -444,7 +446,7 @@ app.get('/outfits-of-joy/users/:userid', async (req, res) => {
 //PATCH: edit user details
 app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
     try {
-        const _id = new ObjectId(req.params.userid)
+        const _id = req.params.userid;
         const { firstName, lastName, email, password, phone, address } = req.body;
 
         const updates = {};
@@ -564,7 +566,7 @@ app.delete('/outfits-of-joy/carts/:userId/:productId', async (req, res) => {
 
         // Update the cart in the database
         await carts.updateOne(
-            { userId},
+            { userId },
             { $set: { items: updatedItems } }
         );
 
@@ -623,7 +625,7 @@ app.post('/outfits-of-joy/favourites', async (req, res) => {
 app.get('/outfits-of-joy/favourites/:userid', async (req, res) => {
     try {
         const userId = parseInt(req.params.userid);
-        console.log({userId})
+        console.log({ userId })
         const favourite_item = await favourites.findOne({ userId });
         if (favourite_item) {
             res.status(200).json(favourite_item);
@@ -670,5 +672,105 @@ app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => 
     } catch (error) {
         console.error('Error removing favourite item:', error);
         res.status(500).send("Error removing favourite item: " + error.message);
+    }
+});
+
+
+
+//ORDERS
+//POST: add orders
+app.post("/outfits-of-joy/orders", async (req, res) => {
+    try {
+        const { userId, productId, quantity, size, status, orderDate, fromDate, toDate } = req.body;
+
+        // Validate required fields
+        if (!userId || !productId || !quantity || !size || !status || !orderDate || !fromDate || !toDate) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        const newOrder = {
+            orderId: new ObjectId().toString(),
+            productId,
+            quantity,
+            size,
+            status,
+            orderDate: new Date(orderDate),
+            fromDate: new Date(fromDate),
+            toDate: new Date(toDate),
+            createdAt: new Date(),
+        };
+
+        const result = await orders.updateOne(
+            { _id: userId },
+            { $push: { orders: newOrder } },
+            { upsert: true } // Create a new document if it doesn't exist
+        );
+
+        res.status(201).json({ message: "Order added successfully", result });
+    } catch (error) {
+        console.error("Error adding order:", error);
+        res.status(500).json({ error: "Failed to add order" });
+    }
+});
+
+
+
+//GET: fetch user orders
+app.get("/outfits-of-joy/orders/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const userOrders = await orders.findOne({ _id: userId });
+
+        res.status(200).json(userOrders.orders);
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        res.status(500).json({ error: "Failed to fetch orders" });
+    }
+});
+
+
+
+//GET: fetch mens-collections
+app.get("/outfits-of-joy/mens-collections", async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1; // Default to page 1
+        const limit = parseInt(req.query.limit) || 20; // Default to 20 items per page
+
+        const sherwaniItems = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
+        const tuxedoItems = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
+        const indoWesternItems = await indo_western.find().skip((page - 1) * limit).limit(limit).toArray();
+
+        const allItems = [...sherwaniItems, ...tuxedoItems, ...indoWesternItems];
+
+        const shuffledItems = allItems.sort(() => Math.random() - 0.5);
+
+        res.status(200).json(shuffledItems);
+    } catch (error) {
+        console.error("Error fetching collections:", error);
+        res.status(500).json({ error: "Failed to fetch collections" });
+    }
+});
+
+
+
+//GET: fetch womens-collections
+app.get("/outfits-of-joy/womens-collections", async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1; // Default to page 1
+        const limit = parseInt(req.query.limit) || 20; // Default to 20 items per page
+
+        const lehengaItems = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
+        const anarkaliItems = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
+        const gownItems = await gown.find().skip((page - 1) * limit).limit(limit).toArray();
+
+        const allItems = [...lehengaItems, ...anarkaliItems, ...gownItems];
+
+        const shuffledItems = allItems.sort(() => Math.random() - 0.5);
+
+        res.status(200).json(shuffledItems);
+    } catch (error) {
+        console.error("Error fetching collections:", error);
+        res.status(500).json({ error: "Failed to fetch collections" });
     }
 });
