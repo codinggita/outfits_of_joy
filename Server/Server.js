@@ -26,7 +26,7 @@ const upload = multer({ storage });
 // Middleware
 app.use(express.json());
 
-let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users;
+let db, sherwani, indo_western, tuxedo, lehenga, anarkali, gown, users, carts, favourites, orders;
 
 // Connect to MongoDB and initialize collections
 async function initializeDatabase() {
@@ -42,6 +42,9 @@ async function initializeDatabase() {
         anarkali = db.collection("anarkali");
         gown = db.collection("gown");
         users = db.collection("users");
+        carts = db.collection("carts");
+        favourites = db.collection("favourites");
+        orders = db.collection("orders");
 
         // Start server after successful DB connection
         app.listen(port, () => {
@@ -326,7 +329,10 @@ app.post("/outfits-of-joy/collection/gown", upload.array("images", 4), async (re
 // GET: List all sherwani
 app.get('/outfits-of-joy/collection/sherwani', async (req, res) => {
     try {
-        const allsherwani = await sherwani.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allsherwani = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allsherwani);
     } catch (err) {
         res.status(500).send("Error fetching sherwani: " + err.message);
@@ -337,7 +343,10 @@ app.get('/outfits-of-joy/collection/sherwani', async (req, res) => {
 // GET: List all indo_western
 app.get('/outfits-of-joy/collection/indo_western', async (req, res) => {
     try {
-        const allindo_western = await indo_western.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allindo_western = await indo_western.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allindo_western);
     } catch (err) {
         res.status(500).send("Error fetching indo_western: " + err.message);
@@ -348,7 +357,10 @@ app.get('/outfits-of-joy/collection/indo_western', async (req, res) => {
 // GET: List all tuxedo
 app.get('/outfits-of-joy/collection/tuxedo', async (req, res) => {
     try {
-        const alltuxedo = await tuxedo.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const alltuxedo = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(alltuxedo);
     } catch (err) {
         res.status(500).send("Error fetching tuxedo: " + err.message);
@@ -359,7 +371,10 @@ app.get('/outfits-of-joy/collection/tuxedo', async (req, res) => {
 // GET: List all lehenga
 app.get('/outfits-of-joy/collection/lehenga', async (req, res) => {
     try {
-        const alllehenga = await lehenga.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const alllehenga = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(alllehenga);
     } catch (err) {
         res.status(500).send("Error fetching lehenga: " + err.message);
@@ -370,7 +385,10 @@ app.get('/outfits-of-joy/collection/lehenga', async (req, res) => {
 // GET: List all anarkali
 app.get('/outfits-of-joy/collection/anarkali', async (req, res) => {
     try {
-        const allanarkali = await anarkali.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allanarkali = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allanarkali);
     } catch (err) {
         res.status(500).send("Error fetching anarkali: " + err.message);
@@ -381,7 +399,10 @@ app.get('/outfits-of-joy/collection/anarkali', async (req, res) => {
 // GET: List all gown
 app.get('/outfits-of-joy/collection/gown', async (req, res) => {
     try {
-        const allgown = await gown.find().toArray();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+
+        const allgown = await gown.find().skip((page - 1) * limit).limit(limit).toArray();
         res.status(200).json(allgown);
     } catch (err) {
         res.status(500).send("Error fetching gown: " + err.message);
@@ -404,6 +425,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 
         // Insert the new user into the users collection
         const result = await users.insertOne({
+            _id: new ObjectId().toString(),
             firstName,
             lastName,
             email,
@@ -413,7 +435,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
             createdAt: new Date(),
         });
 
-        res.status(201).json({ message: 'User created successfully!', user: result.ops[0] });
+        res.status(201).json({ message: 'User created successfully!', user: result });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Server error' });
@@ -425,7 +447,7 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 //Get: fetch user by userid
 app.get('/outfits-of-joy/users/:userid', async (req, res) => {
     try {
-        const _id = new ObjectId(req.params.userid)
+        const _id = req.params.userid;
         const user = await users.findOne({ _id });
         if (user) {
             res.status(200).json(user);
@@ -442,7 +464,7 @@ app.get('/outfits-of-joy/users/:userid', async (req, res) => {
 //PATCH: edit user details
 app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
     try {
-        const _id = new ObjectId(req.params.userid)
+        const _id = req.params.userid;
         const { firstName, lastName, email, password, phone, address } = req.body;
 
         const updates = {};
@@ -458,11 +480,313 @@ app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
             return res.status(404).send("User not found");
         }
 
-        const result = await users.updateOne({_id}, {$set: updates});
+        const result = await users.updateOne({ _id }, { $set: updates });
         console.log(updates)
-        res.status(200).json({message: "User updated successfully",result});
+        res.status(200).json({ message: "User updated successfully", result });
     }
     catch (error) {
         res.status(500).send("Error updating user: " + error.message);
     }
 })
+
+
+//CART
+//POST: add items to cart
+app.post('/outfits-of-joy/carts', async (req, res) => {
+    try {
+        const { userId, productId, size, quantity, fromDate, toDate } = req.body;
+
+        // Find the user's cart
+        let cart = await carts.findOne({ userId });
+
+        if (!cart) {
+            // If the cart doesn't exist, create a new one
+            cart = {
+                userId,
+                items: [
+                    {
+                        productId,
+                        size,
+                        quantity,
+                        fromDate,
+                        toDate,
+                    },
+                ],
+                createdAt: new Date(),
+            };
+
+            // Insert the new cart into the database
+            await carts.insertOne(cart);
+            return res.status(201).json(cart);
+        } else {
+            // If the cart exists, update it with the new item
+            const itemIndex = cart.items.findIndex((item) => item.productId.toString() === productId.toString());
+
+            if (itemIndex === -1) {
+                // If the item does not exist in the cart, push a new item
+                cart.items.push({
+                    productId,
+                    size,
+                    quantity,
+                    fromDate,
+                    toDate,
+                });
+            } else {
+                // If the item exists, update its details
+                const item = cart.items[itemIndex];
+                item.quantity = quantity;
+                item.size = size;
+                item.fromDate = fromDate;
+                item.toDate = toDate;
+            }
+
+            // Update the cart in the database
+            await carts.updateOne({ userId }, { $set: { items: cart.items } });
+
+            return res.status(200).json(cart);
+        }
+    } catch (error) {
+        console.error('Error creating or updating cart:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+//GET: Fetch cart for particular user
+app.get('/outfits-of-joy/carts/:userid', async (req, res) => {
+    try {
+        const userId = req.params.userid;
+        const cart_item = await carts.findOne({ userId });
+        if (cart_item) {
+            res.status(200).json(cart_item);
+        } else {
+            res.status(404).send("cart_item not found");
+        }
+    }
+    catch (error) {
+        res.status(500).send("Error fetching cart_item: " + error.message);
+    }
+})
+
+
+//DELETE: Remove a cart item for  user
+app.delete('/outfits-of-joy/carts/:userId/:productId', async (req, res) => {
+    try {
+        const { userId, productId } = req.params;
+
+        // Find the user's cart
+        const cart = await carts.findOne({ userId });
+
+        // Filter out the item to delete
+        const updatedItems = cart.items.filter(
+            (item) => item.productId.toString() !== productId.toString()
+        );
+
+        // Update the cart in the database
+        await carts.updateOne(
+            { userId },
+            { $set: { items: updatedItems } }
+        );
+
+        return res.status(200).json({ message: 'Item deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting cart item:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+//FAVOURITES
+//POST: add items to cart
+app.post('/outfits-of-joy/favourites', async (req, res) => {
+    try {
+        const { userId, productId } = req.body;
+
+        // Find the user's favourites
+        let favourite = await favourites.findOne({ userId });
+
+        if (!favourite) {
+            // If the favourites list doesn't exist, create a new one
+            favourite = {
+                userId,
+                items: [productId],
+                createdAt: new Date(),
+            };
+
+            // Insert the new favourites list into the database
+            await favourites.insertOne(favourite);
+            return res.status(201).json(favourite);
+        } else {
+            // If the favourites list exists, update it with the new item
+            if (!favourite.items.includes(productId)) {
+                // If the item does not exist in the favourites list, use $push
+                await favourites.updateOne(
+                    { userId },
+                    { $push: { items: productId } }
+                );
+                favourite = await favourites.findOne({ userId });
+            }
+
+            return res.status(200).json(favourite);
+        }
+    } catch (error) {
+        console.error('Error creating or updating favourites:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+
+//GET: Fetch favourites for particular user
+app.get('/outfits-of-joy/favourites/:userid', async (req, res) => {
+    try {
+        const userId = parseInt(req.params.userid);
+        console.log({ userId })
+        const favourite_item = await favourites.findOne({ userId });
+        if (favourite_item) {
+            res.status(200).json(favourite_item);
+        } else {
+            res.status(404).send("favourite_item not found");
+        }
+    }
+    catch (error) {
+        res.status(500).send("Error fetching favourite_item: " + error.message);
+    }
+})
+
+
+// DELETE: Remove a favourite item for  user
+app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => {
+    try {
+        const userId = parseInt(req.params.userid);
+        const productId = req.params.productid;
+
+        // Find the user's favourites
+        let favourite = await favourites.findOne({ userId });
+
+        if (!favourite) {
+            return res.status(404).send("Favourites list not found");
+        }
+
+        // Check if the product exists in the favourites list
+        const itemIndex = favourite.items.indexOf(productId);
+
+        if (itemIndex === -1) {
+            return res.status(404).send("Product not found in favourites");
+        }
+
+        // Remove the product from the favourites list
+        favourite.items.splice(itemIndex, 1);
+
+        // Update the favourites list in the database
+        await favourites.updateOne(
+            { userId },
+            { $set: { items: favourite.items } }
+        );
+
+        return res.status(200).json(favourite);
+    } catch (error) {
+        console.error('Error removing favourite item:', error);
+        res.status(500).send("Error removing favourite item: " + error.message);
+    }
+});
+
+
+
+//ORDERS
+//POST: add orders
+app.post("/outfits-of-joy/orders", async (req, res) => {
+    try {
+        const { userId, productId, quantity, size, status, orderDate, fromDate, toDate } = req.body;
+
+        // Validate required fields
+        if (!userId || !productId || !quantity || !size || !status || !orderDate || !fromDate || !toDate) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        const newOrder = {
+            orderId: new ObjectId().toString(),
+            productId,
+            quantity,
+            size,
+            status,
+            orderDate: new Date(orderDate),
+            fromDate: new Date(fromDate),
+            toDate: new Date(toDate),
+            createdAt: new Date(),
+        };
+
+        const result = await orders.updateOne(
+            { _id: userId },
+            { $push: { orders: newOrder } },
+            { upsert: true } // Create a new document if it doesn't exist
+        );
+
+        res.status(201).json({ message: "Order added successfully", result });
+    } catch (error) {
+        console.error("Error adding order:", error);
+        res.status(500).json({ error: "Failed to add order" });
+    }
+});
+
+
+
+//GET: fetch user orders
+app.get("/outfits-of-joy/orders/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const userOrders = await orders.findOne({ _id: userId });
+
+        res.status(200).json(userOrders.orders);
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        res.status(500).json({ error: "Failed to fetch orders" });
+    }
+});
+
+
+
+//GET: fetch mens-collections
+app.get("/outfits-of-joy/mens-collections", async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1; // Default to page 1
+        const limit = parseInt(req.query.limit) || 20; // Default to 20 items per page
+
+        const sherwaniItems = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
+        const tuxedoItems = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
+        const indoWesternItems = await indo_western.find().skip((page - 1) * limit).limit(limit).toArray();
+
+        const allItems = [...sherwaniItems, ...tuxedoItems, ...indoWesternItems];
+
+        const shuffledItems = allItems.sort(() => Math.random() - 0.5);
+
+        res.status(200).json(shuffledItems);
+    } catch (error) {
+        console.error("Error fetching collections:", error);
+        res.status(500).json({ error: "Failed to fetch collections" });
+    }
+});
+
+
+
+//GET: fetch womens-collections
+app.get("/outfits-of-joy/womens-collections", async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1; // Default to page 1
+        const limit = parseInt(req.query.limit) || 10; // Default to 20 items per page
+
+        const lehengaItems = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
+        const anarkaliItems = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
+        const gownItems = await gown.find().skip((page - 1) * limit).limit(limit).toArray();
+
+        const allItems = [...lehengaItems, ...anarkaliItems, ...gownItems];
+
+        res.status(200).json(allItems);
+    } catch (error) {
+        console.error("Error fetching collections:", error);
+        res.status(500).json({ error: "Failed to fetch collections" });
+    }
+});
