@@ -409,6 +409,74 @@ app.get('/outfits-of-joy/collection/gown', async (req, res) => {
     }
 });
 
+// GET: fetch specific sherwani
+app.get('/outfits-of-joy/collection/sherwani/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_sherwani = await sherwani.findOne({_id});
+        res.status(200).json(a_sherwani);
+    } catch (err) {
+        res.status(500).send("Error fetching sherwani: " + err.message);
+    }
+});
+
+// GET: fetch specific indo_western
+app.get('/outfits-of-joy/collection/indo_western/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_indo_western = await indo_western.findOne({_id});
+        res.status(200).json(a_indo_western);
+    } catch (err) {
+        res.status(500).send("Error fetching indo_western: " + err.message);
+    }
+});
+
+
+// GET: fetch specific tuxedo
+app.get('/outfits-of-joy/collection/tuxedo/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_tuxedo = await tuxedo.findOne({_id});
+        res.status(200).json(a_tuxedo);
+    } catch (err) {
+        res.status(500).send("Error fetching tuxedo: " + err.message);
+    }
+});
+
+// GET: fetch specific lehenga
+app.get('/outfits-of-joy/collection/lehenga/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_lehenga = await lehenga.findOne({_id});
+        res.status(200).json(a_lehenga);
+    } catch (err) {
+        res.status(500).send("Error fetching lehenga: " + err.message);
+    }
+});
+
+// GET: fetch specific anarkali
+app.get('/outfits-of-joy/collection/anarkali/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_anarkali = await anarkali.findOne({_id});
+        res.status(200).json(a_anarkali);
+    } catch (err) {
+        res.status(500).send("Error fetching anarkali: " + err.message);
+    }
+});
+
+// GET: fetch specific gown
+app.get('/outfits-of-joy/collection/gown/:productId', async (req, res) => {
+    try {
+        const _id = req.params.productId;
+        const a_gown = await gown.findOne({_id});
+        res.status(200).json(a_gown);
+    } catch (err) {
+        res.status(500).send("Error fetching gown: " + err.message);
+    }
+});
+
+
 
 
 //USERS
