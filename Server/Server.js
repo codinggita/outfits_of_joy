@@ -322,6 +322,72 @@ app.post("/outfits-of-joy/collection/gown", upload.array("images", 4), async (re
 );
 
 
+//PUT:modifiy any data
+app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
+    try {
+        const { category, id } = req.params; 
+        const { title, description, sizes, stock, rent, mrp, deposit } = req.body;
+
+        const collection = db.collection(category.toLowerCase());
+
+        if (!collection) {
+            return res.status(400).send("Invalid category specified");
+        }
+
+        const updatedItem = {
+            ...(title && { title }),
+            ...(description && { description }),
+            ...(sizes && { sizes: sizes.split(",") }), 
+            ...(stock && { stock: parseInt(stock) }),
+            ...(rent && { rent: parseFloat(rent) }),
+            ...(mrp && { mrp: parseFloat(mrp) }),
+            ...(deposit && { deposit: parseFloat(deposit) }),
+        };
+
+        const result = await collection.updateOne(
+            { _id: id }, 
+            { $set: updatedItem }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).send(`${category} item not found`);
+        }
+
+        res.status(200).send(`${category} item updated successfully`);
+    } catch (err) {
+        console.error(`Error updating ${req.params.category}:`, err);
+        res.status(500).send(`Error updating ${req.params.category}: ` + err.message);
+    }
+});
+
+
+//DELETE: 
+app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
+    try {
+        const { category, id } = req.params; // Extract category and ID from the URL
+
+        // Dynamically get the correct MongoDB collection
+        const collection = db.collection(category.toLowerCase());
+
+        if (!collection) {
+            return res.status(400).send("Invalid category specified");
+        }
+
+        // Delete the document from the collection
+        const result = await collection.deleteOne({ _id: id });
+
+        if (result.deletedCount === 0) {
+            return res.status(404).send(`${category} item not found`);
+        }
+
+        res.status(200).send(`${category} item deleted successfully`);
+    } catch (err) {
+        console.error(`Error deleting ${req.params.category}:`, err);
+        res.status(500).send(`Error deleting ${req.params.category}: ` + err.message);
+    }
+});
+
+
 
 //ROUTES
 //user side
