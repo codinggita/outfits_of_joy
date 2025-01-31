@@ -58,7 +58,7 @@ initializeDatabase();
 
 // Routes
 //admin side
-
+//POST:add outfits of specific category
 app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), async (req, res) => {
     try {
         const { category } = req.params; 
@@ -141,7 +141,7 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
 });
 
 
-//DELETE: 
+//DELETE: delete outfits of sepecific category
 app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
     try {
         const { category, id } = req.params; // Extract category and ID from the URL
@@ -171,89 +171,25 @@ app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
 
 //ROUTES
 //user side
-
-// GET: List all sherwani
-app.get('/outfits-of-joy/collection/sherwani', async (req, res) => {
+// GET: List items from any category
+app.get('/outfits-of-joy/collection/:category', async (req, res) => {
     try {
+        const { category } = req.params; // Extract the category from the URL
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 8;
 
-        const allsherwani = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(allsherwani);
+        // Dynamically access the collection
+        const collection = db.collection(category.toLowerCase());
+
+        // Fetch paginated items
+        const items = await collection.find().skip((page - 1) * limit).limit(limit).toArray();
+        res.status(200).json(items);
     } catch (err) {
-        res.status(500).send("Error fetching sherwani: " + err.message);
+        console.error(`Error fetching ${req.params.category}:`, err);
+        res.status(500).send(`Error fetching ${req.params.category}: ` + err.message);
     }
 });
 
-
-// GET: List all indo_western
-app.get('/outfits-of-joy/collection/indo_western', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-
-        const allindo_western = await indo_western.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(allindo_western);
-    } catch (err) {
-        res.status(500).send("Error fetching indo_western: " + err.message);
-    }
-});
-
-
-// GET: List all tuxedo
-app.get('/outfits-of-joy/collection/tuxedo', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-
-        const alltuxedo = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(alltuxedo);
-    } catch (err) {
-        res.status(500).send("Error fetching tuxedo: " + err.message);
-    }
-});
-
-
-// GET: List all lehenga
-app.get('/outfits-of-joy/collection/lehenga', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-
-        const alllehenga = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(alllehenga);
-    } catch (err) {
-        res.status(500).send("Error fetching lehenga: " + err.message);
-    }
-});
-
-
-// GET: List all anarkali
-app.get('/outfits-of-joy/collection/anarkali', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-
-        const allanarkali = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(allanarkali);
-    } catch (err) {
-        res.status(500).send("Error fetching anarkali: " + err.message);
-    }
-});
-
-
-// GET: List all gown
-app.get('/outfits-of-joy/collection/gown', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
-
-        const allgown = await gown.find().skip((page - 1) * limit).limit(limit).toArray();
-        res.status(200).json(allgown);
-    } catch (err) {
-        res.status(500).send("Error fetching gown: " + err.message);
-    }
-});
 
 // GET: fetch specific sherwani
 app.get('/outfits-of-joy/collection/sherwani/:productId', async (req, res) => {
