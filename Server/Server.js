@@ -191,7 +191,22 @@ app.get('/outfits-of-joy/collection/:category', async (req, res) => {
 });
 
 
-// GET: fetch specific sherwani
+// GET: fetch specific outfits
+// Dynamic GET: fetch specific outfit based on collection and product ID
+app.get('/outfits-of-joy/collection/:type/:productId', async (req, res) => {
+    try {
+        const { type, productId } = req.params;
+        const collection = db.collection(type.toLowerCase());
+        const product = await collection.findOne({ _id: productId });
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(500).send("Error fetching product: " + err.message);
+    }
+});
+
+
+
+
 app.get('/outfits-of-joy/collection/sherwani/:productId', async (req, res) => {
     try {
         const _id = req.params.productId;
