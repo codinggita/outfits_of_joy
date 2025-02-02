@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+#navbar{
+    position: relative;
+}
+
+#navbar img{
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+#navlogo img{
+    width: 5vw;
+    position: absolute;
+    top: 2vh;
+    left: 3vw;
+}
+
+#navanchor{
+    position: absolute;
+    list-style: none;
+    display: flex;
+    gap: 3vw;
+    top: 4vh;
+    left: 10vw;
+}
+
+#navanchor a{
+    font-family: "Bree Serif", serif;
+    font-size:x-large;
+    color: black;
+    text-decoration: none;
+}
+
+#navicons{
+    position: absolute;
+    list-style: none;
+    display: flex;
+    gap: 2vw;
+    top: 4vh;
+    right: 3vw;
+}
+
+#navicons a{
+    font-family: "Bree Serif", serif;
+    font-size:200%;
+    color: black;
+    text-decoration: none;
+}
+
+#navsearch{
+    display: flex;
+    gap:0.5vw;
+}
+
+#navsearch input{
+    height: 5vh;
+    width: 10vw;
+    font-family: "Bree Serif", serif;
+    padding-left: 1vw;
+    border-radius: 50px;
+
+}
+
+#navsearch button{
+    border: none;
+    background: transparent;
+    font-size: 220%;
+}
+
+#navsignin{
+    text-align: center;
+    margin-top: -20%;
+}
+
+#signin{
+    margin-top: -15%;
+    font-size: 60%;
+}
