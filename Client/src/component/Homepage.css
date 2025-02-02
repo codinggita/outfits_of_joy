@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
+
+main{
+    position: relative;
+    top: 92vh;
+    background-color: #fff;
+}
+
+section{
+    margin: 0 3vw;
+}
+
+#hpinstruction{
+    padding-top: 5vh;
+}
+
+#hpinstruction img{
+    width: 100%;
+}
+
+#hpmensection{
+    display: flex;
+    justify-content: space-between;
+    padding: 5vw;
+    width: 100%;
+    background: linear-gradient(45deg, rgba(212, 162, 66, 0.5), rgba(255, 99, 7, 0.5));
+    border-radius: 30px;
+    border: 3px solid rgb(232, 171, 108);
+    margin-top: 5vh;
+}
+
+#hpmensection div{
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0 0 20px rgb(173, 46, 36, 0.35);
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    overflow: hidden;
+    flex-basis: 27%;
+    width: auto;
+    transition: box-shadow 0.5s ease;
+}
+
+#hpmensection img{
+    display: block;
+    transform: scale(1.01);
+    width: 100%;
+}
+
+#hpmensection div p{
+    position: absolute;
+    font-family: "Joti One", serif;
+    text-align: center;
+    font-size: 200%;
+    width: 100%;
+    border-top: 3px solid #D4A242;
+    color: #D4A242;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+}
+
+
+#hpmensection div:hover{
+    box-shadow: 0 0 30px 20px rgb(173, 46, 36, 0.75);
+}
