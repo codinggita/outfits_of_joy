@@ -10,12 +10,13 @@ section{
     margin: 0 3vw;
 }
 
-#hpinstruction{
+#hpinstruction, #hpmensctn, #hpwomensctn{
     padding-top: 5vh;
 }
 
-#hpinstruction img{
+#hpinstruction img, #hpmensctn img, #hpwomensctn img{
     width: 100%;
+    transition: transform 0.5s ease;
 }
 
 #hpmensection{
@@ -109,4 +110,12 @@ section{
 
 #hpwomensection div:hover{
     box-shadow: 0 0 30px 20px rgb(173, 46, 36, 0.75);
+}
+
+#hpmensctn img:hover{
+    transform: scale(1.02);
+}
+
+#hpwomensctn img:hover{
+    transform: scale(1.02);
 }
