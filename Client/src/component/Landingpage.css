@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Imprima&display=swap');
+
+#lpimg{
+    position: fixed;
+    width: 100%;
+    height: 80vh;
+    top: 12vh;
+}
+
+header{
+    background-color: #e5d1c6;
+}
+
+#lpimg img{
+    width: 100%;
+    height: 80vh;
+    display: block;
+}
+
+#lptxt{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
+#lptxt1{
+    font-family: "Imprima", serif;
+    font-size: 600%;
+    -webkit-text-stroke: 2px black;
+}
+
+#lptxt2 ,#lptxt3{
+    font-family: "Bree Serif", serif;
+    font-size: 200%;
+    margin-top: -12vh;
+}
+
+.lpt1{
+    color: #AD2E24;
+}
+
+.lpt2{
+    color: #81171B;
+}
+
+.lpt3{
+    color: #C75146;
+}
+
+#lptxt button{
+    justify-self: center;
+    font-size: 150%;
+    width: fit-content;
+    padding: 2vh;
+    border-radius: 20px;
+    box-shadow: 0 0 22px 10px rgba(129, 23, 27, 0.5);
+    border: none;
+    margin-top: -12vh;
+}
+
+#lptxt button:hover{
+    box-shadow: 0 0 22px 10px rgba(129, 23, 27, 0.8);
+}
+
+#lpservice{
+    position: relative;
+    width: 100%;
+    background-color: rgba(158, 145, 137, 1);
+    padding: 1vh 0;
+    top: 92vh;
+}
+
+#lpservice ul{ 
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    text-align: center;
+}
+
+#lpservice ul li div{ 
+    font-size: 200%;
+}

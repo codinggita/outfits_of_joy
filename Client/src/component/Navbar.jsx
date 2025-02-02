@@ -1,5 +1,5 @@
 import React from 'react';
-import img1 from '../assets/dsaf.png';
+import img1 from '../assets/navimg.png';
 import img2 from '../assets/logo1.png';
 import { FaRegHeart } from "react-icons/fa6";
 import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
