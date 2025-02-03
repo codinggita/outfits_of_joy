@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+footer{
+    position: relative;
+    top: 92vh;
+    background: white;
+}
+
+
+#footerimg{
+    width: 100%;
+}
+
+#footeranchor1{
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    top: 6vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#footeranchor1 li a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Bree Serif", serif;
+    font-size: 150%;
+}
+
+#footeranchor1 li p{
+    font-family: sans-serif;
+    color: #81171B;
+    cursor: pointer;
+}
+
+#footeranchor2{
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    top: 14vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#footeranchor2 li a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Bree Serif", serif;
+    font-size: 150%;
+}
+
+#footeranchor2:last-child{
+    margin-top: 1vh;
+}
+
+#socialmedia span{
+    margin-right: 1vw;
+    font-size: 120%;
+}
+
+#futrdilg{
+    font-family: "Joti One", serif;
+    position: absolute;
+    bottom: 12vh;
+    font-size: 300%;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(45deg,rgba(84, 8, 4, 0.7) 0%,rgba(129, 23, 27, 0.7) 25%,rgba(173, 46, 36, 0.7) 50%,rgba(199, 81, 70, 0.7) 75%,rgba(234, 140, 85, 0.7) 100%
+    );
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+
+#copyright{
+    position: absolute;
+    bottom: 2vh;
+    left: 3vw;
+    font-family: sans-serif;
+}
+
+#footerlogo{
+    position: absolute;
+    bottom: 2vh;
+    right: 3vw;
+}
+
+#footerlogo img{
+    opacity: 0.8;
+}
