@@ -1,4 +1,5 @@
 import './App.css'
+import Footer from './component/Footer'
 import Homepage from './component/Homepage'
 import Landingpage from './component/Landingpage'
 import Navbar from './component/Navbar'
@@ -10,6 +11,7 @@ function App() {
     <Navbar/>
     <Landingpage/>
     <Homepage/>
+    <Footer/>
     </>
   )
 }
