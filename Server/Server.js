@@ -507,8 +507,7 @@ app.post('/outfits-of-joy/favourites', async (req, res) => {
 //GET: Fetch favourites for particular user
 app.get('/outfits-of-joy/favourites/:userid', async (req, res) => {
     try {
-        const userId = parseInt(req.params.userid);
-        console.log({ userId })
+        const userId = req.params.userid;
         const favourite_item = await favourites.findOne({ userId });
         if (favourite_item) {
             res.status(200).json(favourite_item);

@@ -1,0 +1,139 @@
+
+#infonav2 {
+    height: 8vh;
+    background: linear-gradient(45deg, rgba(212, 162, 66, 0.5), rgba(255, 99, 7, 0.5));
+    border-radius: 10px;
+    margin: 0 3vw;
+    padding: 0 2vw;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+}
+
+#pagename{
+    background: radial-gradient(circle, rgba(129, 23, 27, 0.8), rgba(84, 8, 4, 0.8));
+    color: #D4A242;
+    padding: 0.5vw 1vw;
+    font-family: sans-serif;
+    font-size: 130%;
+    border-radius: 50px;
+}
+
+#outfitresults{
+    background: radial-gradient(circle, rgba(129, 23, 27, 0.8), rgba(84, 8, 4, 0.8));
+    font-family: sans-serif;
+    font-size: 130%;
+    color: #fff;
+    padding: 0.5vw 1vw;
+    border-radius: 50px;
+}
+
+#outfitsort{
+    font-family: sans-serif;
+}
+
+#outfitsort span{
+    font-weight: bold;
+    margin-right: 0.5vw;
+}
+
+#outfitsort select{
+    background: radial-gradient(circle, rgba(129, 23, 27, 0.8), rgba(84, 8, 4, 0.8));
+    border: 2px solid #C75146;
+    padding: 0.5vw 1vw;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+}
+
+#outfitsort select option{
+    color: black;
+}
+
+.filter-btn {
+    background: radial-gradient(circle, rgba(129, 23, 27, 0.8), rgba(84, 8, 4, 0.8));
+    color: #FBE496;
+    padding: 0.5vw 1vw;
+    border: none;
+    border-radius: 50px;
+    font-size: 105%;
+    box-shadow: 0 0 10px 4px rgb(199, 81, 70);
+}
+
+.filter-btn:hover {
+    box-shadow: 0 0 10px 4px rgb(236, 89, 75);
+}
+
+.overlay {
+    position: absolute;
+    top: 10vh;
+    right: 3vw;
+    z-index: 5;
+    box-shadow: 0 0 10px 5px rgba(84, 8, 4, 0.5);
+    border-radius: 10px;
+}
+
+.overlay-content {
+    background-color: white;
+    padding: 2vw;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.overlay-content h2 {
+    margin-bottom: 2vh;
+}
+
+.form-group {
+    margin-bottom: 1.5vh;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5vh;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1vw;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1vw;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    color: #555;
+    border: none;
+    cursor: pointer;
+    font-size: 90%;
+}
+
+.cancel-btn:hover {
+    text-decoration: underline;
+}
+
+.apply-btn {
+    background-color: rgba(84, 8, 4, 1);
+    color: white;
+    padding: 1vh 1vw;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 90%;
+}
+
+.apply-btn:hover {
+    background-color: rgba(84, 8, 4, 0.9);
+}
