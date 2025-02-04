@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
 
-main{
+#hpmain{
     position: relative;
     top: 92vh;
     background-color: #fff;
 }
 
-section{
+#hpsection{
     margin: 0 3vw;
     padding-bottom: 7vh;
 }
