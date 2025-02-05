@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import img1 from '../assets/navimg.png';
 import img2 from '../assets/logo1.png';
 import { FaRegHeart } from "react-icons/fa6";
@@ -22,7 +23,11 @@ function Navbar() {
               <img src={img2} alt="" />
             </div>
             <ul id='navanchor'>
-              <li><a href=''>HOME</a></li>
+              <li>
+                <Link to='/' >
+                  HOME
+                </Link>
+              </li>
               <li><a href=''>WOMENS WEAR</a></li>
               <li><a href=''>MENS WEAR</a></li>
               <li><a href=''>OUR STORES</a></li>
