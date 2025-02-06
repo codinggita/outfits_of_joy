@@ -1,6 +1,7 @@
 #outfitmain {
     position: relative;
     top: 16vh;
+    margin-bottom: 25vh;
 }
 
 #outfitsection {
@@ -12,13 +13,15 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 4vw;
+    position: relative;
 }
 
 #outfits {
     background-color: rgba(0, 0, 0, 0.5);
     border-top-left-radius: 20px;
     border-bottom-right-radius: 16px;
-    height: 75vh;
+    overflow: hidden;
+    height: 70vh;
     width: fit-content;
     box-shadow: 0 0 0 15px rgb(173, 46, 36, 0.35);
 }
@@ -33,8 +36,13 @@
 }
 
 #outfitimage img {
-    height: 60vh;
+    height: 55vh;
     display: block;
+    border-bottom-right-radius: 16px;
+}
+
+#outfitinfo{
+    width: 17vw;
 }
 
 #outfitinfo sup {
@@ -54,7 +62,7 @@
     font-family: "Joti One", serif;
     color: #D4A242;
     font-size: 130%;
-    width: 90%;
+    width: 100%;
     margin-top: 2vh;
     text-align: center;
     height: 1.2em;
@@ -87,8 +95,8 @@
 }
 
 #morebutton{
-    position: fixed;
-    bottom: 5vh;
+    position: absolute;
+    bottom: 3vh;
     right: 4vw;
 }
 
@@ -102,10 +110,13 @@
     border-radius: 5px;
     cursor: pointer;
     font-family: sans-serif;
+    border-radius: 50px;
+    box-shadow: 0 0 20px 10px rgba(84, 8, 4, 1);
 }
 
 #loadmorebtn:disabled {
     background-color: #ccc;
+    box-shadow: 0 0 20px 10px #ccc;
     color: black;
     cursor: not-allowed;
 }

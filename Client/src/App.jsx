@@ -26,7 +26,7 @@ function App() {
         <Route path="/anarkali" element={<Anarkali />} /> 
         <Route path="/gown" element={<Gown />} /> 
       </Routes>
-      {/* <Footer />  */}
+      <Footer /> 
     </BrowserRouter>
     </>
   )

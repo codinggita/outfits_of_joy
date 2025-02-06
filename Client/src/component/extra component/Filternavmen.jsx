@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Filternavmen.css'
+import {fetchTotalCount} from '../outfitcollection/api'
 
 function Filternavmen() {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
+    const [totalCount, setTotalCount] = useState(0);
     const currentPath = location.pathname;
     const heading = currentPath;
+    const category = heading.replace('/', '');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const total = await fetchTotalCount(category);
+                setTotalCount(total);
+            } catch (error) {
+                console.error("Error fetching total count:", error);
+            }
+        };
+        fetchData();
+
+    }, []);
 
     const handleApplyFilter = () => {
         setIsOverlayOpen(false);
     };
 
+    console.log({category})
     return (
         <>
             <div id='infonav'>
@@ -19,7 +36,7 @@ function Filternavmen() {
                     <p>{heading}</p>
                 </div>
                 <div id="outfitresults">
-                    <p>150 Results</p>
+                    <p>{totalCount} Results</p>
                 </div>
                 <div id="outfitsort">
                     <label><span>Sort By:-</span>
