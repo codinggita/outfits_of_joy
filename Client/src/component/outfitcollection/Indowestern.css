@@ -1,4 +1,126 @@
 #outfitmain {
     position: relative;
     top: 16vh;
+    margin-bottom: 25vh;
+}
+
+#outfitsection {
+    background: linear-gradient(45deg, rgba(212, 162, 66, 0.5), rgba(255, 99, 7, 0.5));
+    border-radius: 30px;
+    border: 3px solid rgb(232, 171, 108);
+    margin: 3vw;
+    padding: 4vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4vw;
+    position: relative;
+}
+
+#outfits {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
+    height: 70vh;
+    width: fit-content;
+    box-shadow: 0 0 0 15px rgb(173, 46, 36, 0.35);
+}
+
+#outfits:hover{
+    box-shadow: 0 0 20px 15px rgb(173, 46, 36, 0.75);
+}
+
+#outfitimage {
+    border-bottom: 4px solid #D4A242;
+    border-bottom-right-radius: 16px;
+}
+
+#outfitimage img {
+    height: 55vh;
+    display: block;
+    border-bottom-right-radius: 16px;
+}
+
+#outfitinfo{
+    width: 17vw;
+}
+
+#outfitinfo sup {
+    color: #fff;
+    font-size: 90%;
+    margin-left: 1;
+}
+
+#outfitinfo>div {
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+#outfittitle {
+    font-family: "Joti One", serif;
+    color: #D4A242;
+    font-size: 130%;
+    width: 100%;
+    margin-top: 2vh;
+    text-align: center;
+    height: 1.2em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+#outfitrent {
+    font-family: "Joti One", serif;
+    display: flex;
+}
+
+#outfitmrp {
+    font-family: sans-serif;
+    display: flex;
+}
+
+#outfitrent span,
+#outfitmrp span {
+    font-size: larger;
+    margin-left: 5%;
+}
+
+#outfitrent span {
+    color: #FBE496;
+}
+
+#morebutton{
+    position: absolute;
+    bottom: 3vh;
+    right: 4vw;
+}
+
+#loadmorebtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: rgba(84, 8, 4, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: sans-serif;
+    border-radius: 50px;
+    box-shadow: 0 0 30px 10px rgba(84, 8, 4, 1);
+}
+
+#loadmorebtn:disabled {
+    background-color: #ccc;
+    box-shadow: 0 0 30px 10px #ccc;
+    color: black;
+    cursor: not-allowed;
+}
+
+#loadmorebtn:hover:not(:disabled) {
+    background-color: rgb(51, 8, 6);
 }
