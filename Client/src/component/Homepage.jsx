@@ -22,21 +22,21 @@ export default function Homepage() {
                     <div id='hpmensection'>
 
                         <div>
-                            <Link to='/sherwani'>
+                            <Link to='/Malecollection/sherwani'>
                                 <img src={img2} alt="" />
                                 <p>Sherwani</p>
                             </Link>
                         </div>
 
                         <div>
-                            <Link to='/indo-western'>
+                            <Link to='/Malecollection/indo-western'>
                                 <img src={img3} alt="" />
                                 <p>Indo-Western</p>
                             </Link>
                         </div>
 
                         <div>
-                            <Link to='/tuxedo'>
+                            <Link to='/Malecollection/tuxedo'>
                                 <img src={img4} alt="" />
                                 <p>Tuxedo</p>
                             </Link>
@@ -44,19 +44,19 @@ export default function Homepage() {
                     </div>
                     <div id='hpwomensection'>
                         <div>
-                            <Link to='/lehenga'>
+                            <Link to='/Femalecollection/lehenga'>
                                 <img src={img5} alt="" />
                                 <p>Lehenga</p>
                             </Link>
                         </div>
                         <div>
-                            <Link to='/anarkali'>
+                            <Link to='/Femalecollection/anarkali'>
                                 <img src={img6} alt="" />
                                 <p>Anarkali</p>
                             </Link>
                         </div>
                         <div>
-                            <Link to='/gown'>
+                            <Link to='/Femalecollection/gown'>
                                 <img src={img7} alt="" />
                                 <p>Gown</p>
                             </Link>
