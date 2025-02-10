@@ -7,7 +7,7 @@ function Filternavmen() {
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
     const [totalCount, setTotalCount] = useState(0);
-    const currentPath = location.pathname;
+    const currentPath = location.pathname.split('/').pop();
     const heading = currentPath;
     const category = heading.replace('/', '');
 
