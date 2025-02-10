@@ -111,12 +111,12 @@
     cursor: pointer;
     font-family: sans-serif;
     border-radius: 50px;
-    box-shadow: 0 0 20px 10px rgba(84, 8, 4, 1);
+    box-shadow: 0 0 30px 10px rgba(84, 8, 4, 1);
 }
 
 #loadmorebtn:disabled {
     background-color: #ccc;
-    box-shadow: 0 0 20px 10px #ccc;
+    box-shadow: 0 0 30px 10px #ccc;
     color: black;
     cursor: not-allowed;
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Sherwani.css'
-import img1 from '../../assets/s1.png'
 import Filternavmen from "../extra component/Filternavmen";
 import { fetchCollection } from "./api";
 export default function Sherwani() {
@@ -39,7 +38,7 @@ export default function Sherwani() {
     return (
         <>
             <main id='outfitmain'>
-                <div id='sherwanipage' >
+                <div id='outfitpage' >
                     <Filternavmen />
                 </div>
                 <div id="outfitsection">
