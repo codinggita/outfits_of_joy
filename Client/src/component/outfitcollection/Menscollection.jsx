@@ -6,8 +6,12 @@ import { fetchCollection } from "./api";
 
 export default function Menscollection() {
     const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const [sortOrder, setSortOrder] = useState("none"); 
+    const [minPrice, setMinPrice] = useState(""); 
+    const [maxPrice, setMaxPrice] = useState("");
     const [loading, setLoading] = useState(false);
     const observerRef = useRef(null);
     const isInitialLoad = useRef(true);
@@ -22,6 +26,11 @@ export default function Menscollection() {
             isInitialLoad.current = false;
         }
     }, []);
+
+    useEffect(() => {
+        const sortedAndFiltered = applySortAndFilter();
+        setFilteredData(sortedAndFiltered);
+    }, [data, sortOrder, minPrice, maxPrice]);
 
     useEffect(() => {
         if (!hasMore || loading) return;
@@ -63,14 +72,42 @@ export default function Menscollection() {
     };
 
 
+    const applySortAndFilter = () => {
+        let updatedData = [...data];
+
+        // Apply filters (minPrice and maxPrice)
+        if (minPrice !== "" && maxPrice !== "") {
+            updatedData = updatedData.filter(
+                (item) => item.rent >= minPrice && item.rent <= maxPrice
+            );
+        }
+
+        if (sortOrder === "A-Z") {
+            updatedData.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (sortOrder === "Z-A") {
+            updatedData.sort((a, b) => b.title.localeCompare(a.title));
+        } else if (sortOrder === "Price: Low to High") {
+            updatedData.sort((a, b) => a.rent - b.rent);
+        } else if (sortOrder === "Price: High to Low") {
+            updatedData.sort((a, b) => b.rent - a.rent);
+        }
+
+        return updatedData;
+    };
+
+
     return (
         <>
             <main id='outfitmain'>
                 <div id='outfitpage' >
-                    <Filternavmen />
+                    <Filternavmen onSortChange={setSortOrder}
+                        onFilterChange={({ min, max }) => {
+                            setMinPrice(min);
+                            setMaxPrice(max);
+                        }} />
                 </div>
                 <div id="outfitsection">
-                    {data.length > 0 && data.map((item, index) => (
+                    {filteredData.length > 0 && filteredData.map((item, index) => (
                         <div id="outfits" key={index}>
                             <div id="outfitimage">
                                 <img src={item.images[0]} alt="" />

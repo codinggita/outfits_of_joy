@@ -175,8 +175,8 @@ app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
 app.get('/outfits-of-joy/collection/:category', async (req, res) => {
     try {
         const { category } = req.params; // Extract the category from the URL
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 8;
+        const page = parseInt(req.query.page) ;
+        const limit = parseInt(req.query.limit) ;
 
         // Dynamically access the collection
         const collection = db.collection(category.toLowerCase());
@@ -616,8 +616,8 @@ app.get("/outfits-of-joy/orders/:userId", async (req, res) => {
 //GET: fetch mens-collections
 app.get("/outfits-of-joy/mens-collections", async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1; // Default to page 1
-        const limit = parseInt(req.query.limit) || 20; // Default to 20 items per page
+        const page = parseInt(req.query.page) ; 
+        const limit = parseInt(req.query.limit) ;
 
         const sherwaniItems = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
         const tuxedoItems = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();
@@ -639,8 +639,8 @@ app.get("/outfits-of-joy/mens-collections", async (req, res) => {
 //GET: fetch womens-collections
 app.get("/outfits-of-joy/womens-collections", async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1; // Default to page 1
-        const limit = parseInt(req.query.limit) || 10; // Default to 20 items per page
+        const page = parseInt(req.query.page) ; 
+        const limit = parseInt(req.query.limit) ; 
 
         const lehengaItems = await lehenga.find().skip((page - 1) * limit).limit(limit).toArray();
         const anarkaliItems = await anarkali.find().skip((page - 1) * limit).limit(limit).toArray();
