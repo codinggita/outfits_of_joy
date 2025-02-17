@@ -1,0 +1,315 @@
+#productview {
+  position: relative;
+  top: 16vh;
+  margin-bottom: 25vh;
+}
+
+#product {
+  margin: 0 3vw;
+  background: linear-gradient(45deg, rgba(212, 162, 66, 0.5), rgba(255, 99, 7, 0.5));
+  border: 3px solid rgb(232, 171, 108);
+  border-radius: 30px;
+  padding: 3vw;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 30px;
+}
+
+
+.gallery-container {
+  display: flex;
+  gap: 40px;
+}
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  transition: border-color 0.3s;
+}
+
+.thumbnail.active {
+  border-color: #D4A242;
+}
+
+.thumbnail:hover {
+  border-color: rgb(232, 171, 108);
+  ;
+}
+
+.main-image-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-image {
+  width: 90%;
+  height: 80vh;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-right: 5px solid #D4A242;
+}
+
+#productinfo {
+  width: 92%;
+  height: 75vh;
+  margin-top: 2.5vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 2.5vh rgb(173, 46, 36, 0.35);
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+#titlepart{
+  display: grid;
+  grid-template-columns: 80% 10%;
+  gap: 10%;
+  font-size: 180%;
+  margin-top: 2vh;
+  margin-left: 2vw;
+}
+
+#titlepart p {
+  font-family: "Joti One", serif;
+  color: #D4A242;
+}
+
+#titlepart div{
+  color: #ccc;
+}
+
+#aboutproduct{
+  position: relative;
+}
+
+#productprice{
+  display: flex;
+  gap: 3vw;
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+#productrent{
+  color: white;
+  font-family: sans-serif;
+}
+
+#productrent > sup {
+  font-family: "Joti One", serif;
+}
+
+#rentproduct{
+  color: #FBE496;
+  font-size: 150%;
+  font-family: "Joti One", serif;
+  margin: 0 1vw;
+}
+
+#productmrp{
+  color: white;
+  font-family: sans-serif;
+}
+
+#mrpproduct{
+  font-size: 150%;
+  font-family: "Joti One", serif;
+  margin-left: 1vw;
+  color: black;
+}
+
+#productdeposit{
+  color: white;
+  font-family: sans-serif;
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+#refundinfo{
+  color: black;
+}
+
+#productsizes{
+  margin-left: 2vw;
+  margin-top: 5vh;
+  font-family: sans-serif;
+}
+
+#productsizes label{
+  color: #ffffff;
+  margin-right: 1vw;
+}
+
+#productsizes select{
+  background: radial-gradient(circle, rgba(129,23,27,0.25), rgba(84,8,4,0.25));
+  color: white;
+  border: 3px solid #C75146;
+  border-radius: 10px;
+  padding: 0.3vw;
+  text-align: center;
+  font-weight: 600;
+}
+
+#productsizes select:focus{
+  outline: none;
+}
+
+#productsizes select option{
+  color: black;
+}
+
+#productsizes span{
+  color: white;
+  text-decoration: underline;
+  margin-left: 1vw;
+}
+
+#datepicker{
+  background: radial-gradient(circle, rgba(129,23,27,0.25), rgba(84,8,4,0.25));
+  border: 3px solid #C75146;
+  color: white;
+  padding: 0.3vw;
+  border-radius: 10px;
+  width: 7vw;
+  margin-left: 1vw;
+}
+
+#datepicker:focus{
+  outline: none;
+}
+
+#datepicker::placeholder{
+  color: white;
+}
+
+#datecontainer{
+  display: flex;
+  align-items: center;
+  margin-left: 2vw;
+  margin-top: 5vh;
+  color: white;
+  font-family: sans-serif;
+}
+
+#tolabel{
+  margin-left: 1vw;
+}
+
+#todateshow{
+  background: radial-gradient(circle, rgba(129,23,27,0.25), rgba(84,8,4,0.25));
+  border: 3px solid #C75146;
+  color: white;
+  padding: 0.3vw;
+  border-radius: 10px;
+  width: 7vw;
+  margin-left: 1vw;
+}
+
+#todateshow:focus{
+  outline: none;
+}
+
+#orderbuttons{
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+#orderbuttons button{
+  font-size: 130%;
+  padding: 0.4vw;
+  margin-right: 1vw;
+  border: 3px solid #D4A242;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#rentnowbutton{
+  background-color: rgba(199, 81, 70, 0.7);
+}
+
+#additionalinfo{
+  width: 15vw;
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  bottom: 0;
+  right: 1vw;
+  padding: 0.5vw;
+  border-left: 3px solid black;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#additionalinfo h4{
+  margin-bottom: 1vh;
+  color: #D4A242;
+  font-family: "Joti One", serif;
+  font-weight: 400;
+}
+
+#additionalinfo p{
+  margin-bottom: 2vh;
+  color: white;
+  font-family: sans-serif;
+  font-size: 90%;
+}
+
+
+#size-chart {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  right: 20vw;
+}
+
+#size-chart h3 {
+  margin-bottom: 10px;
+}
+
+#size-chart table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#size-chart th, #size-chart td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+
+#outfitdiscription h3{
+  color: #D4A242;
+  font-family: "Joti One", serif;
+  font-weight: 500;
+}
+
+#outfitdiscription p{
+  font-family: sans-serif;
+}
+
+#outfitrating{
+  justify-self: flex-end;
+  margin-right: 4vw;
+  font-family: sans-serif;
+}
+
+
+#reviewsection{
+  color: blue;
+  font-weight: 600;
+}

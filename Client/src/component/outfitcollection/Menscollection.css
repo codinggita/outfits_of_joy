@@ -16,6 +16,11 @@
     position: relative;
 }
 
+#outfitsection a {
+    text-decoration: none;
+    color: #000;
+}
+
 #outfits {
     background-color: rgba(0, 0, 0, 0.5);
     border-top-left-radius: 20px;
