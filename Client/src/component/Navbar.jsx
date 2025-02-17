@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import img1 from '../assets/navimg.png';
 import img2 from '../assets/logo1.png';
 import { FaRegHeart } from "react-icons/fa6";
-import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
+import { IoMdCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import './Navbar.css'
@@ -40,7 +40,7 @@ function Navbar() {
                 </form>
               </li>
               <li><a href=''><FaRegHeart /></a></li>
-              <li><a href=''><PiShoppingCartSimpleDuotone /></a></li>
+              <li><a href=''><IoMdCart /></a></li>
               <li>
                 <a href=''>
                   <div id='navsignin'>

@@ -25,3 +25,17 @@ export const fetchCollection = async (category, page, limit) => {
         throw error;
     }
 };
+
+
+export const fetchProduct = async (category, _id) => {
+  try {
+    const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/collection/${category}/${_id}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const product = await response.json();
+    return product;
+  } catch (error) {
+    console.error('Error fetching product:', error);
+  }
+};

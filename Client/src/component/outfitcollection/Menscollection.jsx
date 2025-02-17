@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Menscollection.css'
 import Filternavmen from "../extra component/Filternavmen";
+import { Link } from 'react-router-dom'
 import { fetchCollection } from "./api";
 
 
@@ -9,8 +10,8 @@ export default function Menscollection() {
     const [filteredData, setFilteredData] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    const [sortOrder, setSortOrder] = useState("none"); 
-    const [minPrice, setMinPrice] = useState(""); 
+    const [sortOrder, setSortOrder] = useState("none");
+    const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
     const [loading, setLoading] = useState(false);
     const observerRef = useRef(null);
@@ -108,21 +109,23 @@ export default function Menscollection() {
                 </div>
                 <div id="outfitsection">
                     {filteredData.length > 0 && filteredData.map((item, index) => (
-                        <div id="outfits" key={index}>
-                            <div id="outfitimage">
-                                <img src={item.images[0]} alt="" />
-                            </div>
-                            <div id="outfitinfo">
-                                <p id="outfittitle">{item.title}</p>
-                                <div>
-                                    <p id="outfitrent"><sup>Rent</sup><span>₹{item.rent}</span></p>
-                                    <p id="outfitmrp"><sup>Mrp</sup><span>₹{item.mrp}</span></p>
+                        <Link to={`/Malecollection/${item.category}/${item._id}`} key={index}>
+                            <div id="outfits" key={index}>
+                                <div id="outfitimage">
+                                    <img src={item.images[0]} alt="" />
+                                </div>
+                                <div id="outfitinfo">
+                                    <p id="outfittitle">{item.title}</p>
+                                    <div>
+                                        <p id="outfitrent"><sup>Rent</sup><span>₹{item.rent}</span></p>
+                                        <p id="outfitmrp"><sup>Mrp</sup><span>₹{item.mrp}</span></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                     {loading && (
-                        <p id="spinner" style={{ textAlign: "center", padding: "1rem" }}><span class="loader"></span></p>
+                        <p id="spinner" style={{ textAlign: "center", padding: "1rem" }}><span className="loader"></span></p>
                     )}
                     <div ref={observerRef} style={{ height: "1px" }}></div>
                 </div>
