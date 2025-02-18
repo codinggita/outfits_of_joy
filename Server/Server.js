@@ -550,7 +550,7 @@ app.get("/outfits-of-joy/mens-collections", async (req, res) => {
         const limit = parseInt(req.query.limit) ;
         const sherwani = db.collection("sherwani");
         const tuxedo = db.collection("tuxedo");
-        const indo_western = db.collection("indo_western");
+        const indo_western = db.collection("indo-western");
 
         const sherwaniItems = await sherwani.find().skip((page - 1) * limit).limit(limit).toArray();
         const tuxedoItems = await tuxedo.find().skip((page - 1) * limit).limit(limit).toArray();

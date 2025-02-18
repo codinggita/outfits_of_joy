@@ -63,7 +63,9 @@ export default function Homepage() {
                         </div>
                     </div>
                     <div id='hpmensctn'>
-                        <img src={img8} alt="" />
+                        <Link to='/Mens-outfits'>
+                            <img src={img8} alt="" />
+                        </Link>
                     </div>
                     <div id='hpwomensctn'>
                         <img src={img9} alt="" />
