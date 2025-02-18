@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Filternavmen.css'
 import {fetchTotalCount} from '../outfitcollection/api'
 
-function Filternavmen({ onSortChange, onFilterChange }) {
+function Filternavmen({ onSortChange, onFilterChange, alloutfitsCount }) {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
@@ -28,8 +28,6 @@ function Filternavmen({ onSortChange, onFilterChange }) {
         onFilterChange({ min: minPrice, max: maxPrice });
         setIsOverlayOpen(false);
     };
-
-    console.log({category})
     return (
         <>
             <div id='infonav'>
@@ -37,7 +35,12 @@ function Filternavmen({ onSortChange, onFilterChange }) {
                     <p>{heading}</p>
                 </div>
                 <div id="outfitresults">
-                    <p>{totalCount} Results</p>
+                <p>
+                        {alloutfitsCount > 0 ? 
+                            `${alloutfitsCount} Results` : 
+                            `${totalCount} Results`
+                        }
+                    </p>
                 </div>
                 <div id="outfitsort">
                     <label><span>Sort By:-</span>
@@ -46,7 +49,7 @@ function Filternavmen({ onSortChange, onFilterChange }) {
                             <option value="A-Z">A-Z</option>
                             <option value="Z-A">Z-A</option>
                             <option value="Price: Low to High">Price: Low to High</option>
-                            <option value="Price: high to Low">Price: high to Low</option>
+                            <option value="Price: High to Low">Price: High to Low</option>
                         </select>
                     </label>
                 </div>
