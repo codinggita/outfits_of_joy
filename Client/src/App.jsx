@@ -7,6 +7,7 @@ import Navbar from './component/Navbar'
 import Menscollection from './component/outfitcollection/Menscollection'
 import Womenscollection from './component/outfitcollection/Womenscollection';
 import Mensoutfitview from './component/outfitcollection/Mensoutfitview';
+import Womensoutfitview from './component/outfitcollection/Womensoutfitview';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Malecollection/:category" element={<Menscollection />} /> 
         <Route path="/Femalecollection/:category" element={<Womenscollection />} />
         <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
+        <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
       </Routes>
       <Footer /> 
     </BrowserRouter>

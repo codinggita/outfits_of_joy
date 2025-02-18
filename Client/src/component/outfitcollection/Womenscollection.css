@@ -9,3 +9,8 @@
     gap: 4vw;
     position: relative;
 }
+
+#outfitsection2 a {
+    text-decoration: none;
+    color: #000;
+}
