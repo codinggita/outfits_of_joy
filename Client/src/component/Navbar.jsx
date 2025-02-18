@@ -28,8 +28,16 @@ function Navbar() {
                   HOME
                 </Link>
               </li>
-              <li><a href=''>WOMENS WEAR</a></li>
-              <li><a href=''>MENS WEAR</a></li>
+              <li>
+                <Link to='/Womens-outfits' >
+                  WOMENS WEAR
+                </Link>
+              </li>
+              <li>
+                <Link to='/Mens-outfits' >
+                  MENS WEAR
+                </Link>
+              </li>
               <li><a href=''>OUR STORES</a></li>
             </ul>
             <ul id='navicons'>

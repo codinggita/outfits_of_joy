@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import './Allmensoutfit.css';
 import Filternavwomen from "../extra component/Filternavwomen";
 import { Link, useLocation } from 'react-router-dom';
 import { fetchwomensCollections } from "../outfitcollection/api.js";
