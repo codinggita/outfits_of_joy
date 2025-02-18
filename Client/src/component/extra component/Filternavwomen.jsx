@@ -1,17 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Filternavwomen.css'
+import {fetchTotalCount} from '../outfitcollection/api'
 
-function Filternavmen() {
+function Filternavwomen({ onSortChange, onFilterChange, alloutfitsCount }) {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
-    const currentPath = location.pathname;
+    const [totalCount, setTotalCount] = useState(0);
+    const currentPath = location.pathname.split('/').pop();
     const heading = currentPath;
+    const category = heading.replace('/', '');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const total = await fetchTotalCount(category);
+                setTotalCount(total);
+            } catch (error) {
+                console.error("Error fetching total count:", error);
+            }
+        };
+        fetchData();
+
+    }, []);
 
     const handleApplyFilter = () => {
+        onFilterChange({ min: minPrice, max: maxPrice });
         setIsOverlayOpen(false);
     };
-    
     return (
         <>
             <div id='infonav2'>
@@ -19,15 +35,21 @@ function Filternavmen() {
                     <p>{heading}</p>
                 </div>
                 <div id="outfitresults">
-                    <p>150 Results</p>
+                <p>
+                        {alloutfitsCount > 0 ? 
+                            `${alloutfitsCount} Results` : 
+                            `${totalCount} Results`
+                        }
+                    </p>
                 </div>
                 <div id="outfitsort">
                     <label><span>Sort By:-</span>
-                        <select>
+                        <select onChange={(e) => onSortChange(e.target.value)}>
+                            <option value="none">Select</option>
                             <option value="A-Z">A-Z</option>
                             <option value="Z-A">Z-A</option>
                             <option value="Price: Low to High">Price: Low to High</option>
-                            <option value="Price: high to Low">Price: high to Low</option>
+                            <option value="Price: High to Low">Price: High to Low</option>
                         </select>
                     </label>
                 </div>
@@ -82,4 +104,4 @@ function Filternavmen() {
     )
 }
 
-export default Filternavmen
+export default Filternavwomen

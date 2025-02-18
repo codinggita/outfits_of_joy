@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Womenscollection.css'
 import { Link } from 'react-router-dom'
-import Filternavmen from "../extra component/Filternavmen";
+import Filternavwomen from "../extra component/Filternavwomen";
 import { fetchCollection } from "./api";
 
 
@@ -68,7 +68,7 @@ export default function Womenscollection() {
         <>
             <main id='outfitmain'>
                 <div id='outfitpage' >
-                    <Filternavmen />
+                    <Filternavwomen />
                 </div>
                 <div id="outfitsection2">
                     {data.length > 0 && data.map((item, index) => (
