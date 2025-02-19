@@ -10,9 +10,10 @@ import { addDays, format } from 'date-fns';
 import { IoIosArrowDown } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
-import RelatedProducts from '../Cardslider/RelatedProducts';
+import RelatedProductswomen from '../Cardslider/RelatedProductswomen';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Womensoutfitview.css'
+import MoreProductswomen from '../Cardslider/MoreProductswomen';
 
 function Womensoutfitview() {
     const { category, id } = useParams();  // Get params from URL
@@ -201,7 +202,8 @@ function Womensoutfitview() {
                     </div>
                 </div>
             </div>
-            <RelatedProducts />
+            <RelatedProductswomen />
+            <MoreProductswomen />
         </>
     )
 }

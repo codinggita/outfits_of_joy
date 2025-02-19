@@ -30,6 +30,7 @@ export default function Allwomensoutfit() {
         try {
             // Fetch all data without pagination
             const result = await fetchwomensCollections(1, 1000); // Use a large limit to get all data
+            result.sort(() => Math.random() - 0.5);
             setData(result);
         } catch (error) {
             console.error(`Error loading ${category} data:`, error);
