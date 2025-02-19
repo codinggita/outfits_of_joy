@@ -1,10 +1,8 @@
 /* Slider Container */
 
 #relatedProducts{
-  position: relative;
   margin-left: 3vw;
   font-family: "Joti One", serif;
-  margin-top: 30vh;
 }
 
 #outfitsection01 {
@@ -13,6 +11,7 @@
   align-items: center;
   /* overflow: hidden; */
   width: 100%; 
+  margin-bottom: 10vh;
 }
 
 .slider {

@@ -13,6 +13,7 @@ import { IoMdCart } from "react-icons/io";
 import RelatedProducts from '../Cardslider/RelatedProducts';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Mensoutfitview.css'
+import MoreProductsmen from '../Cardslider/MoreProductsmen';
 
 function Mensoutfitview() {
   const { category, id } = useParams();  // Get params from URL
@@ -197,6 +198,7 @@ function Mensoutfitview() {
         </div>
       </div>
       <RelatedProducts />
+      <MoreProductsmen />
     </>
   )
 }
