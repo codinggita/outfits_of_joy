@@ -1,0 +1,85 @@
+/* Slider Container */
+
+#relatedProducts{
+  position: relative;
+  margin-left: 3vw;
+  font-family: "Joti One", serif;
+  margin-top: 30vh;
+}
+
+#outfitsection01 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* overflow: hidden; */
+  width: 100%; 
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 3vw;
+  /* padding: 1vw; */
+  width: 100%;
+  scroll-snap-type: x mandatory; 
+  margin: 2vw 3vw;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-btn {
+  position: absolute;
+  padding: 1vw;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 15px 5px black;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 200%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* Existing Styles for Cards */
+#outfits01 {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  overflow: hidden;
+  border: 15px solid rgb(214, 151, 145);
+  scroll-snap-align: start; /* Snap cards to the start of the container */
+}
+
+#outfits01:hover {
+  border: 15px solid rgb(214, 149, 115);
+}
+
+#outfitimage01 {
+  border-bottom: 4px solid #D4A242;
+  border-bottom-right-radius: 16px;
+}
+
+#outfitimage01 img {
+  height: 59.5vh;
+  display: block;
+  border-bottom-right-radius: 16px;
+}
+
+#outfitsection01 a {
+  text-decoration: none;
+  color: #000;
+}
