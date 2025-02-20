@@ -14,7 +14,13 @@ cloudinary.config({
 
 const app = express();
 const port = 3000;
-app.use(cors())
+app.use(
+    cors({
+      origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app"],
+      methods: ["GET", "POST", "PATCH", "DELETE"], 
+      credentials: true, 
+    })
+  );
 
 const url = "mongodb+srv://parth_jadav:parthjadav363310@outfitsofjoy.begzp.mongodb.net/";
 const dbName = "cloth_collections";
@@ -214,8 +220,9 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 
         // Check if the user with the provided email already exists
         const existingUser = await users.findOne({ email });
+
         if (existingUser) {
-            return res.status(400).json({ message: 'User with this email already exists.' });
+            return res.status(200).json({ message: 'User already exists', user: existingUser });
         }
 
         // Insert the new user into the users collection
