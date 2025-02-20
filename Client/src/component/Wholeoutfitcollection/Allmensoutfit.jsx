@@ -63,7 +63,6 @@ export default function Allmensoutfit() {
         return updatedData;
     };
 
-    console.log(filteredData);
 
     return (
         <>
