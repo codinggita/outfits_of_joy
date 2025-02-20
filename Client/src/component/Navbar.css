@@ -2,6 +2,7 @@
 
 #navbar{
     position: relative;
+    background-color: #e5d1c6;
 }
 
 nav{
@@ -80,10 +81,17 @@ nav{
 
 #navsignin{
     text-align: center;
-    margin-top: -30%;
+    margin-top: -20%;
 }
 
 #signin{
+    font-size: 120%;
+}
+
+#signin div {
     margin-top: -15%;
-    font-size: 60%;
+}
+
+#signin span {
+    font-size: 150%;
 }

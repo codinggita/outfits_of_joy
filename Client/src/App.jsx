@@ -10,6 +10,7 @@ import Mensoutfitview from './component/outfitcollection/Mensoutfitview';
 import Womensoutfitview from './component/outfitcollection/Womensoutfitview';
 import Allmensoutfit from './component/Wholeoutfitcollection/Allmensoutfit';
 import Allwomensoutfit from './component/Wholeoutfitcollection/Allwomensoutfit';
+import Profileview from './component/Profile/Profileview';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
         <Route path="/Mens-outfits" element={<Allmensoutfit />} />
         <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
+        <Route path="/Profile" element={<Profileview />} />
       </Routes>
       <Footer /> 
     </BrowserRouter>
