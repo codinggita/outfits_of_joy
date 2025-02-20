@@ -8,19 +8,9 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import './Navbar.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { loginWithPopup, isLoading, user, isAuthenticated } = useAuth0();
-  const navigate = useNavigate();
-  const [profilePic, setProfilePic] = useState(null);
-
-  useEffect(() => {
-    if (user?.picture) {
-      setProfilePic(user.picture);
-    }
-  }, [user]);
-
 
   const handleFormSubmit = (e) => {
     e.preventDefault(); // Prevents page reload
