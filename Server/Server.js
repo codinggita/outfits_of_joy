@@ -210,7 +210,7 @@ app.get('/outfits-of-joy/collection/:type/:productId', async (req, res) => {
 // POST: Add a new user
 app.post('/outfits-of-joy/users', async (req, res) => {
     try {
-        const { firstName, lastName, email, password, phone, address } = req.body;
+        const { firstName, lastName, email, phone, address } = req.body;
 
         // Check if the user with the provided email already exists
         const existingUser = await users.findOne({ email });
@@ -224,9 +224,8 @@ app.post('/outfits-of-joy/users', async (req, res) => {
             firstName,
             lastName,
             email,
-            password,
-            phone,
-            address,
+            phone: phone || '',
+            address: address || '',
             createdAt: new Date(),
         });
 
