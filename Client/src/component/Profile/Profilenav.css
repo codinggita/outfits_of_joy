@@ -1,0 +1,29 @@
+#profilenav {
+    background: linear-gradient(45deg, rgba(212, 162, 66, 0.5), rgba(255, 99, 7, 0.5));
+    margin: 0 3vw;
+    border-radius: 50px;
+    border: 3px solid rgb(232, 171, 108);
+  }
+  
+  #profilenav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    padding: 1vw 2vw;
+  }
+  
+  #profilenav ul li span {
+    font-family: "Joti One", serif;
+    font-size: 150%;
+    color: black;
+    padding: 0.5vw 1vw; 
+    border-radius: 20px; 
+  }
+  
+  #profilenav ul li a {
+    text-decoration: none;
+  }
+  
+  #profilenav ul li a.active span {
+    background-color: rgba(199, 81, 70, 0.5);
+  }
