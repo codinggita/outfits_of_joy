@@ -246,10 +246,10 @@ app.post('/outfits-of-joy/users', async (req, res) => {
 
 
 //Get: fetch user by userid
-app.get('/outfits-of-joy/users/:userid', async (req, res) => {
+app.get('/outfits-of-joy/users/:email', async (req, res) => {
     try {
-        const _id = req.params.userid;
-        const user = await users.findOne({ _id });
+        const email = req.params.email;
+        const user = await users.findOne({ email });
         if (user) {
             res.status(200).json(user);
         } else {
@@ -266,7 +266,7 @@ app.get('/outfits-of-joy/users/:userid', async (req, res) => {
 app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
     try {
         const _id = req.params.userid;
-        const { firstName, lastName, email, password, phone, address } = req.body;
+        const { firstName, lastName, email, phone, address } = req.body;
 
         const updates = {};
         if (firstName) updates.firstName = firstName;
@@ -274,7 +274,6 @@ app.patch('/outfits-of-joy/users/:userid', upload.none(), async (req, res) => {
         if (email) updates.email = email;
         if (phone) updates.phone = phone;
         if (address) updates.address = address;
-        if (password) updates.password = password;
 
         const existingUser = await users.findOne({ _id });
         if (!existingUser) {

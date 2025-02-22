@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import img1 from '../assets/navimg.png';
 import img2 from '../assets/logo1.png';
 import { FaRegHeart } from "react-icons/fa6";
@@ -10,7 +10,8 @@ import './Navbar.css'
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
-  const { loginWithPopup, isLoading, user, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isLoading, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault(); // Prevents page reload
@@ -55,7 +56,7 @@ function Navbar() {
               <li>
                 <div id="navsignin">
                   {isLoading ? (
-                    <p id="spinner" style={{ textAlign: "center"}}><span className="loader"></span></p> 
+                    <p id="spinner" style={{ textAlign: "center" }}><span className="loader"></span></p>
                   ) : isAuthenticated ? (
                     <div style={{ cursor: "pointer" }}>
                       <Link to="/Profile">
@@ -63,19 +64,25 @@ function Navbar() {
                           src={user?.picture || "https://www.svgrepo.com/download/192247/man-user.svg"}
                           alt="Profile"
                           style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                          onLoad={(e) => console.log("Profile loaded:", e.target.src)} 
+                          onLoad={(e) => console.log("Profile loaded:", e.target.src)}
                           onError={(e) => {
                             console.error("Image failed to load:", e.target.src);
-                            e.target.src = "https://www.svgrepo.com/download/192247/man-user.svg"; 
+                            e.target.src = "https://www.svgrepo.com/download/192247/man-user.svg";
                           }}
                         />
                       </Link>
                     </div>
                   ) : (
                     <div
-                    id='signin'
+                      id='signin'
                       onClick={async () => {
-                        await loginWithPopup();
+                        try {
+                          await loginWithPopup();
+                          await getAccessTokenSilently(); 
+                          navigate("/Profile");
+                        } catch (error) {
+                          console.error("Login failed:", error);
+                        }
                       }}
                       style={{ cursor: "pointer", alignItems: "center" }}
                     >

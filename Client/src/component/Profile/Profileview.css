@@ -1,4 +1,155 @@
-#profileview{
+#profileview {
     position: relative;
     top: 16vh;
+    margin-bottom: 30vh;
+}
+
+#userphone{
+    font-family: sans-serif;
+    font-size: 80%;
+    color: gray;
+}
+
+#Personalinfo {
+    font-family: "Bree Serif", serif;
+    margin: 2vw 4vw;
+    font-weight: 550;
+}
+
+.logout{
+    cursor: pointer;
+    background-color: #d4a242;
+    padding: 1vh 1vw;
+    border-radius: 10px;
+}
+
+#info-logout {
+    display: flex;
+    justify-content: space-between;
+}
+
+#info-logout h2 {
+    text-align: center;
+    align-self: center;
+}
+
+#profileinfo {
+    position: relative;
+    display: flex;
+    gap: 3vw;
+    align-items: center;
+    margin: 0 3vw;
+}
+
+#userinfo h1 {
+    font-family: "Joti One", serif;
+}
+
+#userinfo p {
+    font-size: 130%;
+    font-family: "Bree Serif", serif;
+}
+
+#edituser {
+    cursor: "pointer";
+    display: "flex";
+    align-items: "center";
+}
+
+#edituser span {
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+#addressinfo {
+    margin: 7vw 4vw;
+    width: 40vw;
+}
+
+#shippinginfo {
+    font-family: "Bree Serif", serif;
+    margin: 3vw 0;
+    font-weight: 550;
+}
+
+#addressinfo p {
+    font-size: 120%;
+    font-family: sans-serif;
+    margin-bottom: 1vh;
+}
+
+#addressinfo p span {
+    font-weight: bolder;
+    font-size: 120%;
+}
+
+.popup-overlay {
+    position: absolute;
+    right: 4vw;
+    top: 0;
+}
+
+.popup {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup label {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.popup input {
+    padding: 5px;
+    box-shadow: 0 9px 15px 6px rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 5px;
+    font-size: 120%;
+    margin-bottom: 7vh;
+    margin-left: 3vw;
+}
+
+.popup .close-btn {
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 150%;
+}
+
+.popup button {
+    cursor: pointer;
+}
+
+#userform {
+    display: flex;
+    padding: 2vw;
+    margin-top: 3vh;
+}
+
+#formlabels label{
+    display: block;
+    font-family: "Bree Serif", serif;
+    margin-bottom: 8vh;
+    font-size: 120%;
+}
+
+#savebtn{
+    display: flex;
+    justify-content: center;
+    margin-top: -5vh;
+}
+
+#savebtn button {
+    font-family: "Bree Serif", serif;
+    font-size: 120%;
+    background-color: #D4A242;
+    padding: 1vh 1vw;
+    border: none;
+    border-radius: 10px;
 }
