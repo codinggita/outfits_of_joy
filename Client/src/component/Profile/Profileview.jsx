@@ -63,6 +63,8 @@ function Profileview() {
       alert("Error updating profile");
     }
   };
+
+  console.log(user?.picture)
   return (
     <>
       <div id='profileview'>
@@ -74,10 +76,8 @@ function Profileview() {
         <div id='profileinfo'>
           <div>
             <img
-              src={user?.picture || "https://www.svgrepo.com/download/192247/man-user.svg"}
-              alt="Profile"
+              src={user?.picture?.startsWith("http") ? user.picture : "https://www.svgrepo.com/download/192247/man-user.svg"}
               style={{ width: "10vw", height: "10vw", borderRadius: "50%" }}
-              onLoad={(e) => console.log("Profile loaded:", e.target.src)}
               onError={(e) => {
                 console.error("Image failed to load:", e.target.src);
                 e.target.src = "https://www.svgrepo.com/download/192247/man-user.svg";
@@ -158,10 +158,10 @@ function Profileview() {
         </div>
         <div id='addressinfo'>
           <h2 id='shippinginfo'>Shipping Address :</h2>
-          <p><span>Address :</span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit vel eos, voluptates ea blanditiis magni odit sit voluptatum minus deleniti nesciunt molestias corporis numquam adipisci assumenda beatae amet dolorum asperiores!</p>
-          <p><span>City :</span> Dhrangadhra (363310)</p>
-          <p><span>District :</span> Surendranagar</p>
-          <p><span>State :</span> Gujarat</p>
+          <p><span>Address :</span>{userData?.address?.line1} {userData.address?.line2}</p>
+          <p><span>City :</span> {userData?.address?.zip}</p>
+          <p><span>District :</span> {userData?.address?.district} </p>
+          <p><span>State :</span> {userData?.address?.state}</p>
           <p><span>Country :</span> India</p>
         </div>
       </div>
