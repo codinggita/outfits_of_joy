@@ -76,7 +76,7 @@ export const fetchwomensCollections = async (page, limit) => {
 
 export const placeOrder = async (orderData) => {
   try {
-      const response = await fetch("http://localhost:3000/outfits-of-joy/orders", {
+      const response = await fetch("https://outfits-of-joy.onrender.com/outfits-of-joy/orders", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",

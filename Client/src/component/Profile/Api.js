@@ -40,7 +40,7 @@ export const updateUserDetails = async (userId, updatedData, isAddressUpdate = f
 
 export const ordersdetails = async (userId) => {
   try {
-    const response = await fetch(`http://localhost:3000/outfits-of-joy/orders/${userId}`);
+    const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/orders/${userId}`);
     if (!response.ok) throw new Error("Order not found");
 
     const orderData = await response.json();
