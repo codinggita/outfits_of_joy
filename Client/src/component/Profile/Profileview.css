@@ -23,6 +23,11 @@
     border-radius: 10px;
 }
 
+.logout:hover{
+    outline: 2px solid black;
+    outline-offset: -2px;
+}
+
 #info-logout {
     display: flex;
     justify-content: space-between;
@@ -54,6 +59,7 @@
     cursor: "pointer";
     display: "flex";
     align-items: "center";
+    cursor: pointer;
 }
 
 #edituser span {
@@ -143,6 +149,7 @@
     display: flex;
     justify-content: center;
     margin-top: -5vh;
+    box-sizing: border-box;
 }
 
 #savebtn button {
@@ -152,4 +159,9 @@
     padding: 1vh 1vw;
     border: none;
     border-radius: 10px;
+}
+
+#savebtn button:hover{
+    outline: 2px solid black;
+    outline-offset: -2px;
 }

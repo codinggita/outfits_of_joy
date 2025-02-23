@@ -68,7 +68,7 @@ initializeDatabase();
 app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), async (req, res) => {
     try {
         const { category } = req.params; 
-        const { _id, title, description, sizes, stock, rent, mrp, deposit } =req.body;
+        const { _id, title, gender, description, sizes, stock, rent, mrp, deposit } =req.body;
 
         const folderName = category.toLowerCase();
         const uploadedImages = [];
@@ -87,6 +87,7 @@ app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), asyn
             _id,
             title,
             category,
+            gender,
             description,
             images: uploadedImages, // Save Cloudinary URLs
             sizes: sizes.split(","), // Convert sizes to an array if sent as a comma-separated string
@@ -112,7 +113,7 @@ app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), asyn
 app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
     try {
         const { category, id } = req.params; 
-        const { title, description, sizes, stock, rent, mrp, deposit } = req.body;
+        const { title, gender, description, sizes, stock, rent, mrp, deposit } = req.body;
 
         const collection = db.collection(category.toLowerCase());
 
@@ -122,6 +123,7 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
 
         const updatedItem = {
             ...(title && { title }),
+            ...(gender && { gender }),
             ...(description && { description }),
             ...(sizes && { sizes: sizes.split(",") }), 
             ...(stock && { stock: parseInt(stock) }),
@@ -498,23 +500,22 @@ app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => 
 //POST: add orders
 app.post("/outfits-of-joy/orders", async (req, res) => {
     try {
-        const { userId, productId, quantity, size, status, orderDate, fromDate, toDate } = req.body;
+        const { userId, productId, quantity, size, category, orderDate, fromDate, toDate } = req.body;
 
         // Validate required fields
-        if (!userId || !productId || !quantity || !size || !status || !orderDate || !fromDate || !toDate) {
+        if (!userId || !productId || !quantity || !size || !category || !orderDate || !fromDate || !toDate) {
             return res.status(400).json({ error: "Missing required fields" });
         }
 
         const newOrder = {
             orderId: new ObjectId().toString(),
             productId,
+            category,
             quantity,
             size,
-            status,
             orderDate: new Date(orderDate),
             fromDate: new Date(fromDate),
             toDate: new Date(toDate),
-            createdAt: new Date(),
         };
 
         const result = await orders.updateOne(

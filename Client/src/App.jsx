@@ -12,26 +12,31 @@ import Allmensoutfit from './component/Wholeoutfitcollection/Allmensoutfit';
 import Allwomensoutfit from './component/Wholeoutfitcollection/Allwomensoutfit';
 import Profileview from './component/Profile/Profileview';
 import Address from './component/Profile/Address';
+import Orders from './component/Profile/Orders';
+import { UserProvider } from "./component/UserContext.jsx";
 
 function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <Navbar /> 
-      <Routes>
-        <Route path="/" element={<><Landingpage /><Homepage /></>} /> 
-        <Route path="/Malecollection/:category" element={<Menscollection />} /> 
-        <Route path="/Femalecollection/:category" element={<Womenscollection />} />
-        <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
-        <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
-        <Route path="/Mens-outfits" element={<Allmensoutfit />} />
-        <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
-        <Route path="/Profile" element={<Profileview />} />
-        <Route path="/Profile/address" element={<Address />} />
-      </Routes>
-      <Footer /> 
-    </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<><Landingpage /><Homepage /></>} />
+            <Route path="/Malecollection/:category" element={<Menscollection />} />
+            <Route path="/Femalecollection/:category" element={<Womenscollection />} />
+            <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
+            <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
+            <Route path="/Mens-outfits" element={<Allmensoutfit />} />
+            <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
+            <Route path="/Profile" element={<Profileview />} />
+            <Route path="/Profile/address" element={<Address />} />
+            <Route path="/Profile/orders" element={<Orders />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </UserProvider>
     </>
   )
 }

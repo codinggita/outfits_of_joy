@@ -8,14 +8,36 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import './Navbar.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { getUserDetails } from "../component/Profile/Api.js";
+import { useUser } from "../component/UserContext.jsx";
 
 function Navbar() {
+  const { setUserId } = useUser();
   const { loginWithPopup, isLoading, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+      const getUser = async () => {
+        if (!user?.email) return;
+  
+        try {
+          const data = await getUserDetails(user?.email);
+          if (data) {
+            setUserId(data._id);
+          } else {
+            console.error("User data not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+  
+      getUser();
+    }, [user?.email]);
+
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
-    e.preventDefault(); // Prevents page reload
-    console.log("Form submitted"); // Add your form submission logic here
+    e.preventDefault(); 
   };
   return (
     <>
@@ -64,9 +86,7 @@ function Navbar() {
                           src={user?.picture || "https://www.svgrepo.com/download/192247/man-user.svg"}
                           alt="Profile"
                           style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                          onLoad={(e) => console.log("Profile loaded:", e.target.src)}
                           onError={(e) => {
-                            console.error("Image failed to load:", e.target.src);
                             e.target.src = "https://www.svgrepo.com/download/192247/man-user.svg";
                           }}
                         />

@@ -1,0 +1,181 @@
+#ordermain {
+    margin: 4vw;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 0 0 1vw rgb(173, 46, 36, 0.35);
+}
+
+#ongoingorder a{
+    text-decoration: none;
+}
+
+#orderimg img {
+    height: 50vh;
+    display: block;
+    border-right: 5px solid #D4A242;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#orderinfo {
+    height: 48vh;
+    width: 100%;
+    color: white;
+    font-family: sans-serif;
+    margin: 0 1vw;
+    margin-top: 2vh;
+}
+
+#orderinfo h4 {
+    font-weight: 550;
+}
+
+#upperinfo {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2vh;
+    align-items: center;
+}
+
+#upperinfo p {
+    font-family: "Joti One", serif;
+    color: #D4A242;
+    font-size: 150%;
+    white-space: nowrap;
+    /* Prevents text from wrapping */
+    overflow: hidden;
+    /* Hides overflow text */
+    text-overflow: ellipsis;
+    /* Adds '...' when text is too long */
+    max-width: 25vw;
+    /* Adjust based on your layout */
+    display: inline-block;
+}
+
+#savetofav {
+    font-size: 150%;
+    color: white;
+}
+
+
+.tracker-box {
+    padding-top: 5vh;
+}
+
+.tracker-box h4 {
+    font-family: "Bree Serif", serif;
+    font-weight: 400;
+    margin-bottom: 5vh;
+    margin-left: -2vw;
+}
+
+.tracker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.tracker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, black 63%, white 37%);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+#tracker::before {
+    background: black;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+}
+
+.completed .circle {
+    background-color: black;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.labels span {
+    font-size: 90%;
+    display: block;
+}
+
+#middleinfo {
+    display: flex;
+    gap: 5vw;
+    margin-top: 2vh;
+}
+
+#label1 {
+    margin-left: -2vw;
+}
+
+#label2 {
+    margin-left: -2vw;
+}
+
+
+#bottominfo {
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+    align-items: center;
+    margin: 0 2vw;
+    margin-top: 8vh;
+}
+
+#bottominfo p {
+    color: black;
+}
+
+#bottominfo p span {
+    color: white;
+    font-weight: 700;
+}
+
+#productsizes {
+    margin-left: 2vw;
+    margin-top: 5vh;
+    font-family: sans-serif;
+}
+
+
+#productsizes input {
+    background: radial-gradient(circle, rgba(129, 23, 27, 0.25), rgba(84, 8, 4, 0.25));
+    color: white;
+    border: 3px solid #C75146;
+    border-radius: 10px;
+    padding: 0.3vw;
+    font-weight: 600;
+    text-align: center;
+    width: 2vw;
+}
+
+
+#productsizes input:focus {
+    outline: none;
+}
