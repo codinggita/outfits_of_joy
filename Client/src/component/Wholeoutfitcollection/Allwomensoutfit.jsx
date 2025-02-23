@@ -63,8 +63,6 @@ export default function Allwomensoutfit() {
         return updatedData;
     };
 
-    console.log(filteredData);
-
     return (
         <>
             <main id='outfitmain'>

@@ -23,7 +23,7 @@ function Profileview() {
   };
 
   useEffect(() => {
-    const getProduct = async () => {
+    const getUser = async () => {
       if (!user?.email) return;
 
       try {
@@ -38,7 +38,7 @@ function Profileview() {
       }
     };
 
-    getProduct();
+    getUser();
   }, [user?.email]);
 
   useEffect(() => {
@@ -64,7 +64,6 @@ function Profileview() {
     }
   };
 
-  console.log(user?.picture)
   return (
     <>
       <div id='profileview'>

@@ -13,22 +13,24 @@ function Profilenav() {
                         <Link to="/Profile" className={location.pathname === "/Profile" ? "active" : ""} >
                             <span>My Profile</span>
                         </Link>
-                </li>
-                <li>
-                    <Link to="/Profile/address" className={location.pathname === "/Profile/address" ? "active" : ""}>
-                        <span>My Address</span>
-                    </Link>
-                </li>
-                <li>
-                    <span>My Orders</span>
-                </li>
-                <li>
-                    <span>My Favourites</span>
-                </li>
-            </ul>
-        </div >
-    </>
-  );
+                    </li>
+                    <li>
+                        <Link to="/Profile/address" className={location.pathname === "/Profile/address" ? "active" : ""}>
+                            <span>My Address</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/Profile/orders" className={location.pathname === "/Profile/orders" ? "active" : ""}>
+                            <span>My Orders</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <span>My Favourites</span>
+                    </li>
+                </ul>
+            </div >
+        </>
+    );
 }
 
 export default Profilenav;

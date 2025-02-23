@@ -72,3 +72,25 @@ export const fetchwomensCollections = async (page, limit) => {
     throw error;
   }
 };
+
+
+export const placeOrder = async (orderData) => {
+  try {
+      const response = await fetch("http://localhost:3000/outfits-of-joy/orders", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+          throw new Error("Failed to place order");
+      }
+
+      return await response.json();
+  } catch (error) {
+      console.error("Error placing order:", error);
+      return { error: error.message };
+  }
+};

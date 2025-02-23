@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchProduct } from './api'
+import { fetchProduct, placeOrder } from './api'
 import { useParams } from 'react-router-dom';
 import { FaRegHeart } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
@@ -14,6 +14,7 @@ import RelatedProductswomen from '../Cardslider/RelatedProductswomen';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Womensoutfitview.css'
 import MoreProductswomen from '../Cardslider/MoreProductswomen';
+import { useUser } from "../UserContext.jsx";
 
 function Womensoutfitview() {
     const { category, id } = useParams();  // Get params from URL
@@ -21,6 +22,9 @@ function Womensoutfitview() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedImage, setSelectedImage] = useState('');
     const [showSizeChart, setShowSizeChart] = useState(false);
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const [selectedSize, setSelectedSize] = useState("");
+    const { userId } = useUser();
 
     useEffect(() => {
         const getProduct = async () => {
@@ -28,7 +32,11 @@ function Womensoutfitview() {
             setProduct(data);
             setSelectedImage(data.images[0]);
         };
+        setSelectedSize("");
+        setSelectedDate(null);
+        setSelectedQuantity(1);
 
+        window.scrollTo({ top: 0, behavior: "smooth" });
         getProduct();
     }, [category, id]);
 
@@ -56,6 +64,39 @@ function Womensoutfitview() {
             document.body.removeEventListener('click', closeSizeChart);
         };
     }, []);
+
+    const handleOrder = async () => {
+        if (!userId) {
+            alert("Please log in to place an order");
+            return;
+        }
+        if (!selectedSize) {
+            alert("Please select a size");
+            return;
+        }
+        if (!selectedDate) {
+            alert("Please select a date");
+            return;
+        }
+
+        const orderData = {
+            userId,
+            productId: product._id,
+            category: category,
+            quantity: parseInt(selectedQuantity, 10),
+            size: selectedSize,
+            orderDate: new Date().toISOString(),  // Store in proper Date format
+            fromDate: new Date(selectedDate).toISOString(),
+            toDate: new Date(addDays(selectedDate, 4)).toISOString()
+        };
+
+        const result = await placeOrder(orderData);
+        if (result.error) {
+            alert("Order failed: " + result.error);
+        } else {
+            alert("Order placed successfully!");
+        }
+    };
 
     return (
         <>
@@ -99,11 +140,12 @@ function Womensoutfitview() {
                                 <p id="productmrp"><sup>Mrp</sup><span id='mrpproduct'>₹{product?.mrp}</span></p>
                             </div>
                             <div>
-                                <p id="productdeposit"><sup>Deposit</sup><span id='rentproduct'>₹{product?.deposit}</span><span>refundable</span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
+                                <p id="productdeposit"><sup>Deposit</sup><span id='rentproduct'>₹{product?.deposit}</span><span>refundable </span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
                             </div>
                             <div id='productsizes'>
                                 <label>Size: </label>
-                                <select>
+                                <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)}>
+                                    <option value="">Select Size</option>
                                     {product?.sizes?.map((size, index) => (
                                         <option key={index} value={size}>
                                             {size}
@@ -169,7 +211,7 @@ function Womensoutfitview() {
                             </div>
                             <div id='productsizes'>
                                 <label>Quantity :</label>
-                                <select>
+                                <select value={selectedQuantity} onChange={(e) => setSelectedQuantity(Number(e.target.value))}>
                                     {Array.from({ length: product?.stock }).map((_, index) => (
                                         <option key={index} value={index + 1}>
                                             {index + 1}
@@ -178,7 +220,7 @@ function Womensoutfitview() {
                                 </select>
                             </div>
                             <div id='orderbuttons'>
-                                <button id='rentnowbutton'>Rent Now</button>
+                                <button onClick={handleOrder} id='rentnowbutton'>Rent Now</button>
                                 <button>Add To Cart <IoMdCart /></button>
                             </div>
                             <div id='additionalinfo'>
