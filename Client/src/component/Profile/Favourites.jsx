@@ -48,8 +48,8 @@ function Favourites() {
         <>
             <div id="profileview">
                 <Profilenav />
-                <h2 id="Personalinfo">Favourites :</h2>
-                <div id="outfitsection" style={{ background: "none", border: "none", rowGap: "12vh",  columGap: "5vw" }}>
+                <h2 id="Personalinfo" style={{marginBottom:"0"}}>Favourites :</h2>
+                <div id="outfitsection" style={{ background: "none", border: "none", rowGap: "12vh",  columGap: "5vw", marginTop:"0"}}>
                     {productDetails.length > 0 ? (
                         productDetails.map((item, index) => (
                             <Link to={`/${item.gender === 'women' ? 'Femalecollection' : 'Malecollection'}/${item.category}/${item._id}`}>
