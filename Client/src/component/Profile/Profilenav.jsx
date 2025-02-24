@@ -25,7 +25,9 @@ function Profilenav() {
                         </Link>
                     </li>
                     <li>
-                        <span>My Favourites</span>
+                        <Link to="/Profile/favourites" className={location.pathname === "/Profile/favourites" ? "active" : ""}>
+                            <span>My Favourites</span>
+                        </Link>
                     </li>
                 </ul>
             </div >

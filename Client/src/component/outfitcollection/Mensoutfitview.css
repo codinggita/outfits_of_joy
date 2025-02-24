@@ -78,6 +78,7 @@
   font-size: 150%;
   margin-top: 2vh;
   margin-left: 2vw;
+  position: relative;
 }
 
 #titlepart p {
@@ -231,6 +232,7 @@
   border: 3px solid #D4A242;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 #rentnowbutton{
@@ -312,4 +314,5 @@
 #reviewsection{
   color: blue;
   font-weight: 600;
+  cursor: pointer;
 }

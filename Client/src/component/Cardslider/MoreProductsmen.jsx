@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { fetchmensCollections } from "../outfitcollection/api.js";
 import { PiArrowCircleLeftDuotone } from "react-icons/pi";
 import { PiArrowCircleRightDuotone } from "react-icons/pi";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import useFavorites from "../Hooks/useFavorites.jsx"
 
 const MoreProductsmen = () => {
     const { category, id } = useParams();
@@ -11,6 +13,8 @@ const MoreProductsmen = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [maxScroll, setMaxScroll] = useState(0);
     const sliderRef = useRef(null);
+    const { favourites, toggleFavourite } = useFavorites();
+
 
     useEffect(() => {
         loadData();
@@ -82,6 +86,12 @@ const MoreProductsmen = () => {
                         .map((item, index) => (
                             <Link to={`/Malecollection/${item.category}/${item._id}`} key={index}>
                                 <div id="outfits01" key={index}>
+                                    <div id="favouriteicon" onClick={(e) => {
+                                        e.preventDefault();
+                                        toggleFavourite(item._id);
+                                    }}>
+                                        {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                    </div>
                                     <div id="outfitimage01">
                                         <img src={item.images[0]} alt="" />
                                     </div>

@@ -461,7 +461,7 @@ app.get('/outfits-of-joy/favourites/:userid', async (req, res) => {
 // DELETE: Remove a favourite item for  user
 app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => {
     try {
-        const userId = parseInt(req.params.userid);
+        const userId = req.params.userid;
         const productId = req.params.productid;
 
         // Find the user's favourites
