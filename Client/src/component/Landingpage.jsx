@@ -8,6 +8,14 @@ import { IoIosShirt } from "react-icons/io";
 import { TbTruckReturn } from "react-icons/tb";
 
 function Landingpage() {
+
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
   return (
     <>
     <header>
@@ -18,7 +26,7 @@ function Landingpage() {
                     <p id='lptxt1'><span className='lpt1'>Temporary</span> Rentals<br/>Permanent <span className='lpt1'>Smiles</span></p>
                     <p id='lptxt2'>Make <span className='lpt2'>Memories</span>, Not <span className='lpt3'>Purchases</span></p>
                     <p id='lptxt3'>Create <span className='lpt3'>Memories</span> That Last, <span className='lpt2'>Rent</span> Without the <span className='lpt3'>Hassle</span>!</p>
-                    <button><p>Explore Collections</p><span></span></button>
+                    <button onClick={() => scrollToSection("hpmensection")} >Explore Collections</button>
                 </div>
             </div>
             <div id='lpservice'>

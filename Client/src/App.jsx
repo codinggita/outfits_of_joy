@@ -16,6 +16,7 @@ import Orders from './component/Profile/Orders';
 import { UserProvider } from "./component/UserContext.jsx";
 import Favourites from './component/Profile/Favourites.jsx';
 import Cart from './component/Profile/Cart.jsx';
+import Ourstores from './component/extra component/ourStores.jsx'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/Profile/orders" element={<Orders />} />
             <Route path="/Profile/favourites" element={<Favourites />} />
             <Route path="/Profile/cart" element={<Cart />} />
+            <Route path="/our-stores" element={<Ourstores />} />
           </Routes>
           <Footer />
         </BrowserRouter>

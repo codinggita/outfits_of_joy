@@ -112,3 +112,8 @@ nav{
 #signin span {
     font-size: 150%;
 }
+
+#searchoutfits::-webkit-calendar-picker-indicator {
+    display: none !important;
+    appearance: none;
+}
