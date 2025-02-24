@@ -42,6 +42,7 @@
     right: 1vw;
     font-size: 150%;
     color: rgb(173, 46, 36);
+    cursor: pointer;
 }
 
 #outfitimage {

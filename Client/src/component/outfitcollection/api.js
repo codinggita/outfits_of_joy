@@ -148,3 +148,26 @@ export const removeFromFavourites = async (userId, productId) => {
     return null;
   }
 };
+
+
+export const addToCart = async (userId, productId, size, quantity, fromDate, toDate) => {
+  try {
+      const response = await fetch('https://outfits-of-joy.onrender.com/outfits-of-joy/carts', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, productId, size, quantity, fromDate, toDate }),
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to add to cart');
+      }
+
+      return await response.json();
+  } catch (error) {
+      console.error('Error adding to cart:', error);
+      return { error: error.message };
+  }
+};
+

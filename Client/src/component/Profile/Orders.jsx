@@ -47,8 +47,9 @@ function Orders() {
   }, [userId]);
 
   const currentDate = new Date();
-  const ongoingOrders = orderData.filter(order => new Date(order.toDate) >= currentDate);
-  const pastOrders = orderData.filter(order => new Date(order.toDate) < currentDate);
+  const reversedOrders = [...orderData].reverse();
+  const ongoingOrders = reversedOrders.filter(order => new Date(order.toDate) >= currentDate);
+  const pastOrders = reversedOrders.filter(order => new Date(order.toDate) < currentDate);
 
   return (
     <>
@@ -105,7 +106,7 @@ function Orders() {
                       <p id="productdeposit">
                         <sup>Deposited</sup>
                         <span id='rentproduct'>₹{product.deposit || "N/A"}</span>
-                        <span id='refundinfo'><FaInfoCircle title="Refund processed within 7 days after return" /></span>
+                        <span id='refundinfo'><FaInfoCircle title="Refund will process within 7 days after return" /></span>
                       </p>
                     </div>
 
@@ -188,7 +189,7 @@ function Orders() {
                       <p id="productdeposit">
                         <sup>Deposited</sup>
                         <span id='rentproduct'>₹{product.deposit || "N/A"}</span>
-                        <span id='refundinfo'><FaInfoCircle title="Refund processed within 7 days after return" /></span>
+                        <span id='refundinfo'></span>
                       </p>
                     </div>
 
