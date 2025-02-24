@@ -59,6 +59,23 @@ nav{
     text-decoration: none;
 }
 
+#cartnav{
+    position: relative;
+}
+
+#cartitemcounts{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: -1.5vh;
+    right: -1vh;
+    background-color: #aa574f;
+    color: white;
+    border-radius: 50px;
+    font-size: 50%;
+    text-align: center;
+}
+
 #navsearch{
     display: flex;
     gap:0.5vw;

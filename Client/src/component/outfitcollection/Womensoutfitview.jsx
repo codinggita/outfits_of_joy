@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchProduct, placeOrder } from './api'
+import { fetchProduct, placeOrder, addToCart } from './api'
 import { useParams } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
@@ -100,6 +100,38 @@ function Womensoutfitview() {
         }
     };
 
+    const handleAddToCart = async () => {
+        if (!userId) {
+            alert("Please log in to add items to the cart.");
+            return;
+        }
+        if (!selectedSize) {
+            alert("Please select a size.");
+            return;
+        }
+        if (!selectedDate) {
+            alert("Please select a rental start date.");
+            return;
+        }
+
+        const cartData = {
+            userId,
+            productId: product._id,
+            size: selectedSize,
+            quantity: parseInt(selectedQuantity, 10),
+            fromDate: new Date(selectedDate).toISOString(),
+            toDate: new Date(addDays(selectedDate, 4)).toISOString(),
+        };
+
+        const result = await addToCart(cartData.userId, cartData.productId, cartData.size, cartData.quantity, cartData.fromDate, cartData.toDate);
+
+        if (result.error) {
+            alert("Failed to add item to cart.");
+        } else {
+            alert("Item added to cart successfully!");
+        }
+    };
+
     return (
         <>
             <div id='productview'>
@@ -137,8 +169,8 @@ function Womensoutfitview() {
                             <div onClick={(e) => {
                                 e.preventDefault();
                                 toggleFavourite(product?._id);
-                            }} style={{fontSize:"120%"}}>
-                                {favourites.has(product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart color="rgb(173, 46, 36)"/>}
+                            }} style={{ fontSize: "120%" }}>
+                                {favourites.has(product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart color="rgb(173, 46, 36)" />}
                             </div>
                         </div>
                         <div id='aboutproduct'>
@@ -228,7 +260,7 @@ function Womensoutfitview() {
                             </div>
                             <div id='orderbuttons'>
                                 <button onClick={handleOrder} id='rentnowbutton'>Rent Now</button>
-                                <button>Add To Cart <IoMdCart /></button>
+                                <button onClick={handleAddToCart} >Add To Cart <IoMdCart /></button>
                             </div>
                             <div id='additionalinfo'>
                                 <h4>Hygiene and Care</h4>

@@ -14,8 +14,10 @@ function Favourites() {
         const favouriteArray = Array.from(favourites); // Convert Set to Array
         if (favouriteArray.length > 0) {
             fetchFavouriteProducts(favouriteArray);
+        } else {
+            setProductDetails([]); // Ensure empty state updates
         }
-    }, [favourites]); // Re-fetch when favorites change
+    }, [Array.from(favourites).join(",")]); // Dependency as a string to force re-fetch
 
     const getCategory = (productId) => {
         const categoryMap = {
@@ -26,19 +28,20 @@ function Favourites() {
             g: "Gown",
             a: "Anarkali",
         };
-        const categoryKey = productId.charAt(0).toLowerCase(); // Get the first letter
-        return categoryMap[categoryKey]; // Default to "Unknown" if not found
+        const categoryKey = productId.charAt(0).toLowerCase();
+        return categoryMap[categoryKey] || "Unknown"; // Ensure a fallback category
     };
 
     const fetchFavouriteProducts = async (favouriteArray) => {
         try {
             const productRequests = favouriteArray.map(async (productId) => {
                 const category = getCategory(productId);
+                if (category === "Unknown") return null; // Ignore invalid categories
                 return fetchProduct(category, productId);
             });
 
             const productResults = await Promise.all(productRequests);
-            setProductDetails(productResults);
+            setProductDetails(productResults.filter((item) => item !== null)); // Remove null values
         } catch (error) {
             console.error("Error fetching favourite products:", error);
         }
@@ -48,11 +51,11 @@ function Favourites() {
         <>
             <div id="profileview">
                 <Profilenav />
-                <h2 id="Personalinfo" style={{marginBottom:"0"}}>Favourites :</h2>
-                <div id="outfitsection" style={{ background: "none", border: "none", rowGap: "12vh",  columGap: "5vw", marginTop:"0"}}>
+                <h2 id="Personalinfo" style={{ marginBottom: "0" }}>Favourites :</h2>
+                <div id="outfitsection" style={{ background: "none", border: "none", rowGap: "12vh", columnGap: "5vw", marginTop: "0" }}>
                     {productDetails.length > 0 ? (
-                        productDetails.map((item, index) => (
-                            <Link to={`/${item.gender === 'women' ? 'Femalecollection' : 'Malecollection'}/${item.category}/${item._id}`}>
+                        productDetails.map((item) => (
+                            <Link key={item._id} to={`/${item.gender === 'women' ? 'Femalecollection' : 'Malecollection'}/${item.category}/${item._id}`}>
                                 <div id="outfits">
                                     <div id="favouriteicon" onClick={(e) => {
                                         e.preventDefault();
@@ -61,18 +64,18 @@ function Favourites() {
                                         {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
                                     </div>
                                     <div id="outfitimage">
-                                        <img src={item.images[0]} alt={item.title} />
+                                        <img src={item.images?.[0] || ""} alt={item.title || "Product"} />
                                     </div>
                                     <div id="outfitinfo">
-                                        <p id="outfittitle">{item.title}</p>
+                                        <p id="outfittitle">{item.title || "Unknown Product"}</p>
                                         <div>
                                             <p id="outfitrent">
                                                 <sup>Rent</sup>
-                                                <span>₹{item.rent}</span>
+                                                <span>₹{item.rent || 0}</span>
                                             </p>
                                             <p id="outfitmrp">
                                                 <sup>Mrp</sup>
-                                                <span>₹{item.mrp}</span>
+                                                <span>₹{item.mrp || 0}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -80,7 +83,9 @@ function Favourites() {
                             </Link>
                         ))
                     ) : (
-                        <p style={{ gridColumn: "span 4" }}><p id="spinner" style={{ textAlign: "center", padding: "1rem" }}><span className="loader" style={{ backgroundColor: "rgb(245, 193, 145)" }}></span></p>.</p>
+                        <div id="spinner" style={{ textAlign: "center", padding: "1rem" }}>
+                            <span className="loader" style={{ backgroundColor: "rgb(245, 193, 145)" }}></span>
+                        </div>
                     )}
                 </div>
             </div>

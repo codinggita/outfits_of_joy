@@ -1,0 +1,92 @@
+import React, { useEffect, useState, useRef } from "react";
+import './Cart.css'
+import img1 from '../../assets/s1.png'
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaInfoCircle } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { format } from 'date-fns';
+import { fetchProduct } from '../outfitcollection/api.js';
+import { getCartItems } from './Api.js';
+
+export default function Cart() {
+
+    return (
+        <>
+            <div id='cartmain'>
+                <div id='profileview1'>
+                    <h2 id='Personalinfo'>Shopping Cart :</h2>
+                    <div id='ongoingorder ' style={{ width: "90%" }}>
+                        <div id='ordermain'>
+                            <div id='orderimg'>
+                                <img src={img1} alt="" />
+                                {/* {product.images?.length > 0 && (
+                            <Link to={/${product.gender === 'women' ? 'Femalecollection' : 'Malecollection'}/${order.category}/${order.productId}}>
+                                <img src={product.images[0]} alt="Product Image" />
+                            </Link>
+                        )} */}
+                            </div>
+                            <div id='orderinfo'>
+                                <div id='upperinfo' style={{justifyContent:"space-between", marginLeft:"2vw", marginRight:"3vw"}}>
+                                    <p>product.title</p>
+                                    <div id="savetofav" >
+                                        <FaHeart color="rgb(173, 46, 36)" />
+                                    </div>
+                                    <div style={{fontSize:"150%"}}>
+                                        <MdDelete />
+                                    </div>
+                                </div>
+                                <div style={{ display: "flex", justifyContent: "flex-end", margin: "0", gap: "2vw", marginRight: "3vw", marginTop: "3vh" }}>
+                                    <div id='productsizes' style={{ marginTop: "0vh", marginLeft: "0vh" }}>
+                                        <label style={{ marginRight: "0vh" }}>Quantity: </label>
+                                        <input type="text" value='5' readOnly />
+                                    </div>
+                                    <div id='productsizes' style={{ marginTop: "0vh", marginLeft: "0vh" }}>
+                                        <label style={{ marginRight: "0vh" }}>Size: </label>
+                                        <input type="text" value="A" readOnly />
+                                    </div>
+                                </div>
+                                <div id='middleinfo' style={{margin:"0"}}>
+
+                                    <div id='productprice' style={{ gap: "2vw" }}>
+                                        <p id="productrent">
+                                            <sup>Rent</sup>
+                                            <span id='rentproduct'>₹asfdasd</span>
+                                            <span>For 4 days</span>
+                                        </p>
+                                        <p id="productmrp">
+                                            <sup>Mrp</sup>
+                                            <span id='mrpproduct'>₹asdfa</span>
+                                        </p>
+                                        <p id="productdeposit" style={{ margin: "0" }}>
+                                            <sup>Deposited</sup>
+                                            <span id='rentproduct'>₹afsdfas</span>
+                                            <span id='refundinfo'><FaInfoCircle title="Refund processed within 7 days after return" /></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id='bottominfo' >
+                                    <div id='orderbuttons' style={{ marginLeft: "0vw", marginTop: "0vh" }}>
+                                        <button id='rentnowbutton'>Rent Now</button>
+                                    </div>
+                                    <p><span>From Date: </span>adsf</p>
+                                    <p><span>To Date: </span>asf</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id='sidebar'>
+                    <h2>Cart Summary</h2>
+                    <h4>Total Item : 05</h4>
+                    <h3>Total Rent</h3>
+                    <p>$20000</p>
+                    <h3>Deposit to Pay</h3>
+                    <p>$20000</p>
+                    <h3>Get Refund</h3>
+                    <p>$20000</p>
+                    <button>Checkout</button>
+                </div>
+            </div>
+        </>
+    )
+}

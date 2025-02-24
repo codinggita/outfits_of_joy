@@ -10,10 +10,12 @@ import './Navbar.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetails } from "../component/Profile/Api.js";
 import { useUser } from "../component/UserContext.jsx";
+import useCart from "./Hooks/useCart.jsx";
 
 function Navbar() {
   const { setUserId } = useUser();
   const { loginWithPopup, isLoading, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { totalItems } = useCart();
 
   useEffect(() => {
       const getUser = async () => {
@@ -74,7 +76,7 @@ function Navbar() {
                 </form>
               </li>
               <li><Link to="/Profile/favourites"><FaRegHeart /></Link></li>
-              <li><a href=''><IoMdCart /></a></li>
+              <li id='cartnav'><Link to="/Profile/cart"><span id='cartitemcounts'>{totalItems}</span><IoMdCart /></Link></li>
               <li>
                 <div id="navsignin">
                   {isLoading ? (
