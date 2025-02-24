@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Filternavmen from "../extra component/Filternavmen";
 import { Link, useLocation } from 'react-router-dom';
 import { fetchmensCollections } from "../outfitcollection/api.js";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import useFavorites from "../Hooks/useFavorites.jsx"
 
 export default function Allmensoutfit() {
     const [data, setData] = useState([]);
@@ -13,6 +15,7 @@ export default function Allmensoutfit() {
     const location = useLocation();
     const currentPath = location.pathname.split('/').pop();
     const category = currentPath.replace('/', '');
+    const { favourites, toggleFavourite } = useFavorites();
 
     // Load all data once
     useEffect(() => {
@@ -74,13 +77,19 @@ export default function Allmensoutfit() {
                             setMinPrice(min);
                             setMaxPrice(max);
                         }}
-                        alloutfitsCount={filteredData.length}  
+                        alloutfitsCount={filteredData.length}
                     />
                 </div>
                 <div id="outfitsection">
                     {filteredData.length > 0 && filteredData.map((item, index) => (
                         <Link to={`/Malecollection/${item.category}/${item._id}`} key={index}>
                             <div id="outfits" key={index}>
+                                <div id="favouriteicon" onClick={(e) => {
+                                    e.preventDefault();
+                                    toggleFavourite(item._id);
+                                }}>
+                                    {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                </div>
                                 <div id="outfitimage">
                                     <img src={item.images[0]} alt="" />
                                 </div>

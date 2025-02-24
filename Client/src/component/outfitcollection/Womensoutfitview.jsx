@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchProduct, placeOrder } from './api'
 import { useParams } from 'react-router-dom';
-import { FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
 import DatePicker from 'react-datepicker';
 import { FaStarHalfAlt } from "react-icons/fa";
@@ -15,6 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Womensoutfitview.css'
 import MoreProductswomen from '../Cardslider/MoreProductswomen';
 import { useUser } from "../UserContext.jsx";
+import useFavorites from "../Hooks/useFavorites.jsx"
 
 function Womensoutfitview() {
     const { category, id } = useParams();  // Get params from URL
@@ -25,6 +26,7 @@ function Womensoutfitview() {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState("");
     const { userId } = useUser();
+    const { favourites, toggleFavourite } = useFavorites();
 
     useEffect(() => {
         const getProduct = async () => {
@@ -132,7 +134,12 @@ function Womensoutfitview() {
                     <div id='productinfo'>
                         <div id='titlepart'>
                             <p>{product?.title}</p>
-                            <div><FaRegHeart /></div>
+                            <div onClick={(e) => {
+                                e.preventDefault();
+                                toggleFavourite(product?._id);
+                            }} style={{fontSize:"120%"}}>
+                                {favourites.has(product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart color="rgb(173, 46, 36)"/>}
+                            </div>
                         </div>
                         <div id='aboutproduct'>
                             <div id='productprice'>

@@ -73,7 +73,7 @@ function Navbar() {
                   <button><BiSearchAlt /></button>
                 </form>
               </li>
-              <li><a href=''><FaRegHeart /></a></li>
+              <li><Link to="/Profile/favourites"><FaRegHeart /></Link></li>
               <li><a href=''><IoMdCart /></a></li>
               <li>
                 <div id="navsignin">

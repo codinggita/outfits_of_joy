@@ -3,6 +3,8 @@ import './Womenscollection.css'
 import { Link } from 'react-router-dom'
 import Filternavwomen from "../extra component/Filternavwomen";
 import { fetchCollection } from "./api";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import useFavorites from "../Hooks/useFavorites.jsx"
 
 
 export default function Womenscollection() {
@@ -14,6 +16,7 @@ export default function Womenscollection() {
     const observerRef = useRef(null);
     const currentPath = location.pathname.split('/').pop();
     const category = currentPath.replace('/', '');
+    const { favourites, toggleFavourite } = useFavorites();
 
     const limit = 8;
 
@@ -74,6 +77,12 @@ export default function Womenscollection() {
                     {data.length > 0 && data.map((item, index) => (
                         <Link to={`/Femalecollection/${item.category}/${item._id}`} key={index}>
                             <div id="outfits" key={index}>
+                                <div id="favouriteicon" onClick={(e) => {
+                                    e.preventDefault();
+                                    toggleFavourite(item._id);
+                                }}>
+                                    {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                </div>
                                 <div id="outfitimage">
                                     <img src={item.images[0]} alt="" />
                                 </div>

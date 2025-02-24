@@ -61,6 +61,8 @@
   overflow: hidden;
   border: 15px solid rgb(214, 151, 145);
   scroll-snap-align: start; /* Snap cards to the start of the container */
+  padding-bottom: 2vh;
+  position: relative;
 }
 
 #outfits01:hover {

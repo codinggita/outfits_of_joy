@@ -14,6 +14,7 @@ import Profileview from './component/Profile/Profileview';
 import Address from './component/Profile/Address';
 import Orders from './component/Profile/Orders';
 import { UserProvider } from "./component/UserContext.jsx";
+import Favourites from './component/Profile/Favourites.jsx';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/Profile" element={<Profileview />} />
             <Route path="/Profile/address" element={<Address />} />
             <Route path="/Profile/orders" element={<Orders />} />
+            <Route path="/Profile/favourites" element={<Favourites />} />
           </Routes>
           <Footer />
         </BrowserRouter>

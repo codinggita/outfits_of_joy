@@ -94,3 +94,57 @@ export const placeOrder = async (orderData) => {
       return { error: error.message };
   }
 };
+
+
+export const fetchFavourites = async (userId) => {
+  try {
+    const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/favourites/${userId}`);
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error("Error fetching favorite items:", error);
+    return null;
+  }
+};
+
+
+export const addToFavourites = async (userId, productId) => {
+  try {
+    const response = await fetch("https://outfits-of-joy.onrender.com/outfits-of-joy/favourites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, productId }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to add to favourites");
+    }
+
+    return await response.json(); 
+  } catch (error) {
+    console.error("Error adding to favourites:", error);
+    return null;
+  }
+};
+
+
+export const removeFromFavourites = async (userId, productId) => {
+  try {
+    const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/favourites/${userId}/${productId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to remove from favourites");
+    }
+
+    return await response.json(); // Return updated favourites list
+  } catch (error) {
+    console.error("Error removing from favourites:", error);
+    return null;
+  }
+};
