@@ -55,7 +55,8 @@ function Navbar() {
 
     // Check if search query exists in the mapping
     if (routeMapping[query]) {
-      navigate(routeMapping[query]);
+      navigate(routeMapping[query]); // Navigate to the new route
+      window.location.reload(); // Reload the page
     } else {
       alert("No matching category found!");
     }

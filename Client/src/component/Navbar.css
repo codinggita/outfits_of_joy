@@ -87,13 +87,14 @@ nav{
     font-family: "Bree Serif", serif;
     padding-left: 1vw;
     border-radius: 50px;
-
+    cursor: pointer;
 }
 
 #navsearch button{
     border: none;
     background: transparent;
     font-size: 220%;
+    cursor: pointer;
 }
 
 #navsignin{

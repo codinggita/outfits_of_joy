@@ -17,6 +17,7 @@ import { UserProvider } from "./component/UserContext.jsx";
 import Favourites from './component/Profile/Favourites.jsx';
 import Cart from './component/Profile/Cart.jsx';
 import Ourstores from './component/extra component/ourStores.jsx'
+import Four04 from "./component/extra component/Four04.jsx"
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="/Profile/favourites" element={<Favourites />} />
             <Route path="/Profile/cart" element={<Cart />} />
             <Route path="/our-stores" element={<Ourstores />} />
+            <Route path="*" element={<Four04 />} />
           </Routes>
           <Footer />
         </BrowserRouter>
