@@ -1,3 +1,7 @@
+// import dotenv from 'dotenv';
+// dotenv.config();
+const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
+
 export const getUserDetails = async (email) => {
   try {
     const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/users/${email}`);
@@ -79,5 +83,64 @@ export const removeFromCart = async (userId, productId) => {
   } catch (error) {
       console.error('Error removing from cart:', error);
       return { error: error.message };
+  }
+};
+
+
+export const handlePayment = async (amount, userEmail, userName, phone) => {
+  try {
+      const response = await fetch("https://outfits-of-joy.onrender.com/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount }),
+      });
+
+      const orderData = await response.json();
+
+      if (!orderData.success) {
+          alert("Error creating order");
+          return { success: false };
+      }
+
+      return new Promise((resolve) => { 
+          const options = {
+              key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+              amount: orderData.order.amount,
+              currency: "INR",
+              name: "My Website",
+              description: "Test Transaction",
+              order_id: orderData.order.id,
+              handler: async function (response) {
+                  await fetch("https://outfits-of-joy.onrender.com/verify-payment", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                          razorpay_payment_id: response.razorpay_payment_id,
+                          razorpay_order_id: response.razorpay_order_id,
+                          razorpay_signature: response.razorpay_signature,
+                          user_email: userEmail,
+                      }),
+                  });
+
+                  resolve({ success: true, response, razorpayOrderId: orderData.order.id });
+              },
+              prefill: {
+                  name: userName,
+                  email: userEmail,
+                  contact: phone,
+              },
+              theme: { color: "#3399cc" },
+          };
+
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+
+          rzp.on("payment.failed", function (response) {
+              resolve({ success: false, error: response.error });
+          });
+      });
+  } catch (error) {
+      console.error("Payment error:", error);
+      return { success: false, error };
   }
 };

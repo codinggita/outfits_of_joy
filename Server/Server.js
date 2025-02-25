@@ -4,25 +4,36 @@ const cloudinary = require("cloudinary").v2;
 const { MongoClient } = require('mongodb');
 var cors = require('cors')
 const { ObjectId } = require('mongodb');
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 
 cloudinary.config({
-    cloud_name: "dqkexqgnj",
-    api_key: 455756836716941,
-    api_secret: "cnNq2xwwFrqpR4DjnMQ8DpiPwQo",
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const app = express();
 const port = 3000;
 app.use(
     cors({
-      origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app"],
-      methods: ["GET", "POST", "PATCH", "DELETE"], 
-      credentials: true, 
+        origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app"],
+        methods: ["GET", "POST", "PATCH", "DELETE"],
+        credentials: true,
     })
-  );
+);
 
-const url = "mongodb+srv://parth_jadav:parthjadav363310@outfitsofjoy.begzp.mongodb.net/";
+const url = process.env.MONGODB_URI;
 const dbName = "cloth_collections";
 
 // Multer Configuration for file uploads
@@ -67,8 +78,8 @@ initializeDatabase();
 //POST:add outfits of specific category
 app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), async (req, res) => {
     try {
-        const { category } = req.params; 
-        const { _id, title, gender, description, sizes, stock, rent, mrp, deposit } =req.body;
+        const { category } = req.params;
+        const { _id, title, gender, description, sizes, stock, rent, mrp, deposit } = req.body;
 
         const folderName = category.toLowerCase();
         const uploadedImages = [];
@@ -112,7 +123,7 @@ app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), asyn
 //PUT:modifiy any data
 app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
     try {
-        const { category, id } = req.params; 
+        const { category, id } = req.params;
         const { title, gender, description, sizes, stock, rent, mrp, deposit } = req.body;
 
         const collection = db.collection(category.toLowerCase());
@@ -125,7 +136,7 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
             ...(title && { title }),
             ...(gender && { gender }),
             ...(description && { description }),
-            ...(sizes && { sizes: sizes.split(",") }), 
+            ...(sizes && { sizes: sizes.split(",") }),
             ...(stock && { stock: parseInt(stock) }),
             ...(rent && { rent: parseFloat(rent) }),
             ...(mrp && { mrp: parseFloat(mrp) }),
@@ -133,7 +144,7 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
         };
 
         const result = await collection.updateOne(
-            { _id: id }, 
+            { _id: id },
             { $set: updatedItem }
         );
 
@@ -183,8 +194,8 @@ app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
 app.get('/outfits-of-joy/collection/:category', async (req, res) => {
     try {
         const { category } = req.params; // Extract the category from the URL
-        const page = parseInt(req.query.page) ;
-        const limit = parseInt(req.query.limit) ;
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
 
         // Dynamically access the collection
         const collection = db.collection(category.toLowerCase());
@@ -500,7 +511,7 @@ app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => 
 //POST: add orders
 app.post("/outfits-of-joy/orders", async (req, res) => {
     try {
-        const { userId, productId, quantity, size, category, orderDate, fromDate, toDate } = req.body;
+        const { userId, orderId, productId, quantity, size, category, orderDate, fromDate, toDate } = req.body;
 
         // Validate required fields
         if (!userId || !productId || !quantity || !size || !category || !orderDate || !fromDate || !toDate) {
@@ -508,7 +519,7 @@ app.post("/outfits-of-joy/orders", async (req, res) => {
         }
 
         const newOrder = {
-            orderId: new ObjectId().toString(),
+            orderId,
             productId,
             category,
             quantity,
@@ -552,8 +563,8 @@ app.get("/outfits-of-joy/orders/:userId", async (req, res) => {
 //GET: fetch mens-collections
 app.get("/outfits-of-joy/mens-collections", async (req, res) => {
     try {
-        const page = parseInt(req.query.page) ; 
-        const limit = parseInt(req.query.limit) ;
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
         const sherwani = db.collection("sherwani");
         const tuxedo = db.collection("tuxedo");
         const indo_western = db.collection("indo-western");
@@ -578,8 +589,8 @@ app.get("/outfits-of-joy/mens-collections", async (req, res) => {
 //GET: fetch womens-collections
 app.get("/outfits-of-joy/womens-collections", async (req, res) => {
     try {
-        const page = parseInt(req.query.page) ; 
-        const limit = parseInt(req.query.limit) ; 
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
         const lehenga = db.collection("lehenga");
         const anarkali = db.collection("anarkali");
         const gown = db.collection("gown");
@@ -595,4 +606,75 @@ app.get("/outfits-of-joy/womens-collections", async (req, res) => {
         console.error("Error fetching collections:", error);
         res.status(500).json({ error: "Failed to fetch collections" });
     }
+});
+
+
+// ✅ Create Order (POST)
+app.post("/create-order", async (req, res) => {
+    const { amount, email } = req.body;
+    const options = {
+        amount: amount * 100, // Convert to paise (INR)
+        currency: "INR",
+        receipt: `receipt_${Date.now()}`,
+    };
+
+    try {
+        const order = await razorpay.orders.create(options);
+        res.json({ success: true, order, key: process.env.RAZORPAY_KEY_ID });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error creating order", error });
+    }
+});
+
+// ✅ Verify Payment and Store in MongoDB (POST)
+app.post("/verify-payment", async (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, email, amount } = req.body;
+
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(body)
+        .digest("hex");
+
+    if (expectedSignature !== razorpay_signature) {
+        return res.status(400).json({ success: false, message: "Invalid signature" });
+    }
+
+    try {
+        const razorpayResponse = await fetch(`https://api.razorpay.com/v1/payments/${razorpay_payment_id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${Buffer.from(`${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`).toString('base64')}`,
+            },
+        });
+
+        if (!razorpayResponse.ok) {
+            throw new Error(`Razorpay API error: ${razorpayResponse.statusText}`);
+        }
+
+        const paymentDetails = await razorpayResponse.json();
+
+        // Store payment data in MongoDB
+        await db.collection("payments").insertOne({
+            orderId: razorpay_order_id,
+            paymentId: razorpay_payment_id,
+            status: paymentDetails.status,
+            amount: Number(paymentDetails.amount) / 100,
+            email: paymentDetails.email,
+            phone: paymentDetails.contact,
+            createdAt: new Date(),
+        });
+
+        res.json({ success: true, message: "Payment verified & stored" });
+    } catch (error) {
+        console.error("Error verifying payment:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+});
+
+// ✅ Fetch User Payments (GET)
+app.get("/user-payments/:email", async (req, res) => {
+    const email = req.params.email;
+    const payments = await db.collection("payments").find({ email }).toArray();
+    res.json({ success: true, payments });
 });

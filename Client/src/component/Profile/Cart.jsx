@@ -4,7 +4,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import useFavorites from "../Hooks/useFavorites.jsx"
 import { FaInfoCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { getCartItems, removeFromCart } from './Api.js';
+import { getCartItems, removeFromCart, handlePayment } from './Api.js';
 import { fetchProduct, placeOrder } from "../outfitcollection/api.js";
 import { format } from 'date-fns';
 import { useUser } from "../UserContext.jsx";
@@ -14,9 +14,12 @@ import { toast } from "react-toastify";
 
 export default function Cart() {
     const [cartItems, setCartItems] = useState([]);
-    const { userId } = useUser();
+    const { userId, firstName, lastName, email, Phone} = useUser();
     const { favourites, toggleFavourite } = useFavorites();
     const { totalItems } = useCart();
+    const email1 = email;
+    const userName = firstName+lastName;
+    const contact = Phone;
 
     const fetchCartDetails = async () => {
         try {
@@ -45,7 +48,7 @@ export default function Cart() {
     };
 
     useEffect(() => {
-        fetchCartDetails();
+        if (userId) fetchCartDetails();
     }, [userId]);
 
 
@@ -97,106 +100,72 @@ export default function Cart() {
         }
     };
 
-
     const handleCheckout = async () => {
         if (cartItems.length === 0) {
-            toast.warn("Your cart is empty!", {
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
+            toast.warn("Your cart is empty!");
             return;
         }
+    
+        // Calculate total deposit amount (excluding rent)
+        const totalDeposit = cartItems.reduce((sum, item) => {
+            return sum + (item.product?.deposit || 0) * item.quantity;
+        }, 0);
+    
+        // Open Razorpay for the total deposit only
+        const paymentResult = await handlePayment(totalDeposit, email1, userName, contact);
 
-        try {
+        if (paymentResult.success) {
+            // Place orders for each item in the cart after successful payment
             for (const item of cartItems) {
-                const orderData = {
+                await placeOrder({
                     userId,
                     productId: item.productId,
                     category: getCategory(item.productId),
                     quantity: item.quantity,
                     size: item.size,
-                    status: "order confirmed",
-                    orderDate: new Date().toISOString().split('T')[0],
+                    orderDate: new Date().toISOString(),
                     fromDate: item.fromDate,
                     toDate: item.toDate
-                };
-
-                try {
-                    const response = await placeOrder(orderData);
-                    if (!response.error) {
-                        await removeFromCart(userId, item.productId);
-                    } else {
-                        console.error("Failed to place order for:", item.productId);
-                    }
-                } catch (error) {
-                    toast.error("Error placing order", {
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                    });
-                }
+                });
+    
+                await removeFromCart(userId, item.productId);
             }
-        } finally {
-            await fetchCartDetails();
-            toast.success("Order placed successfully!", {
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
+    
+            toast.success("Checkout successful! Orders placed.");
+            fetchCartDetails();
+        } else {
+            toast.error("Payment failed! Order not placed.");
         }
     };
-
-
-
 
 
     const handleRentNow = async (item) => {
-        const orderData = {
-            userId,
-            productId: item.productId,
-            category: getCategory(item.productId),
-            quantity: item.quantity,
-            size: item.size,
-            orderDate: new Date().toISOString(),
-            fromDate: item.fromDate,
-            toDate: item.toDate
-        };
-
-        const response = await placeOrder(orderData);
-
-        if (response.error) {
-            toast.error("Failed to place order.", {
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-              });
-        } else {
-            toast.success("Order placed successfully!", {
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-              });
-
-            // Remove only the rented item from the cart
+        console.log(userId, email1, contact, userName)
+        const amount = (item.product?.deposit || 0) * item.quantity; // Only deposit
+    
+        const paymentResult = await handlePayment(amount, email1, userName, contact);
+    
+        if (paymentResult.success) {
+            await placeOrder({
+                userId,
+                productId: item.productId,
+                category: getCategory(item.productId),
+                quantity: item.quantity,
+                size: item.size,
+                orderDate: new Date().toISOString(),
+                fromDate: item.fromDate,
+                toDate: item.toDate
+            });
+    
             await removeFromCart(userId, item.productId);
-
-            // Fetch updated cart details
+    
+            toast.success("Order placed successfully!");
             fetchCartDetails();
+        } else {
+            toast.error("Payment failed!");
         }
     };
-
-
+    
 
     return (
         <div id='cartmain'>

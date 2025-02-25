@@ -14,7 +14,7 @@ import useCart from "./Hooks/useCart.jsx";
 import { toast } from "react-toastify";
 
 function Navbar() {
-  const { setUserId } = useUser();
+  const { setUserId, setFirstName, setLastName, setEmail, setPhone } = useUser();
   const { loginWithPopup, isLoading, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { totalItems } = useCart();
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +29,10 @@ function Navbar() {
         const data = await getUserDetails(user?.email);
         if (data) {
           setUserId(data._id);
+          setFirstName(data.firstName);
+          setLastName(data.lastName);
+          setEmail(data.email);
+          setPhone(data.phone)
         } else {
           console.error("User data not found");
         }
@@ -130,7 +134,7 @@ function Navbar() {
                 </form>
               </li>
               <li><Link to="/Profile/favourites"><FaRegHeart /></Link></li>
-              <li id='cartnav'><Link to="/Profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null }<IoMdCart /></Link></li>
+              <li id='cartnav'><Link to="/Profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null}<IoMdCart /></Link></li>
               <li>
                 <div id="navsignin">
                   {isLoading ? (
