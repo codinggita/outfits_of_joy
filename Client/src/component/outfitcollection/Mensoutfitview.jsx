@@ -17,6 +17,7 @@ import MoreProductsmen from '../Cardslider/MoreProductsmen';
 import { useUser } from "../UserContext.jsx";
 import useFavorites from "../Hooks/useFavorites.jsx";
 import { toast } from "react-toastify";
+import { handlePayment } from '../Profile/Api.js';
 
 function Mensoutfitview() {
   const { category, id } = useParams();  // Get params from URL
@@ -26,8 +27,11 @@ function Mensoutfitview() {
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
-  const { userId } = useUser();
+  const { userId, firstName, lastName, email, Phone } = useUser();
   const { favourites, toggleFavourite } = useFavorites();
+  const email1 = email;
+  const userName = firstName+lastName;
+  const contact = Phone;
 
 
   useEffect(() => {
@@ -69,6 +73,7 @@ function Mensoutfitview() {
     };
   }, []);
 
+
   const handleOrder = async () => {
     if (!userId) {
       toast.warn("Please log in to place an order", {
@@ -100,35 +105,36 @@ function Mensoutfitview() {
       });
       return;
     }
-
-    const orderData = {
-      userId,
-      productId: product._id,
-      category: category,
-      quantity: parseInt(selectedQuantity, 10),
-      size: selectedSize,
-      orderDate: new Date().toISOString(),  // Store in proper Date format
-      fromDate: new Date(selectedDate).toISOString(),
-      toDate: new Date(addDays(selectedDate, 4)).toISOString()
-    };
-
-    const result = await placeOrder(orderData);
-    if (result.error) {
-      toast.error("Order failed Reoder!", {
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+  
+    // Calculate the total amount (deposit * quantity)
+    const amount = (product?.deposit || 0) * selectedQuantity;
+  
+    // Call handlePayment to initiate Razorpay payment
+    const paymentResult = await handlePayment(amount, email1, userName, contact );
+  
+    if (paymentResult.success) {
+      // Payment successful, place the order
+      const orderData = {
+        userId,
+        orderId: paymentResult.razorpayOrderId,
+        productId: product._id,
+        category: category,
+        quantity: parseInt(selectedQuantity, 10),
+        size: selectedSize,
+        orderDate: new Date().toISOString(),
+        fromDate: new Date(selectedDate).toISOString(),
+        toDate: new Date(addDays(selectedDate, 4)).toISOString(),
+      };
+  
+      const result = await placeOrder(orderData);
+  
+      if (result.error) {
+        toast.error("Order failed! Please try again.");
+      } else {
+        toast.success("Order placed successfully!");
+      }
     } else {
-      toast.success("Order placed successfully!", {
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.error("Payment failed! Please try again.");
     }
   };
 
