@@ -28,7 +28,6 @@ export const updateUserDetails = async (userId, updatedData, isAddressUpdate = f
     }
 
     const result = await response.json();
-    window.location.reload();
     return result;
 
   } catch (error) {

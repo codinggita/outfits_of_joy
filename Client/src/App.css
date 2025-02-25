@@ -1,0 +1,26 @@
+/* Global Toast Styles */
+.Toastify__toast {
+    background: rgba(212, 162, 66, 0.6) !important;  /* Translucent black */
+    color: white !important;
+    backdrop-filter: blur(5px); /* Blur effect */
+    border-radius: 10px; /* Rounded corners */
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+/* Customize different types of toasts */
+.Toastify__toast--success {
+    color: black !important;
+}
+
+.Toastify__toast--error {
+    color: black !important;
+}
+
+.Toastify__toast--warning {
+    color: black !important;
+}
+
+.Toastify__toast--info {
+    color: black !important;
+}

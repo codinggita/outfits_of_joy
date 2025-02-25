@@ -18,6 +18,9 @@ import Favourites from './component/Profile/Favourites.jsx';
 import Cart from './component/Profile/Cart.jsx';
 import Ourstores from './component/extra component/ourStores.jsx'
 import Four04 from "./component/extra component/Four04.jsx"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css"
 
 
 function App() {
@@ -26,24 +29,25 @@ function App() {
   return (
     <>
       <UserProvider>
-          <Navbar />
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<><Landingpage /><Homepage /></>} />
-            <Route path="/Malecollection/:category" element={<Menscollection />} />
-            <Route path="/Femalecollection/:category" element={<Womenscollection />} />
-            <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
-            <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
-            <Route path="/Mens-outfits" element={<Allmensoutfit />} />
-            <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
-            <Route path="/Profile" element={<Profileview />} />
-            <Route path="/Profile/address" element={<Address />} />
-            <Route path="/Profile/orders" element={<Orders />} />
-            <Route path="/Profile/favourites" element={<Favourites />} />
-            <Route path="/Profile/cart" element={<Cart />} />
-            <Route path="/our-stores" element={<Ourstores />} />
-            <Route path="*" element={<Four04 />} />
-          </Routes>
-          <Footer />
+        <ToastContainer position="top-right" />
+        <Navbar />
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<><Landingpage /><Homepage /></>} />
+          <Route path="/Malecollection/:category" element={<Menscollection />} />
+          <Route path="/Femalecollection/:category" element={<Womenscollection />} />
+          <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
+          <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
+          <Route path="/Mens-outfits" element={<Allmensoutfit />} />
+          <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
+          <Route path="/Profile" element={<Profileview />} />
+          <Route path="/Profile/address" element={<Address />} />
+          <Route path="/Profile/orders" element={<Orders />} />
+          <Route path="/Profile/favourites" element={<Favourites />} />
+          <Route path="/Profile/cart" element={<Cart />} />
+          <Route path="/our-stores" element={<Ourstores />} />
+          <Route path="*" element={<Four04 />} />
+        </Routes>
+        <Footer />
       </UserProvider>
     </>
   )

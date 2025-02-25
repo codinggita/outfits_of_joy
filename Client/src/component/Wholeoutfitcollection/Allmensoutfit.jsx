@@ -20,6 +20,7 @@ export default function Allmensoutfit() {
     // Load all data once
     useEffect(() => {
         loadData();
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
     // Update filtered data when any of these states change

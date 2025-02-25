@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetails, updateUserDetails } from './Api.js'
+import { toast } from "react-toastify";
 
 function Profileview() {
   const { user, logout } = useAuth0();
@@ -57,10 +58,29 @@ function Profileview() {
     e.preventDefault();
     try {
       await updateUserDetails(userData._id, formData, false);
-      alert("Profile updated successfully!");
+
+      setUserData((prevData) => ({
+        ...prevData,
+        ...formData,
+      }));
+
+      toast.success("Profile updated successfully!", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
       setShowPopup(false);
     } catch (error) {
-      alert("Error updating profile");
+      toast.error("Error Updating Profile!", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -103,7 +123,7 @@ function Profileview() {
                     <IoIosCloseCircleOutline />
                   </button>
 
-                  <form onSubmit={handleSubmit}>
+                  <form>
 
                     <div id='userform'>
                       <div id='formlabels'>
@@ -148,7 +168,7 @@ function Profileview() {
                       </div>
                     </div>
 
-                    <div id='savebtn'><button type="submit">Save</button></div>
+                    <div id='savebtn'><button type="button" onClick={handleSubmit}>Save</button></div>
                   </form>
                 </div>
               </div>
