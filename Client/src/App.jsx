@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './component/Footer'
 import Homepage from './component/Homepage'
 import Landingpage from './component/Landingpage'
@@ -19,14 +19,15 @@ import Cart from './component/Profile/Cart.jsx';
 import Ourstores from './component/extra component/ourStores.jsx'
 import Four04 from "./component/extra component/Four04.jsx"
 
+
 function App() {
+  const location = useLocation();
 
   return (
     <>
       <UserProvider>
-        <BrowserRouter>
           <Navbar />
-          <Routes>
+          <Routes location={location} key={location.pathname}>
             <Route path="/" element={<><Landingpage /><Homepage /></>} />
             <Route path="/Malecollection/:category" element={<Menscollection />} />
             <Route path="/Femalecollection/:category" element={<Womenscollection />} />
@@ -43,7 +44,6 @@ function App() {
             <Route path="*" element={<Four04 />} />
           </Routes>
           <Footer />
-        </BrowserRouter>
       </UserProvider>
     </>
   )

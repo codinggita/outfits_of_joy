@@ -160,7 +160,7 @@ function Womensoutfitview() {
                                 </div>
                             </>
                         ) : (
-                            <p>Loading...</p>
+                            <p id="spinner" style={{ textAlign: "center", padding: "1rem" }}><span className="loader"></span></p>
                         )}
                     </div>
                     <div id='productinfo'>
