@@ -57,4 +57,7 @@
     color: #008000;
     font-weight: bold;
   }
-  
+
+  #storesmain{
+    display: flex;
+  }

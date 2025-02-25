@@ -11,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetails } from "../component/Profile/Api.js";
 import { useUser } from "../component/UserContext.jsx";
 import useCart from "./Hooks/useCart.jsx";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const { setUserId } = useUser();
@@ -38,6 +39,16 @@ function Navbar() {
 
     getUser();
   }, [user?.email]);
+
+  const successmsg = (() => {
+    toast.success("Login Successful", {
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  });
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -119,7 +130,7 @@ function Navbar() {
                 </form>
               </li>
               <li><Link to="/Profile/favourites"><FaRegHeart /></Link></li>
-              <li id='cartnav'><Link to="/Profile/cart"><span id='cartitemcounts'>{totalItems}</span><IoMdCart /></Link></li>
+              <li id='cartnav'><Link to="/Profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null }<IoMdCart /></Link></li>
               <li>
                 <div id="navsignin">
                   {isLoading ? (
@@ -145,6 +156,7 @@ function Navbar() {
                           await loginWithPopup();
                           await getAccessTokenSilently();
                           navigate("/Profile");
+                          successmsg()
                         } catch (error) {
                           console.error("Login failed:", error);
                         }

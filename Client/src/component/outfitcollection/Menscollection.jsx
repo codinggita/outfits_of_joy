@@ -29,6 +29,7 @@ export default function Menscollection() {
             loadData();
             isInitialLoad.current = false;
         }
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
     useEffect(() => {

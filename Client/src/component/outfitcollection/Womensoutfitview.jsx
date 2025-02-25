@@ -16,6 +16,7 @@ import './Womensoutfitview.css'
 import MoreProductswomen from '../Cardslider/MoreProductswomen';
 import { useUser } from "../UserContext.jsx";
 import useFavorites from "../Hooks/useFavorites.jsx"
+import { toast } from "react-toastify";
 
 function Womensoutfitview() {
     const { category, id } = useParams();  // Get params from URL
@@ -69,15 +70,33 @@ function Womensoutfitview() {
 
     const handleOrder = async () => {
         if (!userId) {
-            alert("Please log in to place an order");
+            toast.warn("Please log in to place an order", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
         if (!selectedSize) {
-            alert("Please select a size");
+            toast.warn("Please select a size", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
         if (!selectedDate) {
-            alert("Please select a date");
+            toast.warn("Please select a date", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
 
@@ -94,23 +113,53 @@ function Womensoutfitview() {
 
         const result = await placeOrder(orderData);
         if (result.error) {
-            alert("Order failed: " + result.error);
+            toast.error("Order failed Reoder!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         } else {
-            alert("Order placed successfully!");
+            toast.success("Order placed successfully!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     };
 
     const handleAddToCart = async () => {
         if (!userId) {
-            alert("Please log in to add items to the cart.");
+            toast.warn("Please log in to add items to the cart.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
         if (!selectedSize) {
-            alert("Please select a size.");
+            toast.warn("Please select a size.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
         if (!selectedDate) {
-            alert("Please select a rental start date.");
+            toast.warn("Please select a rental start date.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
 
@@ -126,9 +175,21 @@ function Womensoutfitview() {
         const result = await addToCart(cartData.userId, cartData.productId, cartData.size, cartData.quantity, cartData.fromDate, cartData.toDate);
 
         if (result.error) {
-            alert("Failed to add item to cart.");
+            toast.error("Failed to add item to cart.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         } else {
-            alert("Item added to cart successfully!");
+            toast.success("Item added to cart successfully!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     };
 

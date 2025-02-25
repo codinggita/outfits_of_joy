@@ -3,6 +3,7 @@ import Profilenav from './Profilenav'
 import './Address.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetails, updateUserDetails } from './Api.js'
+import { toast } from "react-toastify";
 
 function Address() {
   const { user } = useAuth0();
@@ -56,9 +57,21 @@ function Address() {
     e.preventDefault();
     try {
       await updateUserDetails(userData._id, address, true);
-      alert("Profile updated successfully!");
+      toast.success("Address updated successfully!", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
-      alert("Error updating profile");
+      toast.error("Error updating Address", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 

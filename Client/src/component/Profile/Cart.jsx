@@ -9,6 +9,7 @@ import { fetchProduct, placeOrder } from "../outfitcollection/api.js";
 import { format } from 'date-fns';
 import { useUser } from "../UserContext.jsx";
 import useCart from "../Hooks/useCart.jsx";
+import { toast } from "react-toastify";
 
 
 export default function Cart() {
@@ -33,7 +34,13 @@ export default function Cart() {
                 setCartItems([]); // Ensure empty cart updates
             }
         } catch (error) {
-            console.error("Error fetching cart details:", error);
+            toast.error("Error fetching cart details Referesh!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     };
 
@@ -58,16 +65,34 @@ export default function Cart() {
 
     const handleRemoveFromCart = async (productId) => {
         if (!userId) {
-            alert("Please log in to modify your cart.");
+            toast.warn("Please log in to modify your cart.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
 
         const result = await removeFromCart(userId, productId);
 
         if (result.error) {
-            alert("Failed to remove item from cart.");
+            toast.error("Failed to remove item from cart.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         } else {
-            alert("Item removed from cart successfully!");
+            toast.success("Item removed from cart successfully!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             fetchCartDetails();
         }
     };
@@ -75,7 +100,13 @@ export default function Cart() {
 
     const handleCheckout = async () => {
         if (cartItems.length === 0) {
-            alert("Your cart is empty!");
+            toast.warn("Your cart is empty!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
 
@@ -101,12 +132,24 @@ export default function Cart() {
                         console.error("Failed to place order for:", item.productId);
                     }
                 } catch (error) {
-                    console.error("Error placing order:", error);
+                    toast.error("Error placing order", {
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                    });
                 }
             }
         } finally {
             await fetchCartDetails();
-            alert("Order placed successfully!");
+            toast.success("Order placed successfully!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     };
 
@@ -129,9 +172,21 @@ export default function Cart() {
         const response = await placeOrder(orderData);
 
         if (response.error) {
-            alert("Failed to place order.");
+            toast.error("Failed to place order.", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
         } else {
-            alert("Order placed successfully!");
+            toast.success("Order placed successfully!", {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
 
             // Remove only the rented item from the cart
             await removeFromCart(userId, item.productId);
