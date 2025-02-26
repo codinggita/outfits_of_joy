@@ -411,7 +411,7 @@ app.delete('/outfits-of-joy/carts/:userId/:productId', async (req, res) => {
 
 
 //FAVOURITES
-//POST: add items to cart
+//POST: add items to favourites
 app.post('/outfits-of-joy/favourites', async (req, res) => {
     try {
         const { userId, productId } = req.body;
@@ -511,7 +511,7 @@ app.delete('/outfits-of-joy/favourites/:userid/:productid', async (req, res) => 
 //POST: add orders
 app.post("/outfits-of-joy/orders", async (req, res) => {
     try {
-        const { userId, orderId, productId, quantity, size, category, orderDate, fromDate, toDate } = req.body;
+        const { userId, orderId, productId, quantity, size, category, status, orderDate, fromDate, toDate } = req.body;
 
         // Validate required fields
         if (!userId || !productId || !quantity || !size || !category || !orderDate || !fromDate || !toDate) {
@@ -522,6 +522,7 @@ app.post("/outfits-of-joy/orders", async (req, res) => {
             orderId,
             productId,
             category,
+            status,
             quantity,
             size,
             orderDate: new Date(orderDate),
@@ -539,6 +540,33 @@ app.post("/outfits-of-joy/orders", async (req, res) => {
     } catch (error) {
         console.error("Error adding order:", error);
         res.status(500).json({ error: "Failed to add order" });
+    }
+});
+
+
+//PATCH: cancell orders
+app.patch("/outfits-of-joy/orders/:productId", async (req, res) => {
+    try {
+        const { productId } = req.params;
+        const { userId } = req.body;
+
+        if (!userId || !productId) {
+            return res.status(400).json({ error: "User ID and Product ID are required" });
+        }
+
+        const result = await orders.updateOne(
+            { _id: userId, "orders.productId": productId },
+            { $set: { "orders.$.status": "cancelled" } }
+        );
+
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ error: "Order not found or already cancelled" });
+        }
+
+        res.json({ message: "Order cancelled successfully", result });
+    } catch (error) {
+        console.error("Error cancelling order:", error);
+        res.status(500).json({ error: "Failed to cancel order" });
     }
 });
 
