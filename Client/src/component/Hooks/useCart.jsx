@@ -37,8 +37,12 @@ const useCart = () => {
         }
     };
 
-    // Calculate total cart items
+    useEffect(() => {
+        fetchCartDetails();
+    }, [cartItems]);  // This ensures cart updates immediately
+
     const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
 
     return { cartItems, totalItems, fetchCartDetails, handleRemoveFromCart };
 };

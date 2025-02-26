@@ -144,3 +144,26 @@ export const handlePayment = async (amount, userEmail, userName, phone) => {
       return { success: false, error };
   }
 };
+
+
+
+export const cancelOrder = async (userId, productId) => {
+  try {
+      const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/orders/${productId}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }),
+      });
+
+      if (!response.ok) {
+          throw new Error("Failed to cancel order");
+      }
+
+      return await response.json();
+  } catch (error) {
+      console.error("Error cancelling order:", error);
+      throw error;
+  }
+};

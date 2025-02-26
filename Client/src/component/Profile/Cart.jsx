@@ -119,6 +119,7 @@ export default function Cart() {
             for (const item of cartItems) {
                 await placeOrder({
                     userId,
+                    orderId: paymentResult.razorpayOrderId,
                     productId: item.productId,
                     category: getCategory(item.productId),
                     quantity: item.quantity,
@@ -148,6 +149,7 @@ export default function Cart() {
         if (paymentResult.success) {
             await placeOrder({
                 userId,
+                orderId: paymentResult.razorpayOrderId,
                 productId: item.productId,
                 category: getCategory(item.productId),
                 quantity: item.quantity,
