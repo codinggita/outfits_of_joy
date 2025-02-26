@@ -73,7 +73,7 @@ function Navbar() {
       navigate(routeMapping[query]); // Navigate to the new route
       // window.location.reload(); // Reload the page
     } else {
-      alert("No matching category found!");
+      toast.warn("No matching category found!");
     }
 
     // Clear input after search

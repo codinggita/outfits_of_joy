@@ -1,5 +1,4 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
+import { toast } from "react-toastify";
 const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 export const getUserDetails = async (email) => {
@@ -98,7 +97,7 @@ export const handlePayment = async (amount, userEmail, userName, phone) => {
       const orderData = await response.json();
 
       if (!orderData.success) {
-          alert("Error creating order");
+          toast.warn("Error creating order")
           return { success: false };
       }
 

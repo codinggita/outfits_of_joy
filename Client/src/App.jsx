@@ -1,4 +1,5 @@
 import './App.css'
+import { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './component/Footer'
 import Homepage from './component/Homepage'
@@ -25,6 +26,21 @@ import "./App.css"
 
 function App() {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); 
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <img src="https://freefrontend.com/assets/img/css-loaders/daily-ui-20-css-loader.gif" alt="" style={{width:"100%", height:"99.4vh"}}/>
+      </div>
+    );
+  }
 
   return (
     <>
