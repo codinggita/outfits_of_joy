@@ -1,9 +1,12 @@
 /* Global Toast Styles */
 .Toastify__toast {
-    background: rgba(212, 162, 66, 0.6) !important;  /* Translucent black */
+    background: rgba(212, 162, 66, 0.6) !important;
+    /* Translucent black */
     color: white !important;
-    backdrop-filter: blur(5px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
+    backdrop-filter: blur(5px);
+    /* Blur effect */
+    border-radius: 10px;
+    /* Rounded corners */
     font-weight: bold;
     padding: 10px 15px;
 }
@@ -23,4 +26,43 @@
 
 .Toastify__toast--info {
     color: black !important;
+}
+
+
+.react-confirm-alert-overlay {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: white;
+}
+
+.react-confirm-alert-body{
+    background-color: rgba(225, 207, 195) !important;
+    border: 2px solid white !important;
+    text-align: center !important;
+    color: black !important;
+}
+
+.react-confirm-alert-button-group{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+
+.react-confirm-alert-button-group button {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.react-confirm-alert-button-group button:first-child {
+    background-color: rgba(255, 77, 77);
+    /* Red confirm button */
+    color: white;
+}
+
+.react-confirm-alert-button-group button:last-child {
+    background-color: #3085d6;
+    /* Blue cancel button */
+    color: white;
 }
