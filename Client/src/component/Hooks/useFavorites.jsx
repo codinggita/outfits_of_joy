@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchFavourites, addToFavourites, removeFromFavourites } from "../outfitcollection/api";
 import { useUser } from "../UserContext";
+import { toast } from "react-toastify";
 
 export default function useFavorites() {
     const { userId } = useUser();
@@ -25,7 +26,7 @@ export default function useFavorites() {
 
     const toggleFavourite = async (productId) => {
         if (!userId) {
-            alert("Please log in to add favorites!");
+            toast.warn("Please log in to add favorites!");
             return;
         }
 

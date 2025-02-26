@@ -90,7 +90,7 @@ function Profileview() {
         <Profilenav />
         <div id='info-logout'>
           <h2 id='Personalinfo'>Personal Information :</h2>
-          <h2 id='Personalinfo' className='logout' onClick={() => logout({ returnTo: 'http://localhost:5173/' })}><FiLogOut /> LogOut</h2>
+          <h2 id='Personalinfo' className='logout' onClick={() => logout({ returnTo: '/' })}><FiLogOut /> LogOut</h2>
         </div>
         <div id='profileinfo'>
           <div>
