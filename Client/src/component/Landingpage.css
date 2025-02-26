@@ -60,11 +60,17 @@
     box-shadow: 0 0 22px 10px rgba(129, 23, 27, 0.5);
     border: none;
     margin-top: -12vh;
+    transition: transform 0.1s ease-in-out;
 }
 
 #lptxt button:hover{
     box-shadow: 0 0 22px 10px rgba(129, 23, 27, 0.8);
 }
+
+#lptxt button:active{
+    transform: scale(0.9);
+}
+
 
 #lpservice{
     position: relative;

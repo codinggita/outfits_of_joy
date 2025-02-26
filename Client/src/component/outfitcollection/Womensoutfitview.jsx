@@ -115,8 +115,10 @@ function Womensoutfitview() {
             // Payment successful, place the order
             const orderData = {
                 userId,
+                orderId: paymentResult.razorpayOrderId,
                 productId: product._id,
                 category: category,
+                status:"",
                 quantity: parseInt(selectedQuantity, 10),
                 size: selectedSize,
                 orderDate: new Date().toISOString(),

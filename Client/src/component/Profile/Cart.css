@@ -63,4 +63,9 @@
     font-size: 100%;
     font-weight: 600;
     margin-top: 2vh;
+    transition: transform 0.1s ease-in-out;
+}
+
+#sidebar button:active{
+    transform: scale(0.9);
 }
