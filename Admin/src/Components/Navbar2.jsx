@@ -31,7 +31,7 @@ const Navbar2 = ({ category, setCategory }) => {
         </select>
       </div>
       <div>
-        <button onClick={() => setShowModal(true)} className="bg-white border-2 sm:border-3 border-[#D4A242] px-2 sm:px-4 py-1 rounded-[10px] active:scale-90 transition-all duration-150 text-sm sm:text-base">
+        <button onClick={() => setShowModal(true)} className="font-bree bg-white border-2 sm:border-3 border-[#D4A242] px-2 sm:px-4 py-1 rounded-[10px] active:scale-90 transition-all duration-150 text-sm sm:text-base">
           Add New Outfit
         </button>
       </div>
