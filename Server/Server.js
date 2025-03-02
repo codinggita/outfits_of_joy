@@ -7,6 +7,8 @@ const { ObjectId } = require('mongodb');
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 dotenv.config();
 
@@ -22,6 +24,11 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_NAME = process.env.ADMIN_NAME;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
 const port = 3000;
@@ -705,4 +712,39 @@ app.get("/user-payments/:email", async (req, res) => {
     const email = req.params.email;
     const payments = await db.collection("payments").find({ email }).toArray();
     res.json({ success: true, payments });
+});
+
+
+
+
+// Login Route
+app.post("/admin/login", (req, res) => {
+    const { email, password } = req.body;
+
+    // Check if email and password match the admin credentials
+    if (email === ADMIN_EMAIL && bcrypt.compareSync(password, ADMIN_PASSWORD)) {
+        // Generate JWT token with email and name
+        const token = jwt.sign({ email, name: ADMIN_NAME }, JWT_SECRET, { expiresIn: "12h" });
+        res.json({ success: true, token, user: { email, name: ADMIN_NAME } });
+    } else {
+        res.status(401).json({ success: false, message: "Invalid credentials" });
+    }
+});
+
+app.get("/admin/dashboard", (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1]; // Get token from header
+
+    if (!token) {
+        return res.status(401).json({ success: false, message: "No token provided" });
+    }
+
+    // Verify JWT token
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ success: false, message: "Invalid token" });
+        }
+
+        // If token is valid, allow access to the protected route
+        res.json({ success: true, user: decoded });
+    });
 });
