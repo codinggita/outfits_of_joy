@@ -3,6 +3,7 @@ import image1 from '../assets/blue.png';
 import logo from '../assets/logo.svg';
 import axios from "axios";
 import { FaUser, FaKey } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:3000/admin/login", {
+            const response = await axios.post("https://outfits-of-joy.onrender.com/admin/login", {
                 email,
                 password,
             });
@@ -22,11 +23,13 @@ function Login() {
                 // Store JWT token in sessionStorage
                 sessionStorage.setItem("adminToken", response.data.token);
                 window.location.href = "/admin/dashboard"; // Redirect to dashboard
+                toast.success("Login successfully!");
             } else {
                 setError("Invalid credentials");
             }
         } catch (err) {
             setError("Login failed. Please try again.");
+            toast.error("Invalid credentials");
         }
     };
 

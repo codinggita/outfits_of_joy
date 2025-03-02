@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import admin from '../assets/bajrangbali.jpg';
 import Dashboard from './Dashboard';
 import OutfitsUpdate from './OutfitsUpdate';
-import { useNavigate, Routes, Route, Link, Outlet } from "react-router-dom";
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [data, setData] = useState(null);
@@ -21,13 +21,12 @@ const AdminDashboard = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:3000/admin/dashboard', {
+        const response = await axios.get('https://outfits-of-joy.onrender.com/admin/dashboard', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         if (response.data.success) {
           setData(response.data);
-          console.log(response.data.user.name);
         } else {
           setError('Access denied');
         }
@@ -68,17 +67,17 @@ const AdminDashboard = () => {
             <Link to="/admin/dashboard">Dashboard</Link>
           </h4>
           <h4 className="bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)]">
-            <Link to="/admin/dashboard/users">Update Outfits</Link>
+            <Link to="/admin/dashboard/outfits-update">Update Outfits</Link>
           </h4>
           <h4 className="bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)]">
             <Link to="/admin/dashboard/orders">View Orders</Link>
           </h4>
         </div>
 
-        <div className="w-full md:ml-[30%] lg:ml-[21%] p-4 mt-10">
+        <div className="w-full md:ml-[30%] lg:ml-[21%] p-4 mt-16">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/users" element={<OutfitsUpdate />} />
+            <Route path="/outfits-update" element={<OutfitsUpdate />} />
             {/* <Route path="/orders" element={<Orders />} /> */}
           </Routes>
         </div>

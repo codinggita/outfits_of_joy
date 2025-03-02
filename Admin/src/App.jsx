@@ -2,21 +2,26 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Components/Login.jsx'
 import AdminDashboard from './Components/AdminDashboard.jsx';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/dashboard/*" element={
-          <ProtectedRoute>
-            <AdminDashboard />
-          </ProtectedRoute>
-        }
-        />
-        <Route path="/" element={<Navigate to="/admin/login" />} />
-      </Routes>
-    </Router>
+    <>
+    <ToastContainer position="top-right" />
+      <Router>
+        <Routes>
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/dashboard/*" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+          />
+          <Route path="/" element={<Navigate to="/admin/login" />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
