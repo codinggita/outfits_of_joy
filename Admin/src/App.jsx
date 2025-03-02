@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/dashboard" element={
+        <Route path="/admin/dashboard/*" element={
           <ProtectedRoute>
             <AdminDashboard />
           </ProtectedRoute>
