@@ -34,7 +34,7 @@ const app = express();
 const port = 3000;
 app.use(
     cors({
-        origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app"],
+        origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app","https://outfits-of-joy-admin.netlify.app"],
         methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
         credentials: true,
     })
