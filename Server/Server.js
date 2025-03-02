@@ -621,29 +621,46 @@ app.post("/outfits-of-joy/orders", async (req, res) => {
 });
 
 
-//PATCH: cancell orders
-app.patch("/outfits-of-joy/orders/:productId", async (req, res) => {
+//PATCH: update orders status
+app.patch("/outfits-of-joy/orders/:productId/:status", async (req, res) => {
     try {
-        const { productId } = req.params;
+        const { productId, status } = req.params;
         const { userId } = req.body;
 
-        if (!userId || !productId) {
-            return res.status(400).json({ error: "User ID and Product ID are required" });
+        if (!userId || !productId || !status) {
+            return res.status(400).json({ error: "User ID, Product ID, and Status are required" });
+        }
+
+        const validStatuses = ["cancelled", "rejected", "confirmed"];
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ error: "Invalid status. Allowed values are 'cancelled', 'rejected', 'confirmed'" });
         }
 
         const result = await orders.updateOne(
             { _id: userId, "orders.productId": productId },
-            { $set: { "orders.$.status": "cancelled" } }
+            { $set: { "orders.$.status": status } } 
         );
 
         if (result.modifiedCount === 0) {
-            return res.status(404).json({ error: "Order not found or already cancelled" });
+            return res.status(404).json({ error: "Order not found or status already set" });
         }
 
-        res.json({ message: "Order cancelled successfully", result });
+        res.json({ message: `Order status updated to '${status}' successfully`, result });
     } catch (error) {
-        console.error("Error cancelling order:", error);
-        res.status(500).json({ error: "Failed to cancel order" });
+        console.error("Error updating order status:", error);
+        res.status(500).json({ error: "Failed to update order status" });
+    }
+});
+
+//GET: fetch all orders
+app.get("/outfits-of-joy/orders", async (req, res) => {
+    try {
+        const Orders = await orders.find().toArray();
+
+        res.status(200).json(Orders);
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        res.status(500).json({ error: "Failed to fetch orders" });
     }
 });
 

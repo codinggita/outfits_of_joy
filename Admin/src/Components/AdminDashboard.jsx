@@ -4,12 +4,14 @@ import Navbar from './Navbar';
 import admin from '../assets/bajrangbali.jpg';
 import Dashboard from './Dashboard';
 import OutfitsUpdate from './OutfitsUpdate';
-import { useNavigate, Routes, Route, Link } from "react-router-dom";
+import { useNavigate, Routes, Route, Link, useLocation } from "react-router-dom";
+import ViewOrders from './ViewOrders';
 
 const AdminDashboard = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation(); // Get the current location
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,11 @@ const AdminDashboard = () => {
     fetchData();
   }, [navigate]);
 
+  // Function to determine if a link is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <>
       <div>
@@ -63,14 +70,31 @@ const AdminDashboard = () => {
             Parth Jadav
           </h3>
 
-          <h4 className="bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)]">
+          {/* Dashboard Link */}
+          <h4
+            className={`bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)] text-lg ${
+              isActive('/admin/dashboard') ? 'border-3 border-[#D4A242] bg-[rgba(199,81,70,0.8)]' : ''
+            }`}
+          >
             <Link to="/admin/dashboard">Dashboard</Link>
           </h4>
-          <h4 className="bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)]">
+
+          {/* Update Outfits Link */}
+          <h4
+            className={`bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)] text-lg ${
+              isActive('/admin/dashboard/outfits-update') ? 'border-3 border-[#D4A242] bg-[rgba(199,81,70,0.8)]' : ''
+            }`}
+          >
             <Link to="/admin/dashboard/outfits-update">Update Outfits</Link>
           </h4>
-          <h4 className="bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)]">
-            <Link to="/admin/dashboard/orders">View Orders</Link>
+
+          {/* View Orders Link */}
+          <h4
+            className={`bg-[rgba(199,81,70,0.5)] p-2 rounded-full text-white cursor-pointer hover:bg-[rgba(199,81,70,0.8)] text-lg ${
+              isActive('/admin/dashboard/view-orders') ? 'border-3 border-[#D4A242] bg-[rgba(199,81,70,0.8)]' : ''
+            }`}
+          >
+            <Link to="/admin/dashboard/view-orders">View Orders</Link>
           </h4>
         </div>
 
@@ -78,7 +102,7 @@ const AdminDashboard = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/outfits-update" element={<OutfitsUpdate />} />
-            {/* <Route path="/orders" element={<Orders />} /> */}
+            <Route path="/view-orders" element={<ViewOrders />} />
           </Routes>
         </div>
       </div>
