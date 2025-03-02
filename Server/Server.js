@@ -35,7 +35,7 @@ const port = 3000;
 app.use(
     cors({
         origin: ["http://localhost:5173", "https://outfits-of-joy.vercel.app"],
-        methods: ["GET", "POST", "PATCH", "DELETE"],
+        methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
         credentials: true,
     })
 );
@@ -128,10 +128,11 @@ app.post("/outfits-of-joy/collection/:category", upload.array("images", 4), asyn
 
 
 //PUT:modifiy any data
-app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
+app.put("/outfits-of-joy/collection/:category/:id", upload.array("images", 4), async (req, res) => {
     try {
         const { category, id } = req.params;
-        const { title, gender, description, sizes, stock, rent, mrp, deposit } = req.body;
+        const updates = req.body; // Contains only the fields to be updated
+        const files = req.files; // New images uploaded (if any)
 
         const collection = db.collection(category.toLowerCase());
 
@@ -139,17 +140,49 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
             return res.status(400).send("Invalid category specified");
         }
 
-        const updatedItem = {
-            ...(title && { title }),
-            ...(gender && { gender }),
-            ...(description && { description }),
-            ...(sizes && { sizes: sizes.split(",") }),
-            ...(stock && { stock: parseInt(stock) }),
-            ...(rent && { rent: parseFloat(rent) }),
-            ...(mrp && { mrp: parseFloat(mrp) }),
-            ...(deposit && { deposit: parseFloat(deposit) }),
-        };
+        const existingItem = await collection.findOne({ _id: id });
+        if (!existingItem) {
+            return res.status(404).send(`${category} item not found`);
+        }
 
+        let updatedItem = {};
+
+        // Parse numeric fields
+        const numericFields = ["stock", "rent", "mrp", "deposit"];
+        for (const key in updates) {
+            if (updates[key] !== undefined) {
+                if (numericFields.includes(key)) {
+                    updatedItem[key] = parseFloat(updates[key]); // Convert to number
+                } else if (key === "sizes") {
+                    updatedItem[key] = updates[key].split(","); // Convert sizes to array
+                } else {
+                    updatedItem[key] = updates[key]; // Keep other fields as-is
+                }
+            }
+        }
+
+        // Handle image updates (if new images are uploaded)
+        if (files && files.length > 0) {
+            const folderName = category.toLowerCase();
+            const uploadedImages = [];
+
+            for (const file of files) {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    folder: folderName,
+                });
+                uploadedImages.push(result.secure_url);
+            }
+
+            // Delete old images from Cloudinary (optional)
+            for (const oldImageUrl of existingItem.images) {
+                const publicId = oldImageUrl.split("/").pop().split(".")[0];
+                await cloudinary.uploader.destroy(`${folderName}/${publicId}`);
+            }
+
+            updatedItem.images = uploadedImages;
+        }
+
+        // Update the item in the database
         const result = await collection.updateOne(
             { _id: id },
             { $set: updatedItem }
@@ -166,6 +199,43 @@ app.put("/outfits-of-joy/collection/:category/:id", async (req, res) => {
     }
 });
 
+
+//PATCH:modifiy stock (for out of stock)
+app.patch("/outfits-of-joy/collection/:category/:id", async (req, res) => {
+    console.log("PATCH request received"); // Add this log
+    try {
+      const { category, id } = req.params;
+      const { stock } = req.body;
+  
+      const collection = db.collection(category.toLowerCase());
+  
+      if (!collection) {
+        return res.status(400).send("Invalid category specified");
+      }
+  
+      const existingItem = await collection.findOne({ _id: id });
+      if (!existingItem) {
+        return res.status(404).send(`${category} item not found`);
+      }
+  
+      // Update only the stock field
+      const result = await collection.updateOne(
+        { _id: id },
+        { $set: { stock: 0 } }
+      );
+  
+      console.log("Update Result:", result);
+  
+      if (result.matchedCount === 0) {
+        return res.status(404).send(`${category} item not found`);
+      }
+  
+      res.status(200).send(`${category} item stock updated to 0`);
+    } catch (err) {
+      console.error(`Error updating stock for ${req.params.category}:`, err);
+      res.status(500).send(`Error updating stock for ${req.params.category}: ` + err.message);
+    }
+  });
 
 //DELETE: delete outfits of sepecific category
 app.delete("/outfits-of-joy/collection/:category/:id", async (req, res) => {
