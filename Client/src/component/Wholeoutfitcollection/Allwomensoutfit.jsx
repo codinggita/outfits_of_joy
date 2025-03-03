@@ -77,12 +77,12 @@ export default function Allwomensoutfit() {
                             setMinPrice(min);
                             setMaxPrice(max);
                         }}
-                        alloutfitsCount={filteredData.length}
+                        alloutfitsCount={filteredData.filter((item) => item.stock >= 1).length}
                     />
                 </div>
                 <div id="outfitsection2">
-                    {filteredData.length > 0 && filteredData.map((item, index) => (
-                        <Link to={`/Femalecollection/${item.category}/${item._id}`} key={index}>
+                    {filteredData.length > 0 && filteredData.filter((item) => item.stock >= 1).map((item, index) => (
+                        <Link to={`/femalecollection/${item.category}/${item._id}`} key={index}>
                             <div id="outfits" key={index}>
                                 <div id="favouriteicon" onClick={(e) => {
                                     e.preventDefault();

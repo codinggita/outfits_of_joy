@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './Filternavwomen.css'
-import {fetchTotalCount} from '../outfitcollection/api'
 
 function Filternavwomen({ onSortChange, onFilterChange, alloutfitsCount }) {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
-    const [totalCount, setTotalCount] = useState(0);
     const currentPath = location.pathname.split('/').pop();
     const heading = currentPath;
-    const category = heading.replace('/', '');
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const total = await fetchTotalCount(category);
-                setTotalCount(total);
-            } catch (error) {
-                console.error("Error fetching total count:", error);
-            }
-        };
-        fetchData();
-
-    }, []);
 
     const handleApplyFilter = () => {
         onFilterChange({ min: minPrice, max: maxPrice });
@@ -35,11 +19,8 @@ function Filternavwomen({ onSortChange, onFilterChange, alloutfitsCount }) {
                     <p>{heading}</p>
                 </div>
                 <div id="outfitresults">
-                <p>
-                        {alloutfitsCount > 0 ? 
-                            `${alloutfitsCount} Results` : 
-                            `${totalCount} Results`
-                        }
+                    <p>
+                        {alloutfitsCount} Results
                     </p>
                 </div>
                 <div id="outfitsort">

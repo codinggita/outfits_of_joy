@@ -84,7 +84,7 @@ const RelatedProducts = () => {
                     {data.length > 0 && data
                         .filter(item => item._id !== id) // Exclude the current item
                         .map((item, index) => (
-                            <Link to={`/Malecollection/${item.category}/${item._id}`} key={index}>
+                            <Link to={`/malecollection/${item.category}/${item._id}`} key={index}>
                                 <div id="outfits01" key={index}>
                                     <div id="favouriteicon" onClick={(e) => {
                                         e.preventDefault();

@@ -146,9 +146,9 @@ export const handlePayment = async (amount, userEmail, userName, phone) => {
 
 
 
-export const cancelOrder = async (userId, productId) => {
+export const cancelOrder = async (userId, productId, status) => {
   try {
-      const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/orders/${productId}`, {
+      const response = await fetch(`https://outfits-of-joy.onrender.com/outfits-of-joy/orders/${productId}/${status}`, {
           method: "PATCH",
           headers: {
               "Content-Type": "application/json",
