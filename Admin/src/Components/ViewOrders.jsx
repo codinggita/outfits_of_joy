@@ -68,7 +68,7 @@ export default function ViewOrders() {
         throw new Error(data.error || "Failed to update order status");
       }
 
-      toast.success(data.message);
+      toast.success("Order Updated Successfully");
 
       // Update the local state to reflect the new status
       setOrdersItems((prevOrders) =>
@@ -77,8 +77,7 @@ export default function ViewOrders() {
         )
       );
     } catch (error) {
-      console.error("Error updating order status:", error);
-      toast.error(error.message);
+      toast.error("Error updating order status");
     }
   };
 
