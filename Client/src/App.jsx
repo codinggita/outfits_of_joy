@@ -49,17 +49,17 @@ function App() {
         <Navbar />
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<><Landingpage /><Homepage /></>} />
-          <Route path="/Malecollection/:category" element={<Menscollection />} />
-          <Route path="/Femalecollection/:category" element={<Womenscollection />} />
-          <Route path="/Malecollection/:category/:id" element={<Mensoutfitview />} />
-          <Route path="/Femalecollection/:category/:id" element={<Womensoutfitview />} />
-          <Route path="/Mens-outfits" element={<Allmensoutfit />} />
-          <Route path="/Womens-outfits" element={<Allwomensoutfit />} />
-          <Route path="/Profile" element={<Profileview />} />
-          <Route path="/Profile/address" element={<Address />} />
-          <Route path="/Profile/orders" element={<Orders />} />
-          <Route path="/Profile/favourites" element={<Favourites />} />
-          <Route path="/Profile/cart" element={<Cart />} />
+          <Route path="/malecollection/:category" element={<Menscollection />} />
+          <Route path="/femalecollection/:category" element={<Womenscollection />} />
+          <Route path="/malecollection/:category/:id" element={<Mensoutfitview />} />
+          <Route path="/femalecollection/:category/:id" element={<Womensoutfitview />} />
+          <Route path="/mens-outfits" element={<Allmensoutfit />} />
+          <Route path="/womens-outfits" element={<Allwomensoutfit />} />
+          <Route path="/profile" element={<Profileview />} />
+          <Route path="/profile/address" element={<Address />} />
+          <Route path="/profile/orders" element={<Orders />} />
+          <Route path="/profile/favourites" element={<Favourites />} />
+          <Route path="/profile/cart" element={<Cart />} />
           <Route path="/our-stores" element={<Ourstores />} />
           <Route path="*" element={<Four04 />} />
         </Routes>

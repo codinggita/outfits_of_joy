@@ -22,21 +22,21 @@ export default function Homepage() {
                     <div id='hpmensection'>
 
                         <div>
-                            <Link to='/Malecollection/sherwani'>
+                            <Link to='/malecollection/sherwani'>
                                 <img src={img2} alt="" />
                                 <p>Sherwani</p>
                             </Link>
                         </div>
 
                         <div>
-                            <Link to='/Malecollection/indo-western'>
+                            <Link to='/malecollection/indo-western'>
                                 <img src={img3} alt="" />
                                 <p>Indo-Western</p>
                             </Link>
                         </div>
 
                         <div>
-                            <Link to='/Malecollection/tuxedo'>
+                            <Link to='/malecollection/tuxedo'>
                                 <img src={img4} alt="" />
                                 <p>Tuxedo</p>
                             </Link>
@@ -44,31 +44,31 @@ export default function Homepage() {
                     </div>
                     <div id='hpwomensection'>
                         <div>
-                            <Link to='/Femalecollection/lehenga'>
+                            <Link to='/femalecollection/lehenga'>
                                 <img src={img5} alt="" />
                                 <p>Lehenga</p>
                             </Link>
                         </div>
                         <div>
-                            <Link to='/Femalecollection/anarkali'>
+                            <Link to='/femalecollection/anarkali'>
                                 <img src={img6} alt="" />
                                 <p>Anarkali</p>
                             </Link>
                         </div>
                         <div>
-                            <Link to='/Femalecollection/gown'>
+                            <Link to='/femalecollection/gown'>
                                 <img src={img7} alt="" />
                                 <p>Gown</p>
                             </Link>
                         </div>
                     </div>
                     <div id='hpmensctn'>
-                        <Link to='/Mens-outfits'>
+                        <Link to='/mens-outfits'>
                             <img src={img8} alt="" />
                         </Link>
                     </div>
                     <div id='hpwomensctn'>
-                        <Link to='/Womens-outfits'>
+                        <Link to='/womens-outfits'>
                             <img src={img9} alt="" />
                         </Link>
                     </div>

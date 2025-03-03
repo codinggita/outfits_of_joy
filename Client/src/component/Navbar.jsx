@@ -60,12 +60,12 @@ function Navbar() {
 
     // Define route mapping
     const routeMapping = {
-      "sherwani": "Malecollection/sherwani",
-      "indo-western": "Malecollection/indo-western",
-      "tuxedo": "Malecollection/tuxedo",
-      "lehengha": "Femalecollection/lehenga",
-      "anarkali": "Femalecollection/anarkali",
-      "gown": "Femalecollection/gown"
+      "sherwani": "malecollection/sherwani",
+      "indo-western": "malecollection/indo-western",
+      "tuxedo": "malecollection/tuxedo",
+      "lehengha": "femalecollection/lehenga",
+      "anarkali": "femalecollection/anarkali",
+      "gown": "femalecollection/gown"
     };
 
     // Check if search query exists in the mapping
@@ -95,12 +95,12 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link to='/Womens-outfits' >
+                <Link to='/womens-outfits' >
                   WOMENS WEAR
                 </Link>
               </li>
               <li>
-                <Link to='/Mens-outfits' >
+                <Link to='/mens-outfits' >
                   MENS WEAR
                 </Link>
               </li>
@@ -133,15 +133,15 @@ function Navbar() {
                   <button type="submit"><BiSearchAlt /></button>
                 </form>
               </li>
-              <li><Link to="/Profile/favourites"><FaRegHeart /></Link></li>
-              <li id='cartnav'><Link to="/Profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null}<IoMdCart /></Link></li>
+              <li><Link to="/profile/favourites"><FaRegHeart /></Link></li>
+              <li id='cartnav'><Link to="/profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null}<IoMdCart /></Link></li>
               <li>
                 <div id="navsignin">
                   {isLoading ? (
                     <p id="spinner" style={{ textAlign: "center" }}><span className="loader"></span></p>
                   ) : isAuthenticated ? (
                     <div style={{ cursor: "pointer" }}>
-                      <Link to="/Profile">
+                      <Link to="/profile">
                         <img
                           src={user?.picture || "https://www.svgrepo.com/download/192247/man-user.svg"}
                           alt="Profile"

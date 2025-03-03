@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Favourites.css";
 import Profilenav from "./Profilenav";
 import { Link } from "react-router-dom";
 import { fetchProduct } from "../outfitcollection/api.js";
@@ -55,7 +54,7 @@ function Favourites() {
                 <div id="outfitsection" style={{ background: "none", border: "none", rowGap: "12vh", columnGap: "5vw", marginTop: "0" }}>
                     {productDetails.length > 0 ? (
                         productDetails.map((item) => (
-                            <Link key={item._id} to={`/${item.gender === 'women' ? 'Femalecollection' : 'Malecollection'}/${item.category}/${item._id}`}>
+                            <Link key={item._id} to={`/${item.gender === 'women' ? 'femalecollection' : 'malecollection'}/${item.category}/${item._id}`}>
                                 <div id="outfits">
                                     <div id="favouriteicon" onClick={(e) => {
                                         e.preventDefault();
