@@ -8,6 +8,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { toast } from "react-toastify";
 import UpdateOutfitsform from "./UpdateOutfitsform";
 import axios from "axios";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default function OutfitsUpdate() {
   const [data, setData] = useState([]);
@@ -35,28 +37,42 @@ export default function OutfitsUpdate() {
   }, [category]);
 
   const handleOutOfStock = async (id) => {
-    try {
-      console.log("Sending PATCH request to update stock to 0 for ID:", id);
-      const response = await axios.patch(
-        `https://outfits-of-joy.onrender.com/outfits-of-joy/collection/${category}/${id}`,
-        { stock: 0 }
-      );
+    confirmAlert({
+      title: 'Confirm to mark as out of stock',
+      message: 'Are you sure you want to mark this outfit as out of stock?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              console.log('Sending PATCH request to update stock to 0 for ID:', id);
+              const response = await axios.patch(
+                `https://outfits-of-joy.onrender.com/outfits-of-joy/collection/${category}/${id}`,
+                { stock: 0 }
+              );
 
-      console.log("Response from backend:", response);
+              console.log('Response from backend:', response);
 
-      if (response.status === 200) {
-        // Update local state to reflect the change
-        setData((prevData) =>
-          prevData.map((item) =>
-            item._id === id ? { ...item, stock: 0 } : item
-          )
-        );
-        toast.success("Outfit marked as out of stock!");
-      }
-    } catch (err) {
-      console.error("Error updating stock:", err);
-      toast.error("Failed to update stock. Please try again.");
-    }
+              if (response.status === 200) {
+                setData((prevData) =>
+                  prevData.map((item) =>
+                    item._id === id ? { ...item, stock: 0 } : item
+                  )
+                );
+                toast.success('Outfit marked as out of stock!');
+              }
+            } catch (err) {
+              console.error('Error updating stock:', err);
+              toast.error('Failed to update stock. Please try again.');
+            }
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => { }, 
+        },
+      ],
+    });
   };
 
 
@@ -77,23 +93,37 @@ export default function OutfitsUpdate() {
   }
 
   const handleDelete = async (id) => {
-    try {
-      const response = await fetch(
-        `https://outfits-of-joy.onrender.com/outfits-of-joy/collection/${category}/${id}`,
-        { method: "DELETE" }
-      );
+    confirmAlert({
+      title: 'Confirm to delete',
+      message: 'Are you sure you want to delete this outfit?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              const response = await fetch(
+                `https://outfits-of-joy.onrender.com/outfits-of-joy/collection/${category}/${id}`,
+                { method: 'DELETE' }
+              );
 
-      if (!response.ok) {
-        throw new Error(`Failed to delete outfit: ${response.statusText}`);
-      }
+              if (!response.ok) {
+                throw new Error(`Failed to delete outfit: ${response.statusText}`);
+              }
 
-      // Remove deleted item from state
-      setData((prevData) => prevData.filter((item) => item._id !== id));
-      fetchData();
-      toast.success("Outfit deleted successfully");
-    } catch (error) {
-      toast.error("Error deleting outfit");
-    }
+              setData((prevData) => prevData.filter((item) => item._id !== id));
+              fetchData();
+              toast.success('Outfit deleted successfully');
+            } catch (error) {
+              toast.error('Error deleting outfit');
+            }
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => { },
+        },
+      ],
+    });
   };
 
   return (
@@ -133,7 +163,7 @@ export default function OutfitsUpdate() {
                   </button>
                 </div>
               )}
-              {item.stock==0?<div className="absolute font-bree text-red-800 text-2xl bg-black p-1">Out of stock</div>:null}
+              {item.stock == 0 ? <div className="absolute font-bree text-red-800 text-2xl bg-black p-1">Out of stock</div> : null}
               <div
                 id="outfitimage"
                 className="border-b-4 border-[#D4A242] rounded-br-[16px]"

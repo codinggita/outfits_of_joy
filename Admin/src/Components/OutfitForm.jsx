@@ -268,7 +268,7 @@ const OutfitForm = ({ onClose }) => {
 
           {/* Image Upload Fields */}
           <div className="space-y-3">
-            <label className="block font-bree">Upload Images:</label>
+            <label className="block font-bree">Upload Images: <span className="text-gray-600 text-sm">Upload all 4 images</span></label>
             {[0, 1, 2, 3].map((index) => (
               <div key={index}>
                 <label className="block font-bree">Image {index + 1}:</label>
