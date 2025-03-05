@@ -130,11 +130,11 @@ function Navbar() {
                     <option value="Anarkali" />
                     <option value="Gown" />
                   </datalist>
-                  <button type="submit"><BiSearchAlt /></button>
+                  <button type="submit" aria-label="Search" className='hint--bottom hint--bounce'><BiSearchAlt /></button>
                 </form>
               </li>
-              <li><Link to="/profile/favourites"><FaRegHeart /></Link></li>
-              <li id='cartnav'><Link to="/profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null}<IoMdCart /></Link></li>
+              <li><Link to="/profile/favourites" aria-label="Favorites" className='hint--bottom hint--bounce'><FaRegHeart /></Link></li>
+              <li id='cartnav' aria-label="Cart" className='hint--bottom hint--bounce'><Link to="/profile/cart">{totalItems > 0 ? <span id='cartitemcounts'>{totalItems}</span> : null}<IoMdCart /></Link></li>
               <li>
                 <div id="navsignin">
                   {isLoading ? (

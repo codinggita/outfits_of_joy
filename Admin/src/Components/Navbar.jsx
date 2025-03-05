@@ -35,13 +35,13 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex gap-4 md:gap-7">
-          <div className="cursor-pointer hover:text-[#D4A242]">
+          <div className="hint--bottom hint--bounce cursor-pointer hover:text-[#D4A242]" aria-label="Mail">
             <IoMdMail />
           </div>
-          <div className="cursor-pointer hover:text-[#D4A242]">
+          <div className="hint--bottom hint--bounce cursor-pointer hover:text-[#D4A242]" aria-label="Notification">
             <IoNotifications />
           </div>
-          <div onClick={handleLogout} className="cursor-pointer hover:text-[#D4A242]">
+          <div onClick={handleLogout} className="hint--bottom hint--bounce cursor-pointer hover:text-[#D4A242]" aria-label="Log Out">
             <LuLogOut />
           </div>
         </div>

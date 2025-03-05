@@ -239,7 +239,7 @@ function Mensoutfitview() {
                 e.preventDefault();
                 toggleFavourite(product?._id);
               }} style={{ fontSize: "120%", cursor: "pointer" }}>
-                {favourites.has(product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart color="rgb(173, 46, 36)" />}
+                {favourites.has(product?._id) ?<span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
               </div>
             </div>
             <div id='aboutproduct'>

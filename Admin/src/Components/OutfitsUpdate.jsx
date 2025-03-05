@@ -151,13 +151,13 @@ export default function OutfitsUpdate() {
               </div>
               {dropdownVisible === item._id && (
                 <div className="absolute top-14 right-2 rounded-lg grid w-10 justify-center items-center gap-y-4 shadow-xl bg-[rgba(255,255,255,0.3)] shadow-black">
-                  <button onClick={() => handleOutOfStock(item._id)} title="out of stock" className="flex items-center gap-2 w-full px-2 py-1 text-amber-500 hover:bg-gray-400 text-3xl cursor-pointer">
+                  <button onClick={() => handleOutOfStock(item._id)} aria-label="out of stock" className="hint--left hint--bounce flex items-center gap-2 w-full px-2 py-1 text-amber-500 hover:bg-gray-400 text-3xl cursor-pointer">
                     <PiEmptyBold />
                   </button>
-                  <button onClick={() => setShowModal({ show: true, category, id: item._id })} title="Edit Outfit" className="flex items-center gap-2 w-full px-2 py-1 text-green-700 hover:bg-gray-400 text-3xl cursor-pointer">
+                  <button onClick={() => setShowModal({ show: true, category, id: item._id })} aria-label="Edit Outfit" className="hint--left hint--bounce flex items-center gap-2 w-full px-2 py-1 text-green-700 hover:bg-gray-400 text-3xl cursor-pointer">
                     <MdModeEdit />
                   </button>
-                  <button title="Delete Outfit" onClick={() => handleDelete(item._id)} className="flex items-center gap-2 w-full px-2 py-1 text-red-500 hover:bg-gray-400 text-3xl cursor-pointer">
+                  <button aria-label="Delete Outfit" onClick={() => handleDelete(item._id)} className="hint--left hint--bounce flex items-center gap-2 w-full px-2 py-1 text-red-500 hover:bg-gray-400 text-3xl cursor-pointer">
                     <RiDeleteBin6Line />
                   </button>
                 </div>
@@ -186,7 +186,7 @@ export default function OutfitsUpdate() {
                 <div className="flex gap-4 justify-center mt-4 font-lato">
                   <p id="outfitrent" className="font-lato flex">
                     <span className="text-white ">Rent</span>
-                    <span className="text-xl ml-1 text-[#FBE496">
+                    <span className="text-xl ml-1 text-[#FBE496]">
                       ₹{item.rent}
                     </span>
                   </p>

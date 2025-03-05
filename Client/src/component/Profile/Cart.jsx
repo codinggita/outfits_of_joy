@@ -189,7 +189,7 @@ export default function Cart() {
                                             e.preventDefault();
                                             toggleFavourite(item.product?._id);
                                         }} style={{ position: "static" }}>
-                                            {favourites.has(item.product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                            {favourites.has(item.product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
                                         </div>
                                         <div style={{ fontSize: "180%", color: "black", cursor: "pointer" }} onClick={() => handleRemoveFromCart(item.productId)}>
                                             <RiDeleteBin6Line />

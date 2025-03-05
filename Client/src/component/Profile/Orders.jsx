@@ -117,7 +117,7 @@ function Orders() {
                 e.preventDefault();
                 toggleFavourite(product._id);
               }}>
-                {favourites.has(product._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                {favourites.has(product._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
               </div>
             </div>
             <div id='middleinfo'>
