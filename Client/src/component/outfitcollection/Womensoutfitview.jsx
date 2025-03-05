@@ -239,16 +239,16 @@ function Womensoutfitview() {
                                 e.preventDefault();
                                 toggleFavourite(product?._id);
                             }} style={{ fontSize: "120%" }}>
-                                {favourites.has(product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart color="rgb(173, 46, 36)" />}
+                                {favourites.has(product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
                             </div>
                         </div>
                         <div id='aboutproduct'>
                             <div id='productprice'>
-                                <p id="productrent"><sup>Rent</sup><span id='rentproduct'>₹{product?.rent}</span><span>For 4 days</span></p>
-                                <p id="productmrp"><sup>Mrp</sup><span id='mrpproduct'>₹{product?.mrp}</span></p>
+                                <p id="productrent">Rent<span id='rentproduct'>₹{product?.rent}</span><span>For 4 days</span></p>
+                                <p id="productmrp">Mrp<span id='mrpproduct'>₹{product?.mrp}</span></p>
                             </div>
                             <div>
-                                <p id="productdeposit"><sup>Deposit</sup><span id='rentproduct'>₹{product?.deposit}</span><span>refundable </span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
+                                <p id="productdeposit">Deposit<span id='rentproduct'>₹{product?.deposit}</span><span>refundable </span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
                             </div>
                             <div id='productsizes'>
                                 <label>Size: </label>

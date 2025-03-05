@@ -84,12 +84,13 @@ export default function Allmensoutfit() {
                 <div id="outfitsection">
                     {filteredData.length > 0 && filteredData.filter((item) => item.stock >= 1).map((item, index) => (
                         <Link to={`/malecollection/${item.category}/${item._id}`} key={index}>
-                            <div id="outfits" key={index}>
+                            <div id="outfits" key={index} className="outfit-card">
+                                <div className="hover-message">View Outfit</div>
                                 <div id="favouriteicon" onClick={(e) => {
                                     e.preventDefault();
                                     toggleFavourite(item._id);
                                 }}>
-                                    {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                    {favourites.has(item._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
                                 </div>
                                 <div id="outfitimage">
                                     <img src={item.images[0]} alt="" />

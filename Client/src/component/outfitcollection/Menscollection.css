@@ -32,12 +32,13 @@
     position: relative;
 }
 
-#outfits:hover{
+#outfits:hover {
     box-shadow: 0 0 20px 15px rgba(173, 46, 36, 0.75);
 }
 
-#favouriteicon{
+#favouriteicon {
     position: absolute;
+    z-index: 2;
     top: 1.5vh;
     right: 1vw;
     font-size: 150%;
@@ -56,7 +57,7 @@
     border-bottom-right-radius: 16px;
 }
 
-#outfitinfo{
+#outfitinfo {
     width: 17vw;
 }
 
@@ -74,9 +75,9 @@
 }
 
 #outfittitle {
-    font-family: "Joti One", serif;
+    font-family: "Bree Serif", serif;
     color: #D4A242;
-    font-size: 130%;
+    font-size: 120%;
     width: 100%;
     margin-top: 2vh;
     text-align: center;
@@ -90,13 +91,15 @@
 }
 
 #outfitrent {
-    font-family: "Joti One", serif;
+    font-family: "Lato", sans-serif;
     display: flex;
+    color: white;
 }
 
 #outfitmrp {
-    font-family: sans-serif;
+    font-family: "Lato", sans-serif;
     display: flex;
+    color: white;
 }
 
 #outfitrent span,
@@ -109,7 +112,14 @@
     color: #FBE496;
 }
 
-#morebutton{
+#outfitmrp span {
+    color: black;
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px
+}
+
+#morebutton {
     position: absolute;
     bottom: 3vh;
     right: 4vw;
@@ -140,7 +150,7 @@
     background-color: rgb(51, 8, 6);
 }
 
-#spinner{
+#spinner {
     grid-column: 1 / -1;
 }
 
@@ -153,9 +163,10 @@
     position: relative;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-  }
-  .loader::after {
-    content: '';  
+}
+
+.loader::after {
+    content: '';
     box-sizing: border-box;
     position: absolute;
     left: 50%;
@@ -166,13 +177,45 @@
     border-radius: 50%;
     border: 3px solid;
     border-color: #FF3D00 transparent;
-  }
-  
-  @keyframes rotation {
+}
+
+@keyframes rotation {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  } 
+}
+
+.outfit-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    transition: transform 0.3s ease;
+}
+
+.hover-message {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    transition: top 0.3s ease;
+    z-index: 1;
+    font-family: "Lato", sans-serif;
+    font-size: large;
+}
+
+.outfit-card:hover .hover-message {
+    top: 0;
+}
+
+.outfit-card:hover {
+    transform: scale(1.02);
+}

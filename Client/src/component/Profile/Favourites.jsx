@@ -55,12 +55,13 @@ function Favourites() {
                     {productDetails.length > 0 ? (
                         productDetails.map((item) => (
                             <Link key={item._id} to={`/${item.gender === 'women' ? 'femalecollection' : 'malecollection'}/${item.category}/${item._id}`}>
-                                <div id="outfits">
+                                <div id="outfits" className="outfit-card">
+                                    <div className="hover-message">View Outfit</div>
                                     <div id="favouriteicon" onClick={(e) => {
                                         e.preventDefault();
                                         toggleFavourite(item._id);
                                     }}>
-                                        {favourites.has(item._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                        {favourites.has(item._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
                                     </div>
                                     <div id="outfitimage">
                                         <img src={item.images?.[0] || ""} alt={item.title || "Product"} />

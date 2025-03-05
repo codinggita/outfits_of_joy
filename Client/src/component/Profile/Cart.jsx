@@ -189,7 +189,7 @@ export default function Cart() {
                                             e.preventDefault();
                                             toggleFavourite(item.product?._id);
                                         }} style={{ position: "static" }}>
-                                            {favourites.has(item.product?._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                                            {favourites.has(item.product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
                                         </div>
                                         <div style={{ fontSize: "180%", color: "black", cursor: "pointer" }} onClick={() => handleRemoveFromCart(item.productId)}>
                                             <RiDeleteBin6Line />
@@ -208,16 +208,16 @@ export default function Cart() {
                                     <div id='middleinfo'>
                                         <div id='productprice' style={{ gap: "2vw" }}>
                                             <p id="productrent">
-                                                <sup>Rent</sup>
+                                                Rent
                                                 <span id='rentproduct'>₹{item.product?.rent || 0}</span>
                                                 <span>For 4 days</span>
                                             </p>
                                             <p id="productmrp">
-                                                <sup>MRP</sup>
+                                                MRP
                                                 <span id='mrpproduct'>₹{item.product?.mrp || 0}</span>
                                             </p>
                                             <p id="productdeposit" style={{ margin: "0" }}>
-                                                <sup>Deposit</sup>
+                                                Deposit
                                                 <span id='rentproduct'>₹{item.product?.deposit || 0}</span>
                                                 <span id='refundinfo'>
                                                     <FaInfoCircle title="Refund will process within 7 days after return" />

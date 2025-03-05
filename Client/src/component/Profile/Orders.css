@@ -40,7 +40,7 @@
 }
 
 #upperinfo p {
-    font-family: "Joti One", serif;
+    font-family: "Bree Serif", serif;
     color: #D4A242;
     font-size: 150%;
     white-space: nowrap;
@@ -150,11 +150,11 @@
 
 #bottominfo p {
     color: black;
+    font-family: "Lato", sans-serif;
 }
 
 #bottominfo p span {
     color: white;
-    font-weight: 700;
 }
 
 #productsizes {

@@ -36,7 +36,6 @@ function Orders() {
             acc[item.productId] = item.data;
             return acc;
           }, {});
-
           setProducts(productMap);
         } else {
           console.error("No orders found");
@@ -47,6 +46,7 @@ function Orders() {
     };
 
     if (userId) getOrders();
+
   }, [userId]);
 
   const handleCancelOrder = async (orderId, productId, status) => {
@@ -59,14 +59,15 @@ function Orders() {
           onClick: async () => {
             try {
               const response = await cancelOrder(userId, productId, status);
-              if (response.message === "Order cancelled successfully") {
+              console.log(response.message)
+              if (response.message === "Order status updated to 'cancelled' successfully") {
                 setOrderData((prevOrders) =>
                   prevOrders.map((order) =>
                     order.orderId === orderId ? { ...order, status } : order
                   )
                 );
-                toast.success("Order cancelled successfully!")
               }
+              toast.success("Order cancelled successfully!")
             } catch (error) {
               console.error("Error cancelling order:", error);
             }
@@ -116,24 +117,24 @@ function Orders() {
                 e.preventDefault();
                 toggleFavourite(product._id);
               }}>
-                {favourites.has(product._id) ? <FaHeart color="rgb(173, 46, 36)" /> : <FaRegHeart />}
+                {favourites.has(product._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart /></span>}
               </div>
             </div>
             <div id='middleinfo'>
               <div>
                 <div id='productprice' style={{ gap: "2vw" }}>
                   <p id="productrent">
-                    <sup>Rent</sup>
+                    Rent
                     <span id='rentproduct'>₹{product.rent || "N/A"}</span>
                     <span>For 4 days</span>
                   </p>
                   <p id="productmrp">
-                    <sup>Mrp</sup>
+                    Mrp
                     <span id='mrpproduct'>₹{product.mrp || "N/A"}</span>
                   </p>
                 </div>
                 <p id="productdeposit">
-                  <sup>Deposited</sup>
+                  Deposited
                   <span id='rentproduct'>₹{product.deposit || "N/A"}</span>
                   <span id='refundinfo'><FaInfoCircle title="Refund will process within 7 days after return" /></span>
                 </p>

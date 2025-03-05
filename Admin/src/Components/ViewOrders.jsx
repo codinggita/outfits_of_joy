@@ -94,9 +94,9 @@ export default function ViewOrders() {
         {filteredOrders.map((item, index) => (
           <div
             key={index}
-            className="bg-[rgba(0,0,0,0.6)] rounded-tl-2xl rounded-br-[16px] overflow-hidden shadow-[0_0_0_15px_rgba(173,46,36,0.35)] relative hover:shadow-[0_0_20px_15px_rgba(173,46,36,0.75)] mb-12"
+            className="bg-gray-500 rounded-tl-2xl rounded-br-[16px] overflow-hidden shadow-[0_0_0_15px_rgba(173,46,36,0.35)] relative hover:shadow-[0_0_20px_15px_rgba(173,46,36,0.75)] mb-12"
           >
-            <div className="flex font-bree text-xl">
+            <div className="flex font-lato text-lg">
               <img
                 src={item.product.images[0]}
                 alt=""
@@ -104,7 +104,7 @@ export default function ViewOrders() {
               />
               <div className="w-full p-4 text-white">
                 <div className="flex justify-between items-center gap-3">
-                  <p className="font-joti w-2/3 text-[#D4A242] text-xl overflow-hidden line-clamp-1">
+                  <p className="font-bree w-2/3 text-[#D4A242] text-xl overflow-hidden line-clamp-1">
                     {item.product.title}
                   </p>
                   <p className="flex w-1/3 text-sm gap-2">
@@ -137,13 +137,13 @@ export default function ViewOrders() {
                 <div className="mt-4">
                   <div className="flex gap-4">
                     <p className="text-black">
-                      Rent: <span className="text-[#D4A242] font-joti">₹{item.product.rent}</span>
+                      Rent: <span className="text-[#D4A242] text-xl">₹{item.product.rent}</span>
                     </p>
                     <p className="text-black">
-                      MRP: <span className="text-white">₹{item.product.mrp}</span>
+                      MRP: <span className="text-white text-xl">₹{item.product.mrp}</span>
                     </p>
                     <p className="text-black">
-                      Deposited: <span className="text-[#D4A242] font-joti">₹{item.product.deposit}</span>
+                      Deposited: <span className="text-[#D4A242] text-xl">₹{item.product.deposit}</span>
                     </p>
                   </div>
                 </div>
