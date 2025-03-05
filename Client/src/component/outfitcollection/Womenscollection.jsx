@@ -130,8 +130,8 @@ export default function Menscollection() {
                                 <div id="outfitinfo">
                                     <p id="outfittitle">{item.title}</p>
                                     <div>
-                                        <p id="outfitrent"><sup>Rent</sup><span>₹{item.rent}</span></p>
-                                        <p id="outfitmrp"><sup>Mrp</sup><span>₹{item.mrp}</span></p>
+                                        <p id="outfitrent">Rent<span>₹{item.rent}</span></p>
+                                        <p id="outfitmrp">Mrp<span>₹{item.mrp}</span></p>
                                     </div>
                                 </div>
                             </div>

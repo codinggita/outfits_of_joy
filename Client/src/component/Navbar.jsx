@@ -159,7 +159,7 @@ function Navbar() {
                         try {
                           await loginWithPopup();
                           await getAccessTokenSilently();
-                          navigate("/Profile");
+                          navigate("/profile");
                           successmsg()
                         } catch (error) {
                           console.error("Login failed:", error);

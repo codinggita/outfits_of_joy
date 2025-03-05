@@ -244,11 +244,11 @@ function Womensoutfitview() {
                         </div>
                         <div id='aboutproduct'>
                             <div id='productprice'>
-                                <p id="productrent"><sup>Rent</sup><span id='rentproduct'>₹{product?.rent}</span><span>For 4 days</span></p>
-                                <p id="productmrp"><sup>Mrp</sup><span id='mrpproduct'>₹{product?.mrp}</span></p>
+                                <p id="productrent">Rent<span id='rentproduct'>₹{product?.rent}</span><span>For 4 days</span></p>
+                                <p id="productmrp">Mrp<span id='mrpproduct'>₹{product?.mrp}</span></p>
                             </div>
                             <div>
-                                <p id="productdeposit"><sup>Deposit</sup><span id='rentproduct'>₹{product?.deposit}</span><span>refundable </span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
+                                <p id="productdeposit">Deposit<span id='rentproduct'>₹{product?.deposit}</span><span>refundable </span><span id='refundinfo'><FaInfoCircle title="Remaining Extra Money will be Refund with in 7 days of return" /></span></p>
                             </div>
                             <div id='productsizes'>
                                 <label>Size: </label>

@@ -3,6 +3,7 @@
 @theme {
     --font-joti: "Joti One", "serif";
     --font-bree: "Bree Serif", "serif";
+    --font-lato: "Lato", "sans-serif";
 }
 
 ::-webkit-scrollbar {

@@ -74,9 +74,9 @@
 }
 
 #outfittitle {
-    font-family: "Joti One", serif;
+    font-family: "Bree Serif", serif;
     color: #D4A242;
-    font-size: 130%;
+    font-size: 120%;
     width: 100%;
     margin-top: 2vh;
     text-align: center;
@@ -90,13 +90,15 @@
 }
 
 #outfitrent {
-    font-family: "Joti One", serif;
+    font-family: "Lato", sans-serif;
     display: flex;
+    color: white;
 }
 
 #outfitmrp {
-    font-family: sans-serif;
+    font-family: "Lato", sans-serif;
     display: flex;
+    color: white;
 }
 
 #outfitrent span,
@@ -107,6 +109,13 @@
 
 #outfitrent span {
     color: #FBE496;
+}
+
+#outfitmrp span{
+    color: black;
+    text-decoration: line-through;
+    text-decoration-color: red; 
+    text-decoration-thickness: 2px
 }
 
 #morebutton{

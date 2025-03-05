@@ -58,7 +58,7 @@ const AdminDashboard = () => {
             backgroundSize: 'cover',
           }}
         >
-          <h4 className="text-[#D4A242] drop-shadow-[1px_1px_0px_black]">Admin</h4>
+          <h4 className="text-black drop-shadow-[1px_1px_0px_white]">Admin</h4>
 
           <img
             src={admin}

@@ -82,7 +82,7 @@
 }
 
 #titlepart p {
-  font-family: "Joti One", serif;
+  font-family: "Bree Serif", serif;
   color: #D4A242;
 }
 
@@ -98,42 +98,44 @@
   display: flex;
   gap: 3vw;
   margin-left: 2vw;
-  margin-top: 5vh;
+  margin-top: 6vh;
 }
 
 #productrent{
   color: white;
-  font-family: sans-serif;
-}
-
-#productrent > sup {
-  font-family: "Joti One", serif;
+  font-family: "Lato", sans-serif;
 }
 
 #rentproduct{
   color: #FBE496;
-  font-size: 150%;
-  font-family: "Joti One", serif;
+  font-size: 130%;
+  font-family: "Lato", sans-serif;
   margin: 0 1vw;
 }
 
 #productmrp{
   color: white;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 #mrpproduct{
-  font-size: 150%;
-  font-family: "Joti One", serif;
+  font-size: 130%;
+  font-family: "Lato", sans-serif;
   margin-left: 1vw;
   color: black;
 }
 
+#mrpproduct {
+  text-decoration: line-through;
+  text-decoration-color: red; 
+  text-decoration-thickness: 2px
+}
+
 #productdeposit{
   color: white;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   margin-left: 2vw;
-  margin-top: 5vh;
+  margin-top: 6vh;
 }
 
 #refundinfo{
@@ -142,8 +144,8 @@
 
 #productsizes{
   margin-left: 2vw;
-  margin-top: 5vh;
-  font-family: sans-serif;
+  margin-top: 6vh;
+  font-family: "Lato", sans-serif;
 }
 
 #productsizes label{
@@ -197,9 +199,9 @@
   display: flex;
   align-items: center;
   margin-left: 2vw;
-  margin-top: 5vh;
+  margin-top: 6vh;
   color: white;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 #tolabel{
@@ -222,7 +224,7 @@
 
 #orderbuttons{
   margin-left: 2vw;
-  margin-top: 5vh;
+  margin-top: 6vh;
 }
 
 #orderbuttons button{
@@ -259,14 +261,14 @@
 #additionalinfo h4{
   margin-bottom: 1vh;
   color: #D4A242;
-  font-family: "Joti One", serif;
-  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
 }
 
 #additionalinfo p{
   margin-bottom: 2vh;
   color: white;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 90%;
 }
 
@@ -301,18 +303,18 @@
 
 #outfitdiscription h3{
   color: #D4A242;
-  font-family: "Joti One", serif;
-  font-weight: 500;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
 }
 
 #outfitdiscription p{
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 #outfitrating{
   justify-self: flex-end;
   margin-right: 4vw;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 
