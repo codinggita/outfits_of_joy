@@ -117,7 +117,8 @@ export default function Menscollection() {
                     {filteredData.length > 0 && filteredData.filter((item) => item.stock >= 1).map((item, index) => (
 
                         <Link to={`/femalecollection/${item.category}/${item._id}`} key={index}>
-                            <div id="outfits" key={index}>
+                            <div id="outfits" key={index} className="outfit-card">
+                            <div className="hover-message">View Outfit</div>
                                 <div id="favouriteicon" onClick={(e) => {
                                     e.preventDefault();
                                     toggleFavourite(item._id);

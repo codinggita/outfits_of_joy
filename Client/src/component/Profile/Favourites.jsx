@@ -55,7 +55,8 @@ function Favourites() {
                     {productDetails.length > 0 ? (
                         productDetails.map((item) => (
                             <Link key={item._id} to={`/${item.gender === 'women' ? 'femalecollection' : 'malecollection'}/${item.category}/${item._id}`}>
-                                <div id="outfits">
+                                <div id="outfits" className="outfit-card">
+                                    <div className="hover-message">View Outfit</div>
                                     <div id="favouriteicon" onClick={(e) => {
                                         e.preventDefault();
                                         toggleFavourite(item._id);
