@@ -1,6 +1,6 @@
 /* Slider Container */
 
-#relatedProducts{
+#relatedProducts {
   margin-left: 3vw;
   font-family: "Joti One", serif;
 }
@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   /* overflow: hidden; */
-  width: 100%; 
+  width: 100%;
   margin-bottom: 10vh;
 }
 
@@ -21,7 +21,7 @@
   gap: 3vw;
   /* padding: 1vw; */
   width: 100%;
-  scroll-snap-type: x mandatory; 
+  scroll-snap-type: x mandatory;
   margin: 2vw 3vw;
 }
 
@@ -60,7 +60,8 @@
   border-bottom-right-radius: 30px;
   overflow: hidden;
   border: 15px solid rgb(214, 151, 145);
-  scroll-snap-align: start; /* Snap cards to the start of the container */
+  scroll-snap-align: start;
+  /* Snap cards to the start of the container */
   padding-bottom: 2vh;
   position: relative;
 }
@@ -83,4 +84,144 @@
 #outfitsection01 a {
   text-decoration: none;
   color: #000;
+}
+
+.slider2 {
+  display: none;
+  background-color: white;
+  box-shadow: 0 0px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: bottom 0.3s ease;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10vh;
+  height: 30vh;
+  font-family: "Lato", sans-serif;
+}
+
+.slider2.visible {
+  display: block;
+}
+
+/* Slider2 Content */
+.slider2-content {
+  padding: 20px;
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+  height: 100%;
+  position: relative;
+}
+
+/* Navigation Buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1001;
+}
+
+.nav-button.prev {
+  left: 10px;
+}
+
+.nav-button.next {
+  right: 10px;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1001;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Reviews Wrapper */
+.reviews-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  padding: 10px;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.reviews-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.reviews-wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Review Card */
+.review-card {
+  flex: 0 0 calc(25% - 20px);
+  /* Show 4 cards at a time */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.date {
+  color: #888;
+  font-size: 14px;
+  margin: 0;
+}
+
+.message {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+#userratings{
+  margin-left: 60px;
+  font-size: large;
 }
