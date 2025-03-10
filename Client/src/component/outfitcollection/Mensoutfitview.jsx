@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { addDays, format } from 'date-fns';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
 import RelatedProducts from '../Cardslider/RelatedProducts';
@@ -18,6 +18,7 @@ import { useUser } from "../UserContext.jsx";
 import useFavorites from "../Hooks/useFavorites.jsx";
 import { toast } from "react-toastify";
 import { handlePayment } from '../Profile/Api.js';
+import Reviews from '../Cardslider/Reviews.jsx';
 
 function Mensoutfitview() {
   const { category, id } = useParams();  // Get params from URL
@@ -29,8 +30,9 @@ function Mensoutfitview() {
   const [selectedSize, setSelectedSize] = useState("");
   const { userId, firstName, lastName, email, Phone } = useUser();
   const { favourites, toggleFavourite } = useFavorites();
+  const [isSliderVisible, setSliderVisible] = useState(false);
   const email1 = email;
-  const userName = firstName+lastName;
+  const userName = firstName + lastName;
   const contact = Phone;
 
 
@@ -105,13 +107,13 @@ function Mensoutfitview() {
       });
       return;
     }
-  
+
     // Calculate the total amount (deposit * quantity)
     const amount = (product?.deposit || 0) * selectedQuantity;
-  
+
     // Call handlePayment to initiate Razorpay payment
-    const paymentResult = await handlePayment(amount, email1, userName, contact );
-  
+    const paymentResult = await handlePayment(amount, email1, userName, contact);
+
     if (paymentResult.success) {
       // Payment successful, place the order
       const orderData = {
@@ -119,16 +121,16 @@ function Mensoutfitview() {
         orderId: paymentResult.razorpayOrderId,
         productId: product._id,
         category: category,
-        status:"",
+        status: "",
         quantity: parseInt(selectedQuantity, 10),
         size: selectedSize,
         orderDate: new Date().toISOString(),
         fromDate: new Date(selectedDate).toISOString(),
         toDate: new Date(addDays(selectedDate, 4)).toISOString(),
       };
-  
+
       const result = await placeOrder(orderData);
-  
+
       if (result.error) {
         toast.error("Order failed! Please try again.");
       } else {
@@ -201,6 +203,10 @@ function Mensoutfitview() {
     }
   };
 
+  const toggleSlider = () => {
+    setSliderVisible(!isSliderVisible);
+  };
+
   return (
     <>
       <div id='productview' >
@@ -239,7 +245,7 @@ function Mensoutfitview() {
                 e.preventDefault();
                 toggleFavourite(product?._id);
               }} style={{ fontSize: "120%", cursor: "pointer" }}>
-                {favourites.has(product?._id) ?<span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
+                {favourites.has(product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
               </div>
             </div>
             <div id='aboutproduct'>
@@ -343,10 +349,13 @@ function Mensoutfitview() {
           <div id='outfitrating'>
             <h4>Ratings & Reviews</h4>
             <p>3.5 <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt /> <FaRegStar /></p>
-            <p id='reviewsection'>Read reviews(5)<IoIosArrowDown /></p>
+            <button id='reviewsection' onClick={toggleSlider}>
+              {isSliderVisible ? <span>Hide Reviews <IoIosArrowUp /></span> : <span>Read Reviews <IoIosArrowDown /></span>}
+            </button>
           </div>
         </div>
       </div>
+      <Reviews isVisible={isSliderVisible} onClose={toggleSlider} />
       <RelatedProducts />
       <MoreProductsmen />
     </>

@@ -26,6 +26,12 @@
 }
 
 #footeranchor1 li a{
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Bree Serif", serif;
+    font-size: 150%;
+}
+
+#footeranchor1 li span{
     text-decoration: none;
     color: rgba(0, 0, 0, 0.7);
     font-family: "Bree Serif", serif;
@@ -46,7 +52,6 @@
 }
 
 #footeranchor2 li a{
-    text-decoration: none;
     color: rgba(0, 0, 0, 0.7);
     font-family: "Bree Serif", serif;
     font-size: 150%;
@@ -74,11 +79,6 @@
     color: transparent;
 }
 
-#copyright{
-    margin-left: 3vw;
-    margin-top: 4vh;
-    font-family: sans-serif;
-}
 
 #footerlogo{
     position: absolute;
@@ -88,4 +88,14 @@
 
 #footerlogo img{
     opacity: 0.8;
+}
+
+#creatorcopy{
+    font-family: "Lato", sans-serif;
+    font-size: large;
+    width: 80vw;
+    margin-left: 3vw;
+    margin-top: 4vh;
+    justify-content: space-between;
+    display: flex;
 }
