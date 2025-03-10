@@ -22,6 +22,13 @@ import Four04 from "./component/extra component/Four04.jsx"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css"
+import AboutUs from './component/FooterPages/AboutUs.jsx';
+import PrivacyPolicy from './component/FooterPages/PrivacyPolicy.jsx';
+import TermsAndConditions from './component/FooterPages/TermsAndConditions.jsx';
+import ReturnAndRefund from './component/FooterPages/ReturnAndRefund.jsx';
+import Hygiene from './component/FooterPages/Hygiene.jsx';
+import HelpAndSupport from './component/FooterPages/HelpAndSupport.jsx';
+import FAQ from './component/FooterPages/FAQ.jsx';
 
 
 function App() {
@@ -62,6 +69,13 @@ function App() {
           <Route path="/profile/cart" element={<Cart />} />
           <Route path="/our-stores" element={<Ourstores />} />
           <Route path="*" element={<Four04 />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/return-and-refund" element={<ReturnAndRefund />} />
+          <Route path="/hygiene" element={<Hygiene />} />
+          <Route path="/help-and-support" element={<HelpAndSupport/>} />
+          <Route path="/faq" element={<FAQ/>} />
         </Routes>
         <Footer />
       </UserProvider>

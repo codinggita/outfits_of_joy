@@ -75,6 +75,7 @@ function Login() {
                     Log In
                 </button>
             </div>
+            <p id='creator' className='fixed bottom-4 left-4 font-lato font-bold'>Created By:- <a className='underline text-blue-900' href="https://parth-jadav-portfolio.vercel.app/">JadavParth</a></p>
         </div>
     );
 }

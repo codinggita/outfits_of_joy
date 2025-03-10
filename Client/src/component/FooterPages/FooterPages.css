@@ -1,0 +1,783 @@
+/* AboutUs Section */
+.about-us-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18vh 20px;
+}
+
+.about-us-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-us-header h1 {
+    font-family: "Bree Serif", serif;
+    font-size: 3rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.about-us-header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.about-us-story {
+    margin-bottom: 40px;
+}
+
+.about-us-story h2,
+.about-us-offer h2,
+.why-choose-us h2,
+.about-us-mission h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.about-us-story p,
+.about-us-mission p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.outfit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.outfit-card1 {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.outfit-card1:hover {
+    transform: translateY(-10px);
+}
+
+.outfit-card1 h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+}
+
+.why-choose-us {
+    margin-bottom: 40px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.benefit-card {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.outfit-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.benefit-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.about-us-mission {
+    margin-bottom: 40px;
+}
+
+.about-us-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-footer p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.about-us-footer a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-us-footer a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Privacy-Ploicy Section */
+.privacy-policy-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.privacy-policy-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.privacy-policy-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.privacy-policy-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.privacy-policy-content {
+    margin-bottom: 40px;
+}
+
+.privacy-policy-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.privacy-policy-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.privacy-policy-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.privacy-policy-content ul li {
+    margin-bottom: 10px;
+}
+
+.privacy-policy-content a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.privacy-policy-content a:hover {
+    text-decoration: underline;
+}
+
+.privacy-policy-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.privacy-policy-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.privacy-policy-footer a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.privacy-policy-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Terms and condition section */
+.terms-and-conditions-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.terms-and-conditions-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.terms-and-conditions-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.terms-and-conditions-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.terms-and-conditions-content {
+    margin-bottom: 40px;
+}
+
+.terms-and-conditions-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.terms-and-conditions-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.terms-and-conditions-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.terms-and-conditions-content ul li {
+    margin-bottom: 10px;
+}
+
+.terms-and-conditions-content a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.terms-and-conditions-content a:hover {
+    text-decoration: underline;
+}
+
+.terms-and-conditions-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.terms-and-conditions-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.terms-and-conditions-footer a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.terms-and-conditions-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/*return and refund section */
+.return-and-refund-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.return-and-refund-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.return-and-refund-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.return-and-refund-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.return-and-refund-content {
+    margin-bottom: 40px;
+}
+
+.return-and-refund-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.return-and-refund-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.return-and-refund-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.return-and-refund-content ul li {
+    margin-bottom: 10px;
+}
+
+.return-and-refund-content a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.return-and-refund-content a:hover {
+    text-decoration: underline;
+}
+
+.return-and-refund-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.return-and-refund-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.return-and-refund-footer .brand-name {
+    color: #b76e79;
+    font-weight: bold;
+}
+
+
+
+/* Hygiene section */
+.hygiene-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.hygiene-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hygiene-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.hygiene-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.hygiene-content {
+    margin-bottom: 40px;
+}
+
+.hygiene-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    color: #b76e79;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hygiene-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.hygiene-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.hygiene-step {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.hygiene-step:hover {
+    transform: translateY(-10px);
+}
+
+.hygiene-step h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.hygiene-step p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.hygiene-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.hygiene-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.hygiene-footer .brand-name {
+    color: #b76e79;
+    font-weight: bold;
+}
+
+
+/* help and support section */
+.help-and-support-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.help-and-support-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.help-and-support-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.help-and-support-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.help-and-support-content {
+    margin-bottom: 40px;
+}
+
+.help-and-support-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.help-and-support-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.faq-list {
+    display: grid;
+    gap: 20px;
+}
+
+.faq-item {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-10px);
+}
+
+.faq-item h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.contact-method {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+    transform: translateY(-10px);
+}
+
+.contact-method h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.contact-method p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.contact-method a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-method a:hover {
+    text-decoration: underline;
+}
+
+.help-and-support-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.help-and-support-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.help-and-support-footer .brand-name {
+    color: #b76e79;
+    font-weight: bold;
+}
+
+
+/* FYQ section */
+.faq-container {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 17vh 0;
+    line-height: 1.8;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-header h1 {
+    font-family: "Bree Serif", serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.faq-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.brand-name {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+.faq-content {
+    margin-bottom: 40px;
+}
+
+.faq-content h2 {
+    font-family: "Bree Serif", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #b76e79;
+    margin-bottom: 20px;
+}
+
+.faq-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.faq-list {
+    display: grid;
+    gap: 20px;
+}
+
+.faq-item {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-10px);
+}
+
+.faq-item h3 {
+    font-size: 1.5rem;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.faq-item a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.faq-item a:hover {
+    text-decoration: underline;
+}
+
+.faq-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.faq-footer p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.faq-footer a {
+    color: #b76e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.faq-footer a:hover {
+    text-decoration: underline;
+}
