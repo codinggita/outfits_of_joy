@@ -19,6 +19,7 @@ import useFavorites from "../Hooks/useFavorites.jsx"
 import { toast } from "react-toastify";
 import { handlePayment } from '../Profile/Api.js';
 import Reviews from '../Cardslider/Reviews.jsx';
+import ShareButton from './ShareButton/ShareButton.jsx';
 
 function Womensoutfitview() {
     const { category, id } = useParams();  // Get params from URL
@@ -241,12 +242,27 @@ function Womensoutfitview() {
                     <div id='productinfo'>
                         <div id='titlepart'>
                             <p>{product?.title}</p>
-                            <div onClick={(e) => {
-                                e.preventDefault();
-                                toggleFavourite(product?._id);
-                            }} style={{ fontSize: "120%" }}>
-                                {favourites.has(product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
+
+                            {/* shareButton */}
+
+                            <div style={{ display: "flex", marginLeft: "-90px" }}>
+                                <div style={{ marginRight: "10px" }} >
+                                    <ShareButton
+                                        product={product}
+                                        collectionType="femalecollection" />
+                                </div>
+
+
+                                {/* like button */}
+                                <div onClick={(e) => {
+                                    e.preventDefault();
+                                    toggleFavourite(product?._id);
+                                }} style={{ fontSize: "120%" }}>
+                                    {favourites.has(product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
+                                </div>
                             </div>
+
+
                         </div>
                         <div id='aboutproduct'>
                             <div id='productprice'>
