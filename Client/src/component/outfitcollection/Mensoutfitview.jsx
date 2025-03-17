@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchProduct, placeOrder, addToCart } from './api'
 import { useParams } from 'react-router-dom';
-import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart, FaShare } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
 import DatePicker from 'react-datepicker';
 import { FaStarHalfAlt } from "react-icons/fa";
@@ -19,6 +19,7 @@ import useFavorites from "../Hooks/useFavorites.jsx";
 import { toast } from "react-toastify";
 import { handlePayment } from '../Profile/Api.js';
 import Reviews from '../Cardslider/Reviews.jsx';
+import ShareButton from './ShareButton/ShareButton.jsx';
 
 function Mensoutfitview() {
   const { category, id } = useParams();  // Get params from URL
@@ -241,12 +242,52 @@ function Mensoutfitview() {
           <div id='productinfo'>
             <div id='titlepart'>
               <p>{product?.title}</p>
-              <div onClick={(e) => {
+
+
+              {/* share link */}
+
+              <div style={{ fontSize: "120%", cursor: "pointer", display: "flex", gap: "10px", alignItems: "center" }}>
+
+                {/* Share Button */}
+                <div style={{ marginLeft: "-90px" }} >
+                  <ShareButton
+                    product={product}
+                    collectionType="malecollection"
+                  />
+                </div>
+
+
+                {/* Favorite Button */}
+                <div onClick={(e) => {
+                  e.preventDefault();
+                  toggleFavourite(product?._id);
+                }}>
+                  {favourites.has(product?._id) ? (
+                    <span aria-label="Remove Favorite" className="hint--left hint--bounce">
+                      <FaHeart color="rgb(173, 46, 36)" />
+                    </span>
+                  ) : (
+                    <span aria-label="Add to Favorite" className="hint--left hint--bounce">
+                      <FaRegHeart color="rgb(173, 46, 36)" />
+                    </span>
+                  )}
+                </div>
+
+
+              </div>
+
+
+              {/* <div onClick={(e) => {
                 e.preventDefault();
                 toggleFavourite(product?._id);
               }} style={{ fontSize: "120%", cursor: "pointer" }}>
                 {favourites.has(product?._id) ? <span aria-label="Remove Favorite" className='hint--left hint--bounce'><FaHeart color="rgb(173, 46, 36)" /></span> : <span aria-label="Add to Favorite" className='hint--left hint--bounce'><FaRegHeart color="rgb(173, 46, 36)" /></span>}
-              </div>
+              </div> */}
+
+
+
+              {/* end */}
+
             </div>
             <div id='aboutproduct'>
               <div id='productprice'>

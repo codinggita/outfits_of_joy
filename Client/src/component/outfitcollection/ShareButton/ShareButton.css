@@ -1,0 +1,139 @@
+/* ShareButton.css */
+.share-container {
+    position: relative;
+  }
+  
+  .share-button {
+    background-color: transparent;
+    border: 1px solid rgb(173, 46, 36);
+    color: rgb(173, 46, 36);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .share-button:hover {
+    background-color: rgb(173, 46, 36);
+    color: white;
+  }
+  
+  .share-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .share-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    color: rgb(173, 46, 36);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .close-btn:hover {
+    color: rgb(173, 46, 36);
+  }
+  
+  .share-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .share-link {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  .share-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .share-option {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .whatsapp {
+    background-color: #25D366;
+    color: white;
+  }
+  
+  .whatsapp:hover {
+    background-color: #20b358;
+  }
+  
+  .facebook {
+    background-color: #3b5998;
+    color: white;
+  }
+  
+  .facebook:hover {
+    background-color: #324b82;
+  }
+  
+  .copy {
+    background-color: rgb(173, 46, 36);
+    color: white;
+  }
+  
+  .copy:hover {
+    background-color: rgb(143, 36, 28);
+  }
