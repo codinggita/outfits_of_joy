@@ -6,24 +6,11 @@ import './ShareButton.css';
 
 const ShareButton = ({ product, collectionType }) => {
   const [showModal, setShowModal] = useState(false);
-  const shareLink = `http://localhost:5173/${collectionType}/${product?.category}/${product?._id}`;
+  const shareLink = `https://outfits-of-joy.vercel.app/${collectionType}/${product?.category}/${product?._id}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareLink);
-    toast.success("Link copied to clipboard!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      style: {
-        background: "#fff",
-        color: "rgb(173, 46, 36)",
-        border: "1px solid rgb(173, 46, 36)",
-        borderRadius: "5px",
-      },
-    });
+    toast.success("Link copied to clipboard!");
     setShowModal(false);
   };
 
