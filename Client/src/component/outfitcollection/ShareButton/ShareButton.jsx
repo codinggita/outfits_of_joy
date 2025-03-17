@@ -6,7 +6,7 @@ import './ShareButton.css';
 
 const ShareButton = ({ product, collectionType }) => {
   const [showModal, setShowModal] = useState(false);
-  const shareLink = `http://localhost:5173/${collectionType}/${product?.category}/${product?._id}`;
+  const shareLink = `https://outfits-of-joy.vercel.app/${collectionType}/${product?.category}/${product?._id}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareLink);
