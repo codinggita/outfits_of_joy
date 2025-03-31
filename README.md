@@ -44,10 +44,19 @@ Outfits of Joy is a **clothing rental website** that allows users to rent fashio
 
 ## Technologies Used
 
+- **Frontend**:
+  - **React**: Frontend library for UI development.
+  - **Auth0**: For secure user authentication.
+  - **React Toastify**: For showing user-friendly notifications.
+  - **React Router DOM**: For navigation and routing.
+  - **Axios**: For handling API requests.
+  - **Tailwind CSS**: For styling.
+
 - **Backend**:
   - **Node.js**: JavaScript runtime for building the server.
   - **Express.js**: Web framework for designing server routes.
   - **MongoDB**: NoSQL database for storing user, clothing, and order data.
+  - **JWT (JSON Web Tokens)**: Used for authentication and session management.
   - **Cloudinary**: For storing and managing images of clothing items.
   - **Multer**: Middleware for handling file uploads.
 
