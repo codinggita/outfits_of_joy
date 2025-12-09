@@ -19,3 +19,49 @@
 #address-line1, #address-line2{
     width: 40vw;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #address-line1, #address-line2 {
+        width: 50vw;
+    }
+
+    #forminputs input {
+        margin-left: 2vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #useraddress {
+        flex-direction: column;
+        margin-left: 2vw;
+    }
+
+    #forminputs input {
+        width: 80vw;
+        font-size: 100%;
+        margin-bottom: 5vh;
+        margin-left: 0;
+    }
+
+    #address-line1, #address-line2 {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #useraddress {
+        margin-left: 3vw;
+    }
+
+    #forminputs input {
+        width: 85vw;
+        font-size: 90%;
+        padding: 3px;
+        margin-bottom: 4vh;
+    }
+
+    #address-line1, #address-line2 {
+        width: 85vw;
+    }
+}

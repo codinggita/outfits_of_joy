@@ -14,3 +14,30 @@
     text-decoration: none;
     color: #000;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #outfitsection2 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3vw;
+        padding: 3vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #outfitsection2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4vw;
+        margin: 2vw;
+        padding: 4vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #outfitsection2 {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+        margin: 3vw;
+        padding: 5vw;
+    }
+}

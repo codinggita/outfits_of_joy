@@ -165,3 +165,156 @@
     outline: 2px solid black;
     outline-offset: -2px;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #profileinfo {
+        gap: 2vw;
+        margin: 0 2vw;
+    }
+
+    #addressinfo {
+        width: 50vw;
+        margin: 5vw 3vw;
+    }
+
+    #Personalinfo {
+        margin: 2vw 3vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #profileview {
+        top: 14vh;
+        margin-bottom: 20vh;
+    }
+
+    #Personalinfo {
+        margin: 2vw 2vw;
+        font-size: 140%;
+    }
+
+    #info-logout {
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    #profileinfo {
+        flex-direction: column;
+        gap: 2vh;
+        margin: 0 2vw;
+    }
+
+    #userinfo h1 {
+        font-size: 160%;
+    }
+
+    #userinfo p {
+        font-size: 110%;
+    }
+
+    #addressinfo {
+        width: 90%;
+        margin: 5vw 2vw;
+    }
+
+    #shippinginfo {
+        margin: 2vw 0;
+        font-size: 140%;
+    }
+
+    #addressinfo p {
+        font-size: 100%;
+    }
+
+    .popup-overlay {
+        position: fixed;
+        right: 50%;
+        top: 50%;
+        transform: translate(50%, -50%);
+    }
+
+    .popup {
+        width: 90vw;
+        max-width: 400px;
+    }
+
+    .popup input {
+        font-size: 100%;
+        margin-bottom: 5vh;
+        margin-left: 2vw;
+    }
+
+    #userform {
+        flex-direction: column;
+        padding: 1vw;
+    }
+
+    #formlabels label {
+        margin-bottom: 2vh;
+        font-size: 100%;
+    }
+
+    #savebtn {
+        margin-top: 2vh;
+    }
+
+    #savebtn button {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #profileview {
+        top: 12vh;
+    }
+
+    #Personalinfo {
+        font-size: 120%;
+        margin: 2vw 3vw;
+    }
+
+    .logout {
+        padding: 1vh 2vw;
+        font-size: 90%;
+    }
+
+    #userinfo h1 {
+        font-size: 140%;
+    }
+
+    #userinfo p {
+        font-size: 100%;
+    }
+
+    #userphone {
+        font-size: 70%;
+    }
+
+    #addressinfo {
+        width: 90%;
+        margin: 5vw 3vw;
+    }
+
+    #shippinginfo {
+        font-size: 120%;
+    }
+
+    #addressinfo p {
+        font-size: 90%;
+    }
+
+    .popup {
+        width: 95vw;
+        padding: 15px;
+    }
+
+    .popup input {
+        font-size: 90%;
+        padding: 3px;
+    }
+
+    .popup .close-btn {
+        font-size: 130%;
+    }
+}

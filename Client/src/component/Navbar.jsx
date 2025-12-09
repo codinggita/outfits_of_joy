@@ -18,6 +18,7 @@ function Navbar() {
   const { loginWithPopup, isLoading, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { totalItems } = useCart();
   const [searchQuery, setSearchQuery] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,6 +72,7 @@ function Navbar() {
     // Check if search query exists in the mapping
     if (routeMapping[query]) {
       navigate(routeMapping[query]); // Navigate to the new route
+      setMobileMenuOpen(false); // Close mobile menu after navigation
       // window.location.reload(); // Reload the page
     } else {
       toast.warn("No matching category found!");
@@ -79,6 +81,15 @@ function Navbar() {
     // Clear input after search
     setSearchQuery("");
   };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <>
       <header>
@@ -88,6 +99,14 @@ function Navbar() {
             <div id='navlogo'>
               <img src={img2} alt="" />
             </div>
+
+            {/* Hamburger Menu Icon */}
+            <div id='hamburger' className={mobileMenuOpen ? 'active' : ''} onClick={toggleMobileMenu}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
             <ul id='navanchor'>
               <li>
                 <Link to='/' >
@@ -110,6 +129,17 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
+
+            {/* Mobile Menu */}
+            <div id='mobileMenu' className={mobileMenuOpen ? 'show' : ''}>
+              <ul>
+                <li><Link to='/' onClick={closeMobileMenu}>HOME</Link></li>
+                <li><Link to='/womens-outfits' onClick={closeMobileMenu}>WOMENS WEAR</Link></li>
+                <li><Link to='/mens-outfits' onClick={closeMobileMenu}>MENS WEAR</Link></li>
+                <li><Link to='/our-stores' onClick={closeMobileMenu}>OUR STORES</Link></li>
+              </ul>
+            </div>
+
             <ul id='navicons'>
               <li>
                 <form onSubmit={handleSearch} id='navsearch'>

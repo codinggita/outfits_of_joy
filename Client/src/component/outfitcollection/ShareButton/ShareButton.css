@@ -137,3 +137,84 @@
   .copy:hover {
     background-color: rgb(143, 36, 28);
   }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .share-modal {
+    width: 95%;
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .modal-header h3 {
+    font-size: 16px;
+  }
+
+  .close-btn {
+    font-size: 20px;
+  }
+
+  .share-content {
+    gap: 12px;
+  }
+
+  .share-link {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .share-options {
+    gap: 8px;
+  }
+
+  .share-option {
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .share-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .share-modal {
+    width: 98%;
+    max-width: 320px;
+    padding: 12px;
+  }
+
+  .modal-header {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .modal-header h3 {
+    font-size: 15px;
+  }
+
+  .close-btn {
+    font-size: 18px;
+  }
+
+  .share-content {
+    gap: 10px;
+  }
+
+  .share-link {
+    padding: 7px;
+    font-size: 12px;
+  }
+
+  .share-options {
+    gap: 6px;
+  }
+
+  .share-option {
+    min-width: 70px;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}

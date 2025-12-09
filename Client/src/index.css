@@ -25,3 +25,14 @@
 #welcomestore{
   font-family: "Joti One", serif;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid #282828;
+  }
+}

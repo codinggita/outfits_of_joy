@@ -781,3 +781,266 @@
 .faq-footer a:hover {
     text-decoration: underline;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .about-us-container,
+    .privacy-policy-container,
+    .terms-container,
+    .return-refund-container,
+    .hygiene-container,
+    .help-support-container,
+    .faq-container {
+        padding: 16vh 15px;
+        max-width: 1000px;
+    }
+
+    .about-us-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-us-header p {
+        font-size: 1.1rem;
+    }
+
+    .about-us-story h2,
+    .about-us-offer h2,
+    .why-choose-us h2,
+    .about-us-mission h2 {
+        font-size: 1.8rem;
+    }
+
+    .outfit-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-us-container,
+    .privacy-policy-container,
+    .terms-container,
+    .return-refund-container,
+    .hygiene-container,
+    .help-support-container,
+    .faq-container {
+        padding: 14vh 10px;
+        max-width: 100%;
+    }
+
+    .about-us-header h1 {
+        font-size: 2rem;
+    }
+
+    .about-us-header p {
+        font-size: 1rem;
+    }
+
+    .about-us-story h2,
+    .about-us-offer h2,
+    .why-choose-us h2,
+    .about-us-mission h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .about-us-story p,
+    .about-us-mission p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .outfit-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .outfit-card1,
+    .benefit-card {
+        padding: 15px;
+    }
+
+    .outfit-card1 h3,
+    .benefit-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .outfit-card p,
+    .benefit-card p {
+        font-size: 0.95rem;
+    }
+
+    .about-us-footer,
+    .faq-footer {
+        padding: 15px;
+    }
+
+    .about-us-footer p,
+    .faq-footer p {
+        font-size: 1rem;
+    }
+
+    .privacy-policy-header h1,
+    .terms-header h1,
+    .return-refund-header h1,
+    .hygiene-header h1,
+    .help-support-header h1,
+    .faq-header h1 {
+        font-size: 2rem;
+    }
+
+    .privacy-policy-section h2,
+    .terms-section h2,
+    .return-refund-section h2,
+    .hygiene-section h2,
+    .help-support-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .privacy-policy-section p,
+    .privacy-policy-section ul li,
+    .terms-section p,
+    .terms-section ul li,
+    .return-refund-section p,
+    .return-refund-section ul li,
+    .hygiene-section p,
+    .hygiene-section ul li,
+    .help-support-section p,
+    .help-support-section ul li {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .faq-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .faq-item p,
+    .faq-item ul li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-us-container,
+    .privacy-policy-container,
+    .terms-container,
+    .return-refund-container,
+    .hygiene-container,
+    .help-support-container,
+    .faq-container {
+        padding: 12vh 8px;
+    }
+
+    .about-us-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-us-header p {
+        font-size: 0.95rem;
+    }
+
+    .about-us-story h2,
+    .about-us-offer h2,
+    .why-choose-us h2,
+    .about-us-mission h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .about-us-story p,
+    .about-us-mission p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .outfit-grid,
+    .benefits-grid {
+        gap: 12px;
+    }
+
+    .outfit-card1,
+    .benefit-card {
+        padding: 12px;
+    }
+
+    .outfit-card1 h3,
+    .benefit-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .outfit-card p,
+    .benefit-card p {
+        font-size: 0.9rem;
+    }
+
+    .about-us-footer,
+    .faq-footer {
+        padding: 12px;
+    }
+
+    .about-us-footer p,
+    .faq-footer p {
+        font-size: 0.95rem;
+    }
+
+    .privacy-policy-header h1,
+    .terms-header h1,
+    .return-refund-header h1,
+    .hygiene-header h1,
+    .help-support-header h1,
+    .faq-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .privacy-policy-section h2,
+    .terms-section h2,
+    .return-refund-section h2,
+    .hygiene-section h2,
+    .help-support-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .privacy-policy-section p,
+    .privacy-policy-section ul li,
+    .terms-section p,
+    .terms-section ul li,
+    .return-refund-section p,
+    .return-refund-section ul li,
+    .hygiene-section p,
+    .hygiene-section ul li,
+    .help-support-section p,
+    .help-support-section ul li {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .privacy-policy-section ul,
+    .terms-section ul,
+    .return-refund-section ul,
+    .hygiene-section ul,
+    .help-support-section ul,
+    .faq-item ul {
+        padding-left: 15px;
+    }
+
+    .faq-item {
+        padding: 12px;
+    }
+
+    .faq-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .faq-item p,
+    .faq-item ul li {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
