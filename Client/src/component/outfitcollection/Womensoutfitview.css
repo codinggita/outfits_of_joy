@@ -8,3 +8,28 @@
     grid-template-columns: 42% 58%;
     gap: 30px;
   }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  #product2 {
+    grid-template-columns: 45% 55%;
+    gap: 20px;
+    padding: 2vw;
+  }
+}
+
+@media (max-width: 768px) {
+  #product2 {
+    grid-template-columns: 1fr;
+    margin: 0 2vw;
+    padding: 3vw;
+    gap: 3vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #product2 {
+    margin: 0 3vw;
+    padding: 4vw;
+  }
+}

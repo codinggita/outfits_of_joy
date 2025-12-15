@@ -69,3 +69,97 @@
 #sidebar button:active{
     transform: scale(0.9);
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #sidebar {
+        width: 30%;
+        padding: 1.5vw;
+        height: 75vh;
+    }
+
+    #sidebar h2 {
+        font-size: 140%;
+    }
+
+    #sidebar h3 {
+        font-size: 110%;
+    }
+
+    #sidebar h4, #sidebar p {
+        font-size: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    #cartmain {
+        flex-direction: column;
+        top: 14vh;
+        margin-bottom: 20vh;
+    }
+
+    #sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin: 0 2vw;
+        margin-bottom: 3vh;
+        padding: 4vw;
+    }
+
+    #sidebar h2 {
+        font-size: 130%;
+        margin-bottom: 1.5vh;
+    }
+
+    #sidebar h3 {
+        font-size: 100%;
+        padding: 1.5vh;
+    }
+
+    #sidebar h4 {
+        font-size: 100%;
+        margin-bottom: 1.5vh;
+    }
+
+    #sidebar p {
+        font-size: 90%;
+        padding: 1.5vh;
+        margin: 0.5vh auto;
+    }
+
+    #sidebar button {
+        font-size: 95%;
+        padding: 1.5vh;
+        margin-top: 1.5vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #cartmain {
+        top: 12vh;
+    }
+
+    #sidebar {
+        margin: 0 3vw;
+        padding: 5vw;
+    }
+
+    #sidebar h2 {
+        font-size: 120%;
+    }
+
+    #sidebar h3 {
+        font-size: 95%;
+        padding: 1vh;
+    }
+
+    #sidebar h4, #sidebar p {
+        font-size: 85%;
+    }
+
+    #sidebar button {
+        font-size: 90%;
+        padding: 1.2vh;
+    }
+}

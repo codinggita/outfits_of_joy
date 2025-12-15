@@ -38,7 +38,6 @@ function Landingpage() {
                     <li><div><TbTruckReturn /></div><p>Easy Returns</p></li>
                 </ul>
             </div>
-            
         </div>
     </header>
     </>

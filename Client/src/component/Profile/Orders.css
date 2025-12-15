@@ -179,3 +179,181 @@
 #productsizes input:focus {
     outline: none;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #ordermain {
+        margin: 3vw;
+    }
+
+    #orderimg img {
+        height: 45vh;
+    }
+
+    #orderinfo {
+        height: auto;
+        min-height: 43vh;
+    }
+
+    #upperinfo p {
+        font-size: 130%;
+        max-width: 30vw;
+    }
+
+    #savetofav {
+        font-size: 130%;
+    }
+
+    .tracker {
+        width: 400px;
+    }
+
+    #bottominfo {
+        margin: 0 1vw;
+        margin-top: 6vh;
+    }
+}
+
+@media (max-width: 768px) {
+    #ordermain {
+        flex-direction: column;
+        margin: 2vw;
+        box-shadow: 0 0 0 2vw rgb(173, 46, 36, 0.35);
+    }
+
+    #orderimg img {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 5px solid #D4A242;
+    }
+
+    #orderinfo {
+        height: auto;
+        margin: 2vw;
+    }
+
+    #upperinfo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2vh;
+        margin-top: 1vh;
+    }
+
+    #upperinfo p {
+        font-size: 120%;
+        max-width: 100%;
+    }
+
+    #savetofav {
+        font-size: 140%;
+    }
+
+    .tracker-box {
+        padding-top: 3vh;
+    }
+
+    .tracker-box h4 {
+        margin-bottom: 3vh;
+        margin-left: 0;
+    }
+
+    .tracker {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .labels span {
+        font-size: 80%;
+    }
+
+    #middleinfo {
+        flex-direction: column;
+        gap: 2vh;
+        margin-top: 3vh;
+    }
+
+    #label1, #label2 {
+        margin-left: 0;
+    }
+
+    #bottominfo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2vh;
+        margin: 0;
+        margin-top: 4vh;
+    }
+
+    #productsizes {
+        margin-left: 0;
+        margin-top: 2vh;
+    }
+
+    #productsizes input {
+        width: 8vw;
+        padding: 1vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #ordermain {
+        margin: 3vw;
+    }
+
+    #orderinfo {
+        margin: 3vw 2vw;
+    }
+
+    #orderinfo h4 {
+        font-size: 90%;
+    }
+
+    #upperinfo {
+        gap: 1.5vh;
+    }
+
+    #upperinfo p {
+        font-size: 110%;
+    }
+
+    #savetofav {
+        font-size: 130%;
+    }
+
+    .tracker {
+        max-width: 300px;
+    }
+
+    .tracker::before {
+        height: 3px;
+    }
+
+    .circle {
+        width: 10px;
+        height: 10px;
+    }
+
+    .labels span {
+        font-size: 70%;
+    }
+
+    #middleinfo {
+        gap: 1.5vh;
+        margin-top: 2vh;
+    }
+
+    #bottominfo {
+        gap: 1.5vh;
+        margin-top: 3vh;
+    }
+
+    #bottominfo p {
+        font-size: 90%;
+    }
+
+    #productsizes input {
+        width: 12vw;
+        padding: 2vw;
+    }
+}

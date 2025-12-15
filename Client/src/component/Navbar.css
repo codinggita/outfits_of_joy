@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
+header{
+    background-color: #e5d1c6;
+}
+
 #navbar{
     position: relative;
     background-color: #e5d1c6;
@@ -135,4 +139,280 @@ nav{
 #searchoutfits::-webkit-calendar-picker-indicator {
     display: none !important;
     appearance: none;
+}
+
+/* Hamburger Menu Icon */
+#hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    top: 3.5vh;
+    right: 3vw;
+    z-index: 101;
+    gap: 5px;
+}
+
+#hamburger span {
+    width: 28px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+#hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+#hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+#mobileMenu {
+    display: none;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    background-color: rgba(229, 209, 198, 0.98);
+    z-index: 99;
+    padding: 2vh 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#mobileMenu.show {
+    display: block;
+}
+
+#mobileMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#mobileMenu ul li {
+    text-align: center;
+    padding: 2vh 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#mobileMenu ul li a {
+    font-family: "Bree Serif", serif;
+    font-size: large;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+#mobileMenu ul li a:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #navlogo img {
+        width: 6vw;
+        height: 6vw;
+    }
+
+    #navanchor {
+        display: none;
+    }
+
+    #hamburger {
+        display: flex;
+        top: 3.5vh;
+        right: 15vw;
+    }
+
+    #navicons {
+        gap: 2.5vw;
+        right: 3vw;
+    }
+
+    #navicons a {
+        font-size: 160%;
+    }
+
+    #navsearch input {
+        width: 18vw;
+        font-size: 90%;
+    }
+
+    #navsearch button {
+        font-size: 180%;
+    }
+
+    #mobileMenu {
+        top: 12vh;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        height: 10vh;
+    }
+
+    #navbar img {
+        height: 10vh;
+    }
+
+    #navlogo img {
+        width: 10vw;
+        height: 10vw;
+        top: 1vh;
+        left: 2vw;
+    }
+
+    #navanchor {
+        display: none;
+    }
+
+    #hamburger {
+        display: flex;
+        top: 3vh;
+        right: 2vw;
+    }
+
+    #hamburger span {
+        width: 25px;
+        height: 2.5px;
+    }
+
+    #navicons {
+        gap: 3vw;
+        top: 2.5vh;
+        right: 12vw;
+        align-items: center;
+    }
+
+    #navicons a {
+        font-size: 140%;
+    }
+
+    #navsearch {
+        flex-direction: row;
+        gap: 0.5vw;
+    }
+
+    #navsearch input {
+        width: 25vw;
+        height: 4vh;
+        font-size: 85%;
+        padding-left: 2vw;
+    }
+
+    #navsearch button {
+        font-size: 160%;
+    }
+
+    #cartitemcounts {
+        height: 16px;
+        width: 16px;
+        font-size: 35%;
+        top: -1vh;
+        right: -0.5vh;
+    }
+
+    #signin {
+        font-size: 85%;
+    }
+
+    #signin span {
+        font-size: 110%;
+    }
+
+    #navsignin {
+        margin-top: -10%;
+    }
+
+    #mobileMenu {
+        top: 10vh;
+    }
+
+    #mobileMenu ul li {
+        padding: 1.5vh 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        height: 9vh;
+    }
+
+    #navbar img {
+        height: 9vh;
+    }
+
+    #navlogo img {
+        width: 12vw;
+        height: 12vw;
+        top: 0.5vh;
+        left: 2vw;
+    }
+
+    #hamburger {
+        top: 2.8vh;
+        right: 2vw;
+    }
+
+    #hamburger span {
+        width: 23px;
+        height: 2.5px;
+    }
+
+    #navicons {
+        gap: 2.5vw;
+        top: 2.5vh;
+        right: 14vw;
+    }
+
+    #navicons a {
+        font-size: 120%;
+    }
+
+    #navsearch input {
+        width: 30vw;
+        height: 3.5vh;
+        font-size: 80%;
+        padding-left: 2.5vw;
+    }
+
+    #navsearch button {
+        font-size: 140%;
+    }
+
+    #cartitemcounts {
+        height: 14px;
+        width: 14px;
+        font-size: 32%;
+        top: -0.8vh;
+        right: -0.3vh;
+    }
+
+    #signin {
+        font-size: 75%;
+    }
+
+    #signin span {
+        font-size: 100%;
+    }
+
+    #mobileMenu {
+        top: 9vh;
+    }
+
+    #mobileMenu ul li {
+        padding: 1.2vh 0;
+    }
+
+    #mobileMenu ul li a {
+        font-size: medium;
+    }
 }

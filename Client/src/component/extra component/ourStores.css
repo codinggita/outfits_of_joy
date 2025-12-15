@@ -61,3 +61,69 @@
   #storesmain{
     display: flex;
   }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  #storesmain {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .store-card {
+    width: 300px;
+    margin: 3vh 2vw;
+  }
+}
+
+@media (max-width: 768px) {
+  #storesmain {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .store-card {
+    width: 80%;
+    max-width: 400px;
+    margin: 2vh auto;
+  }
+
+  .store-name {
+    font-size: 18px;
+  }
+
+  .store-address, .store-link, .store-phone, .store-email, .store-hours, .store-closed {
+    font-size: 13px;
+  }
+
+  .store-info h3 {
+    font-size: 13px;
+  }
+
+  .store-offer {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .store-card {
+    width: 90%;
+    margin: 2vh auto;
+    padding: 12px;
+  }
+
+  .store-name {
+    font-size: 16px;
+  }
+
+  .store-address, .store-link, .store-phone, .store-email, .store-hours, .store-closed {
+    font-size: 12px;
+  }
+
+  .store-info h3 {
+    font-size: 12px;
+  }
+
+  .store-offer {
+    font-size: 12px;
+  }
+}

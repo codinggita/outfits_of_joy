@@ -121,3 +121,119 @@
 #hpwomensctn img:hover{
     transform: scale(1.02);
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #hpmain {
+        margin-top: 82vh;
+    }
+
+    #hpsection {
+        margin: 0 2vw;
+    }
+
+    #hpmensection, #hpwomensection {
+        padding: 4vw;
+        gap: 2vw;
+    }
+
+    #hpmensection div, #hpwomensection div {
+        flex-basis: 30%;
+    }
+
+    #hpmensection div p, #hpwomensection div p {
+        font-size: 180%;
+    }
+}
+
+@media (max-width: 768px) {
+    #hpmain {
+        margin-top: 80vh;
+    }
+
+    #hpsection {
+        margin: 0 3vw;
+        padding-bottom: 5vh;
+    }
+
+    #hpinstruction, #hpmensctn, #hpwomensctn {
+        padding-top: 4vh;
+    }
+
+    #hpmensection, #hpwomensection {
+        flex-direction: column;
+        padding: 6vw;
+        gap: 4vh;
+        margin-top: 5vh;
+    }
+
+    #hpmensection div, #hpwomensection div {
+        flex-basis: auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 0 0 12px rgb(173, 46, 36, 0.35);
+    }
+
+    #hpmensection div:hover, #hpwomensection div:hover {
+        box-shadow: 0 0 20px 12px rgb(173, 46, 36, 0.75);
+    }
+
+    #hpmensection img, #hpwomensection img {
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+    #hpmensection div p, #hpwomensection div p {
+        font-size: 150%;
+    }
+
+    #hpinstruction img, #hpmensctn img, #hpwomensctn img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #hpmain {
+        margin-top: 69vh;
+    }
+
+    #hpsection {
+        margin: 0 4vw;
+    }
+
+    #hpinstruction, #hpmensctn, #hpwomensctn {
+        padding-top: 3vh;
+    }
+
+    #hpmensection, #hpwomensection {
+        padding: 5vw;
+        gap: 3vh;
+        margin-top: 4vh;
+        border-radius: 20px;
+    }
+
+    #hpmensection div, #hpwomensection div {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        box-shadow: 0 0 0 8px rgb(173, 46, 36, 0.35);
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+
+    #hpmensection div:hover, #hpwomensection div:hover {
+        box-shadow: 0 0 15px 8px rgb(173, 46, 36, 0.75);
+    }
+
+    #hpmensection img, #hpwomensection img {
+        max-height: 350px;
+        object-fit: cover;
+    }
+
+    #hpmensection div p, #hpwomensection div p {
+        font-size: 120%;
+        padding: 1vh 0;
+    }
+}

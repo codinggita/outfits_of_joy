@@ -137,3 +137,145 @@
 .apply-btn:hover {
     background-color: rgba(84, 8, 4, 0.9);
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #infonav {
+        padding: 0 1.5vw;
+        flex-wrap: wrap;
+        gap: 2vh 2vw;
+        height: auto;
+        min-height: 8vh;
+    }
+
+    #pagename, #outfitresults {
+        font-size: 110%;
+        padding: 0.4vw 0.8vw;
+    }
+
+    #outfitsort {
+        font-size: 95%;
+    }
+
+    #outfitsort select {
+        padding: 0.4vw 0.8vw;
+    }
+
+    .filter-btn {
+        font-size: 95%;
+        padding: 0.4vw 0.8vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #infonav {
+        height: auto;
+        margin: 0 2vw;
+        padding: 2vw;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2vh;
+    }
+
+    #pagename, #outfitresults {
+        font-size: 100%;
+        padding: 1vw 2vw;
+        text-align: center;
+    }
+
+    #outfitsort {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1vw;
+        font-size: 100%;
+    }
+
+    #outfitsort select {
+        padding: 1vw 2vw;
+        font-size: 100%;
+    }
+
+    .filter-btn {
+        font-size: 100%;
+        padding: 1vw 2vw;
+        width: 100%;
+    }
+
+    .overlay {
+        top: 15vh;
+        right: 2vw;
+        left: 2vw;
+    }
+
+    .overlay-content {
+        padding: 3vw;
+    }
+
+    .form-group input {
+        padding: 2vw;
+    }
+
+    .actions {
+        gap: 2vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #infonav {
+        margin: 0 3vw;
+        padding: 3vw;
+        gap: 1.5vh;
+    }
+
+    #pagename, #outfitresults {
+        font-size: 90%;
+        padding: 2vw 3vw;
+    }
+
+    #outfitsort {
+        flex-direction: column;
+        gap: 1vh;
+        font-size: 90%;
+    }
+
+    #outfitsort span {
+        margin-right: 0;
+    }
+
+    #outfitsort select {
+        width: 100%;
+        padding: 2vw 3vw;
+    }
+
+    .filter-btn {
+        font-size: 90%;
+        padding: 2vw 3vw;
+    }
+
+    .overlay {
+        top: 12vh;
+        right: 3vw;
+        left: 3vw;
+    }
+
+    .overlay-content {
+        padding: 4vw;
+    }
+
+    .overlay-content h2 {
+        font-size: 110%;
+    }
+
+    .form-group label {
+        font-size: 90%;
+    }
+
+    .form-group input {
+        padding: 3vw;
+    }
+
+    .apply-btn, .cancel-btn {
+        font-size: 85%;
+    }
+}
