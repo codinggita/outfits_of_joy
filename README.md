@@ -9,6 +9,22 @@
 
 Outfits of Joy is a **clothing rental website** that allows users to rent fashionable outfits for various occasions. The platform provides a seamless experience for users to browse, favorite, add to cart, and rent clothes. It also includes dedicated sections for collections, orders, and detailed views of each clothing item.
 
+
+## User Flow Diagram
+
+Here's a visual representation of the user journey through the Outfits of Joy platform:
+[Download User Flow Diagram (SVG)](/Client/public/ofj_userflow.svg)
+
+![User Flow Diagram](/Client/public/ofj_userflow.svg)
+
+
+## Backend Architecture & Data Flow
+
+Here's a visual representation of the backend architecture and data flow for Outfits of Joy:
+[Download Backend Architecture Diagram (SVG)](/Client/public/ofj_backend.svg)
+
+![Backend Architecture Diagram](/Client/public/ofj_backend.svg)
+
 ---
 
 ## Features
@@ -65,4 +81,4 @@ Outfits of Joy is a **clothing rental website** that allows users to rent fashio
   - **Postman**: For testing API endpoints.
   - **Git**: For version control.
 
----
+
